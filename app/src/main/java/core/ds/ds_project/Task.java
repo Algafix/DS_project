@@ -10,4 +10,21 @@ public class Task extends Job {
 
     // If an interval last less than "minimumDuration", i'll be ignored
     private LocalDateTime minimumDuration = null;
+
+    /**
+     * Constructor of the class, only calls the super constructor.
+     *
+     * @param name Name of the job.
+     * @param description What will be the job about.
+     * @param parent Which is the upper node of the tree.
+     */
+    public Task(String name, String description, Project parent) {
+
+        super(name,description,parent);
+    }
+
+    @Override
+    public void printDebug(String tabs) {
+        System.out.println(tabs + this.name+": "+this.description);
+    }
 }
