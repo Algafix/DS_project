@@ -24,10 +24,16 @@ public class AppClock extends Observable {
         timer.schedule(new TimerTask() {
             public void run() {
                 time = LocalDateTime.now();
+                setChanged();
+                notifyObservers(time);
                 System.out.println(time);
             }
         },0,refreshTime);
 
+    }
+
+    public LocalDateTime getTime(){
+        return time;
     }
 
 }

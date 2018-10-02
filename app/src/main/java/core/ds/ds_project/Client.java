@@ -2,6 +2,7 @@ package core.ds.ds_project;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Client {
 
@@ -27,12 +28,30 @@ public class Client {
         AppClock appClock = new AppClock(1000);
     }
 
+    public static void testAppClockInterval() {
+        final AppClock appClock = new AppClock(1000);
+
+        final List<Interval> intervals = new ArrayList<Interval>();
+
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        System.out.println("New interval");
+                        intervals.add(new Interval(appClock));
+                    }
+                },
+                500, 10000
+        );
+    }
 
     public static void main(String [] args){
 
         //testAppClock();
 
         //testAnidament();
+
+        testAppClockInterval();
 
         //System.out.println("Hello world!");
 
