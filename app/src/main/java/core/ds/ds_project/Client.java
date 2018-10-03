@@ -27,12 +27,10 @@ public class Client {
     }
 
     public static void testAppClock() {
-        AppClock appClock = new AppClock(1000);
+        AppClock appClock = AppClock.getInstance();
     }
 
     public static void testAppClockInterval() {
-        final AppClock appClock = new AppClock(1000);
-
         final List<Interval> intervals = new ArrayList<Interval>();
 
         new java.util.Timer().schedule(
@@ -40,7 +38,7 @@ public class Client {
                     @Override
                     public void run() {
                         System.out.println("New interval");
-                        intervals.add(new Interval(appClock));
+                        intervals.add(new Interval(""));
                     }
                 },
                 500, 10000
@@ -57,9 +55,12 @@ public class Client {
                 .toLowerCase();
     }
 
+    /**
+     * Peligro mortal
+     */
     public static void testIntervalStop(){
-        final AppClock appClock = new AppClock(1000);
-        final Interval interval1 = new Interval(appClock);
+        final AppClock appClock = AppClock.getInstance();
+        final Interval interval1 = new Interval("");
 
         final List<Interval> intervals = new ArrayList<Interval>();
 
@@ -68,7 +69,7 @@ public class Client {
                     @Override
                     public void run() {
                         System.out.println("New interval");
-                        intervals.add(new Interval(appClock));
+                        intervals.add(new Interval(""));
                     }
                 },
                 1000, 1000
@@ -79,7 +80,7 @@ public class Client {
                     @Override
                     public void run() {
                         if(!intervals.isEmpty()) {
-                            System.out.println("Stop interval1: " + humanReadableFormatDuration(intervals.get(0).stop(appClock)));
+                            System.out.println("Stop interval1: " + humanReadableFormatDuration(intervals.get(0).stop()));
                             intervals.remove(0);
                         }
                     }
@@ -89,17 +90,41 @@ public class Client {
 
     }
 
+    public static void testInterval(int numero) {
+
+        final Interval interval = new Interval("Interval "+numero);
+        System.out.println("Creado "+interval.getName());
+
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        System.out.println("Parado "+interval.getName()+" en: " + humanReadableFormatDuration(interval.stop()));
+                    }
+                },
+                numero*1000
+        );
+    }
+
+    public static void testForInterval() {
+        for(int i = 1; i<=10 ; i++) {
+            testInterval(i);
+        }
+    }
+
     public static void main(String [] args){
+
+        AppClock.getInstance(1000);
 
         //testAppClock();
 
         //testAnidament();
 
-        // testAppClockInterval();
+        //testAppClockInterval();
 
-        testIntervalStop();
+        //testIntervalStop();
 
-        //System.out.println("Hello world!");
+        //testForInterval();
 
     }
 }

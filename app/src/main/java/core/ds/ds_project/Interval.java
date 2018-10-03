@@ -10,13 +10,15 @@ public class Interval implements Observer{
     private LocalDateTime startTime = null;
     private LocalDateTime endtime = null;
     private Duration duration = null; // check java.time.Duration ;)
+    private String name = null; //debugging purposes
 
     /**
      * Constructor that creates a new interval
      *
-     * @param clock Observable clock which the interval subscribes
      */
-    public Interval(AppClock clock){
+    public Interval(String name){
+        AppClock clock = AppClock.getInstance();
+        this.name = name;
         this.startTime = clock.getTime();
         this.endtime = clock.getTime();
         clock.addObserver(this);
@@ -25,19 +27,23 @@ public class Interval implements Observer{
     @Override
     public void update(Observable obs, Object obj) {
         this.endtime = (LocalDateTime) obj;
-        // System.out.println(this.endtime);
     }
 
-    public Duration stop(AppClock clock){
-        clock.deleteObserver(this);
-        System.out.println(this.startTime);
-        System.out.println(this.endtime);
-        //System.out.println(Duration.between(this.startTime, this.endtime));
-        this.duration = Duration.between(this.startTime, LocalDateTime.now());
+    public Duration stop(){
+        AppClock.getInstance().deleteObserver(this);
+        this.duration = Duration.between(this.startTime, this.endtime);
         return this.duration;
     }
 
     public Duration getDuration(){
         return this.duration;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
