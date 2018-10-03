@@ -26,7 +26,7 @@ public class AppClock extends Observable {
                 time = LocalDateTime.now();
                 setChanged();
                 notifyObservers(time);
-                System.out.println(time);
+               // System.out.println(time);
             }
         },0,refreshTime);
 

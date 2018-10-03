@@ -1,7 +1,9 @@
 package core.ds.ds_project;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class Client {
@@ -45,13 +47,57 @@ public class Client {
         );
     }
 
+    /**
+     * Convierte un duration en un string para mostrar.
+     */
+    public static String humanReadableFormatDuration(Duration duration) {
+        return duration.toString()
+                .substring(2)
+                .replaceAll("(\\d[HMS])(?!$)", "$1 ")
+                .toLowerCase();
+    }
+
+    public static void testIntervalStop(){
+        final AppClock appClock = new AppClock(1000);
+        final Interval interval1 = new Interval(appClock);
+
+        final List<Interval> intervals = new ArrayList<Interval>();
+
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        System.out.println("New interval");
+                        intervals.add(new Interval(appClock));
+                    }
+                },
+                1000, 1000
+        );
+
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        if(!intervals.isEmpty()) {
+                            System.out.println("Stop interval1: " + humanReadableFormatDuration(intervals.get(0).stop(appClock)));
+                            intervals.remove(0);
+                        }
+                    }
+                },
+                2000, 2000
+        );
+
+    }
+
     public static void main(String [] args){
 
         //testAppClock();
 
         //testAnidament();
 
-        testAppClockInterval();
+        // testAppClockInterval();
+
+        testIntervalStop();
 
         //System.out.println("Hello world!");
 
