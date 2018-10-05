@@ -11,6 +11,7 @@ public class Task extends Job {
     // If an interval last less than "minimumDuration", i'll be ignored
     private LocalDateTime minimumDuration = null;
 
+
     /**
      * Constructor of the class, only calls the super constructor.
      *
@@ -23,6 +24,12 @@ public class Task extends Job {
         super(name,description,parent);
     }
 
+
+    /**
+     * Prints info about the Task
+     *
+     * @param tabs String of concatenated "\t" for visual purpose.
+     */
     @Override
     public void printDebug(String tabs) {
         System.out.println(tabs + this.name+": "+this.description);

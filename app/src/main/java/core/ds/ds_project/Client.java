@@ -8,6 +8,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Client {
 
+
+    /**
+     * Test the nested creation of Jobs
+     */
     public static void testAnidament() {
 
         Project allFather = new Project("Projecte Pare", "Projecte Pare",null);
@@ -26,10 +30,10 @@ public class Client {
         allFather.printDebug("");
     }
 
-    public static void testAppClock() {
-        AppClock appClock = AppClock.getInstance();
-    }
 
+    /**
+     * Debug the creation and time of 1 interval
+     */
     public static void testAppClockInterval() {
         final List<Interval> intervals = new ArrayList<Interval>();
 
@@ -45,6 +49,7 @@ public class Client {
         );
     }
 
+
     /**
      * Convierte un duration en un string para mostrar.
      */
@@ -55,8 +60,9 @@ public class Client {
                 .toLowerCase();
     }
 
+
     /**
-     * Peligro mortal
+     * Peligro mortal cosa de Diego
      */
     public static void testIntervalStop(){
         final AppClock appClock = AppClock.getInstance();
@@ -90,6 +96,13 @@ public class Client {
 
     }
 
+
+    /**
+     * Start an interval that will be stopped afther the given number of seconds. This function is
+     * called from testForInterval()
+     *
+     * @param numero number in seconds.
+     */
     public static void testInterval(int numero) {
 
         final Interval interval = new Interval("Interval "+numero);
@@ -106,17 +119,20 @@ public class Client {
         );
     }
 
+
+    /**
+     * Call this function to debug the creation of concurrent threads and its time
+     */
     public static void testForInterval() {
         for(int i = 1; i<=10 ; i++) {
             testInterval(i);
         }
     }
 
+
     public static void main(String [] args){
 
         AppClock.getInstance(1000);
-
-        //testAppClock();
 
         //testAnidament();
 

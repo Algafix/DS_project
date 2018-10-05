@@ -7,6 +7,7 @@ public class Project extends Job {
 
     private List<Job> children = new ArrayList<Job>();
 
+
     /**
      * Constructor of the class, only calls the super constructor.
      *
@@ -19,6 +20,7 @@ public class Project extends Job {
         super(name,description,parent);
     }
 
+
     /**
      * Indicates if the list of jobs has any job.
      *
@@ -28,6 +30,7 @@ public class Project extends Job {
         return !this.children.isEmpty();
     }
 
+
     /**
      * Returns the children list.
      *
@@ -36,6 +39,7 @@ public class Project extends Job {
     public List<Job> getChildren() {
         return this.children;
     }
+
 
     /**
      * Add a child of the instance Project at the end of the list.
@@ -59,6 +63,12 @@ public class Project extends Job {
         return child;
     }
 
+
+    /**
+     * Print info about the Project and call print method of it's child.
+     *
+     * @param tabs String of concatenated "\t" for visual purpose.
+     */
     @Override
     public void printDebug(String tabs) {
 

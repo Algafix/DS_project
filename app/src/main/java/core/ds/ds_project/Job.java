@@ -12,6 +12,7 @@ public abstract class Job {
     // calculated recursively, but saving it will provide a faster access.
     protected LocalDateTime duration = null;
 
+
     /**
      * Constructor of the superclass that automatically initializes the common parameters.
      *

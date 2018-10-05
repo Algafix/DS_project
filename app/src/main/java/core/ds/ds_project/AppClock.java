@@ -17,9 +17,11 @@ public class AppClock extends Observable {
 
     private static int defaultRefresh = 1000;
 
+
     /**
      * The constructor starts a thread that will be checking and updating our time
-     * every given refreshTime.
+     * every given refreshTime. If the user manage to access this constructor before creating an
+     * object, an exemption is raised.
      *
      * @param refreshTime   In miliseconds.
      */
@@ -43,17 +45,25 @@ public class AppClock extends Observable {
         }
     }
 
+
+    /**
+     * Function used to obtain the instance of the singleton. It check's 2 times before creating
+     * the objects, even check thread race condition.
+     *
+     * @param refreshTime The time will be updated at this rate, in ms. Optional parameter.
+     * @return Instance of AppClock object.
+     */
     public static AppClock getInstance(int... refreshTime) {
         //Double check locking pattern
         if (clockSoleInstance == null) { //Check for the first time
-
-            synchronized (AppClock.class) {   //Check for the second time.
+            synchronized (AppClock.class) {   //Check for the second time
                 //if there is no instance available... create new one
                 if (clockSoleInstance == null) clockSoleInstance = new AppClock(refreshTime.length > 0 ? refreshTime[0] : AppClock.defaultRefresh);
             }
         }
         return clockSoleInstance;
     }
+
 
     public LocalDateTime getTime(){
         return time;
