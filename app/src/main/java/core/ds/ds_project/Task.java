@@ -24,6 +24,16 @@ public class Task extends Job {
         super(name,description,parent);
     }
 
+    public List<Interval> getIntervals() {
+        return this.intervals;
+    }
+
+    public Interval addInterval(String name) {
+
+        Interval newInterval = new Interval(name);
+        this.intervals.add(newInterval);
+        return newInterval;
+    }
 
     /**
      * Prints info about the Task
