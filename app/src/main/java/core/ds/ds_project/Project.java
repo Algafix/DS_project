@@ -76,10 +76,9 @@ public class Project extends Job {
 
         tabs = tabs.concat("\t");
 
-        if (this.hasChild()) {
-            for (Job child : children) {
-                child.printDebug(tabs);
-            }
+        for (Job child : children) {
+            child.printDebug(tabs);
         }
+
     }
 }

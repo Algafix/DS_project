@@ -50,6 +50,17 @@ public class Interval implements Observer{
         return this.duration;
     }
 
+    /**
+     * Prints info about the Interval.
+     *
+     * @param tabs String of concatenated "\t" for visual purpose.
+     */
+    public void printDebug(String tabs) {
+
+        System.out.println(tabs + this.name + ": " + this.startTime);
+
+    }
+
     public Duration getDuration(){
         return this.duration;
     }
@@ -61,4 +72,5 @@ public class Interval implements Observer{
     public String getName() {
         return name;
     }
+
 }

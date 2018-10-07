@@ -122,7 +122,9 @@ public class Client {
         }
     }
 
-
+    /**
+     * Call this function to debug the creation of intervals nested in project tree
+     */
     public static void testNestedInterval() {
         Project allFather = new Project("Projecte Pare", "Projecte Pare",null);
 
@@ -140,10 +142,12 @@ public class Client {
 
         allFather.printDebug("");
 
+
         Timer timer = new Timer();
         timer.schedule(new IntervalTimerTask(interval1) , 2000);
         timer.schedule(new IntervalTimerTask(interval2), 2000);
         timer.schedule(new IntervalTimerTask(interval3), 3000);
+
 
     }
 

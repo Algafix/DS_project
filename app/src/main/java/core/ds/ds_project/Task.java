@@ -36,12 +36,20 @@ public class Task extends Job {
     }
 
     /**
-     * Prints info about the Task
+     * Prints info about the Task and call print method of it's child.
      *
      * @param tabs String of concatenated "\t" for visual purpose.
      */
     @Override
     public void printDebug(String tabs) {
+
         System.out.println(tabs + this.name+": "+this.description);
+
+        tabs = tabs.concat("\t");
+
+        for (Interval child : intervals) {
+            child.printDebug(tabs);
+        }
+
     }
 }
