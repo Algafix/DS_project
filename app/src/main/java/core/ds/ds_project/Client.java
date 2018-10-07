@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 public class Client {
 
@@ -43,7 +42,7 @@ public class Client {
                     @Override
                     public void run() {
                         System.out.println("New interval");
-                        intervals.add(new Interval(""));
+                        intervals.add(new Interval("",null));
                     }
                 },
                 500, 10000
@@ -54,11 +53,15 @@ public class Client {
     /**
      * Convierte un duration en un string para mostrar.
      */
-    public static String humanReadableFormatDuration(Duration duration) {
-        return duration.toString()
-                .substring(2)
-                .replaceAll("(\\d[HMS])(?!$)", "$1 ")
-                .toLowerCase();
+    public static String formatDuration(Duration duration) {
+        if (duration == null) {
+            return null;
+        }else {
+            return duration.toString()
+                    .substring(2)
+                    .replaceAll("(\\d[HMS])(?!$)", "$1 ")
+                    .toLowerCase();
+        }
     }
 
 
@@ -67,7 +70,7 @@ public class Client {
      */
     public static void testIntervalStop(){
         final AppClock appClock = AppClock.getInstance();
-        final Interval interval1 = new Interval("");
+        final Interval interval1 = new Interval("",null);
 
         final List<Interval> intervals = new ArrayList<Interval>();
 
@@ -76,7 +79,7 @@ public class Client {
                     @Override
                     public void run() {
                         System.out.println("New interval");
-                        intervals.add(new Interval(""));
+                        intervals.add(new Interval("",null));
                     }
                 },
                 1000, 1000
@@ -87,7 +90,7 @@ public class Client {
                     @Override
                     public void run() {
                         if(!intervals.isEmpty()) {
-                            System.out.println("Stop interval1: " + humanReadableFormatDuration(intervals.get(0).stop()));
+                            System.out.println("Stop interval1: " + formatDuration(intervals.get(0).stop()));
                             intervals.remove(0);
                         }
                     }
@@ -106,7 +109,7 @@ public class Client {
      */
     public static void testInterval(int numero) {
 
-        Interval interval = new Interval("Interval "+numero);
+        Interval interval = new Interval("Interval "+numero, null);
         System.out.println("Creado "+interval.getName());
 
         new java.util.Timer().schedule(new IntervalTimerTask(interval), numero*1000);
@@ -123,10 +126,11 @@ public class Client {
     }
 
     /**
-     * Call this function to debug the creation of intervals nested in project tree
+     * Call this function to debug the creation of intervals nested in project tree and propagation
+     * of duration.
      */
     public static void testNestedInterval() {
-        Project allFather = new Project("Projecte Pare", "Projecte Pare",null);
+        final Project allFather = new Project("Projecte Pare", "Projecte Pare",null);
 
         Project projecte1 = allFather.addChild(new Project("Projecte1", "Projecte de test1", allFather));
 
@@ -140,13 +144,23 @@ public class Client {
         Interval interval2 = tasca111.addInterval("interval2");
         Interval interval3 = tasca111.addInterval("interval3");
 
+        // Prints the tree with initial durations (intervals has null because haven't stopped yet
         allFather.printDebug("");
 
-
-        Timer timer = new Timer();
+        // Stop the intervals
+        final Timer timer = new Timer();
         timer.schedule(new IntervalTimerTask(interval1) , 2000);
         timer.schedule(new IntervalTimerTask(interval2), 2000);
         timer.schedule(new IntervalTimerTask(interval3), 3000);
+
+        // Reprint the tree with updated durations
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                allFather.printDebug("");
+                timer.cancel();
+            }
+        },5000);
 
 
     }
@@ -165,6 +179,5 @@ public class Client {
         //testForInterval();
 
         testNestedInterval();
-
     }
 }

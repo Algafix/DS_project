@@ -3,6 +3,9 @@ package core.ds.ds_project;
 import java.time.Duration;
 import java.util.TimerTask;
 
+/**
+ * Class for debugging purposes.
+ */
 public class IntervalTimerTask extends TimerTask {
 
     Interval interval;
@@ -14,6 +17,6 @@ public class IntervalTimerTask extends TimerTask {
     @Override
     public void run() {
         Duration duration = interval.stop();
-        System.out.println("Parado "+interval.getName()+" en: " + Client.humanReadableFormatDuration(duration));
+        System.out.println("Parado "+interval.getName()+" en: " + Client.formatDuration(duration));
     }
 }

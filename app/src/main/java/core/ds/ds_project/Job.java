@@ -1,16 +1,14 @@
 package core.ds.ds_project;
 
-import java.time.LocalDateTime;
+import java.time.Duration;
+
 
 public abstract class Job {
 
     protected Project parent;
     protected String name;
     protected String description;
-
-    // Im not certain that this attribute should exist, the duration can be
-    // calculated recursively, but saving it will provide a faster access.
-    protected LocalDateTime duration = null;
+    protected Duration duration = null;
 
 
     /**
@@ -24,6 +22,22 @@ public abstract class Job {
         this.name = name;
         this.description = description;
         this.parent = parent;
+        this.duration = Duration.ofSeconds(0);
+    }
+
+    /**
+     * Updates the duration of the object and, if the object is not the last, call update on it's
+     * parent.
+     *
+     * @param duration Increment of time.
+     */
+    public void updateDuration(Duration duration) {
+        synchronized (this.duration) {
+            this.duration = this.duration.plus(duration);
+        }
+        if(parent != null) {
+            parent.updateDuration(duration);
+        }
     }
 
 

@@ -25,13 +25,19 @@ public class Task extends Job {
     }
 
     public List<Interval> getIntervals() {
-        return this.intervals;
+        return intervals;
     }
 
+    /**
+     * Add's an interval to the interval array passing itself as a parent.
+     *
+     * @param name Name of the interval for debug purposes.
+     * @return The interval created.
+     */
     public Interval addInterval(String name) {
 
-        Interval newInterval = new Interval(name);
-        this.intervals.add(newInterval);
+        Interval newInterval = new Interval(name, this);
+        intervals.add(newInterval);
         return newInterval;
     }
 
@@ -43,7 +49,7 @@ public class Task extends Job {
     @Override
     public void printDebug(String tabs) {
 
-        System.out.println(tabs + this.name+": "+this.description);
+        System.out.println(tabs + name+": "+Client.formatDuration(duration));
 
         tabs = tabs.concat("\t");
 

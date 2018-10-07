@@ -9,7 +9,8 @@ public class Interval implements Observer{
 
     private LocalDateTime startTime = null;
     private LocalDateTime endtime = null;
-    private Duration duration = null; // check java.time.Duration ;)
+    private Duration duration = null;
+    private Task parent = null;
     private String name = null; //debugging purposes
 
 
@@ -17,11 +18,12 @@ public class Interval implements Observer{
      * Constructor that creates a new interval
      *
      */
-    public Interval(String name){
+    public Interval(String name, Task parent){
         AppClock clock = AppClock.getInstance();
         this.name = name;
         this.startTime = clock.getTime();
         this.endtime = clock.getTime();
+        this.parent = parent;
         clock.addObserver(this);
     }
 
@@ -35,7 +37,7 @@ public class Interval implements Observer{
      */
     @Override
     public void update(Observable obs, Object obj) {
-        this.endtime = (LocalDateTime) obj;
+        endtime = (LocalDateTime) obj;
     }
 
 
@@ -46,8 +48,9 @@ public class Interval implements Observer{
      */
     public Duration stop(){
         AppClock.getInstance().deleteObserver(this);
-        this.duration = Duration.between(this.startTime, this.endtime);
-        return this.duration;
+        duration = Duration.between(startTime, endtime);
+        parent.updateDuration(duration);
+        return duration;
     }
 
     /**
@@ -57,12 +60,12 @@ public class Interval implements Observer{
      */
     public void printDebug(String tabs) {
 
-        System.out.println(tabs + this.name + ": " + this.startTime);
+        System.out.println(tabs + name + ": " + Client.formatDuration(duration));
 
     }
 
     public Duration getDuration(){
-        return this.duration;
+        return duration;
     }
 
     public void setName(String name) {

@@ -27,7 +27,7 @@ public class Project extends Job {
      * @return False if the list is empty, True otherwise.
      */
     public boolean hasChild() {
-        return !this.children.isEmpty();
+        return !children.isEmpty();
     }
 
 
@@ -37,7 +37,7 @@ public class Project extends Job {
      * @return Children list.
      */
     public List<Job> getChildren() {
-        return this.children;
+        return children;
     }
 
 
@@ -48,7 +48,7 @@ public class Project extends Job {
      * @return Instance of Project that has just been added.
      */
     public Project addChild(Project child) {
-        this.children.add(child);
+        children.add(child);
         return child;
     }
 
@@ -59,7 +59,7 @@ public class Project extends Job {
      * @return Instance of Task that has just been added.
      */
     public Task addChild(Task child) {
-        this.children.add(child);
+        children.add(child);
         return child;
     }
 
@@ -72,7 +72,7 @@ public class Project extends Job {
     @Override
     public void printDebug(String tabs) {
 
-        System.out.println(tabs+this.name+": "+this.description);
+        System.out.println(tabs+name+": "+Client.formatDuration(duration));
 
         tabs = tabs.concat("\t");
 
