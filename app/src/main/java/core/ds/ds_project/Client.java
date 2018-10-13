@@ -1,5 +1,10 @@
 package core.ds.ds_project;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -129,7 +134,7 @@ public class Client {
      * Call this function to debug the creation of intervals nested in project tree and propagation
      * of duration.
      */
-    public static void testNestedInterval() {
+    public static Project testNestedInterval() {
         final Project allFather = new Project("Projecte Pare", "Projecte Pare",null);
 
         Project projecte1 = allFather.addChild(new Project("Projecte1", "Projecte de test1", allFather));
@@ -151,7 +156,7 @@ public class Client {
         final Timer timer = new Timer();
         timer.schedule(new IntervalTimerTask(interval1) , 2000);
         timer.schedule(new IntervalTimerTask(interval2), 2000);
-        timer.schedule(new IntervalTimerTask(interval3), 3000);
+        timer.schedule(new IntervalTimerTask(interval3), 10000);
 
         // Reprint the tree with updated durations
         timer.schedule(new TimerTask() {
@@ -160,9 +165,81 @@ public class Client {
                 allFather.printDebug("");
                 timer.cancel();
             }
-        },5000);
+        },11000);
 
+        return allFather;
 
+    }
+
+    /**
+     * Test the Job and Interval Serialization
+     */
+    public static void testSerializeSave() {
+
+        final Project allFather = testNestedInterval();
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                serializeProject(allFather, "allFather.ser");
+            }
+        },7000);
+    }
+
+    public static void serializeProject(Project allFather, String filename){
+        // Serialization
+        try
+        {
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            // Method for serialization of object
+            out.writeObject(allFather);
+
+            out.close();
+            file.close();
+
+            System.out.println("Object has been serialized");
+
+        }
+
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+
+    }
+
+    public static Project deserializeProject(String filename){
+        // Deserialization
+        try
+        {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for deserialization of object
+            Project deserializedProject = (Project)in.readObject();
+
+            in.close();
+            file.close();
+
+            System.out.println("Object has been deserialized ");
+            return deserializedProject;
+        }
+
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+            return null;
+        }
+
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+            return null;
+        }
     }
 
 
@@ -178,6 +255,10 @@ public class Client {
 
         //testForInterval();
 
-        testNestedInterval();
+        // testNestedInterval();
+
+        // testSerializeSave();
+
+         deserializeProject("allFather.ser").printDebug("");
     }
 }
