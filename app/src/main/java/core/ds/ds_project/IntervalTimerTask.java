@@ -16,7 +16,6 @@ public class IntervalTimerTask extends TimerTask {
 
     @Override
     public void run() {
-        Duration duration = interval.stop();
-        System.out.println("Parado "+interval.getName()+" en: " + Client.formatDuration(duration));
+        System.out.println("Parado "+interval.getName()+" en: ");
     }
 }
