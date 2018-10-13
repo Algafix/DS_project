@@ -25,43 +25,6 @@ public class Client {
         return seconds < 0 ? "-" + positive : positive;
     }
 
-
-    /**
-     * Peligro mortal cosa de Diego
-     */
-    public static void testIntervalStop(){
-        final AppClock appClock = AppClock.getInstance();
-        final Interval interval1 = new Interval("",null);
-
-        final List<Interval> intervals = new ArrayList<Interval>();
-
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        System.out.println("New interval");
-                        intervals.add(new Interval("",null));
-                    }
-                },
-                1000, 1000
-        );
-
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        if(!intervals.isEmpty()) {
-                            System.out.println("Stop interval1: " + formatDuration(intervals.get(0).stop()));
-                            intervals.remove(0);
-                        }
-                    }
-                },
-                2000, 2000
-        );
-
-    }
-
-
     /**
      * Start an interval that will be stopped afther the given number of seconds. This function is
      * called from testForInterval()
