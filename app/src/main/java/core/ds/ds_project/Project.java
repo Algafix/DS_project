@@ -72,7 +72,7 @@ public class Project extends Job {
     @Override
     public void printDebug(String tabs) {
 
-        System.out.println(tabs+name+": "+Client.formatDuration(duration));
+        System.out.println(tabs + name +": ");
 
         tabs = tabs.concat("\t");
 
