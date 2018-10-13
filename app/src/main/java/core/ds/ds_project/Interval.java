@@ -1,11 +1,12 @@
 package core.ds.ds_project;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Interval implements Observer{
+public class Interval implements Observer, Serializable {
 
     private LocalDateTime startTime = null;
     private LocalDateTime endtime = null;
@@ -38,6 +39,7 @@ public class Interval implements Observer{
     @Override
     public void update(Observable obs, Object obj) {
         endtime = (LocalDateTime) obj;
+        // duration = Duration.between(startTime, endtime);
     }
 
 

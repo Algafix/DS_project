@@ -1,9 +1,10 @@
 package core.ds.ds_project;
 
+import java.io.Serializable;
 import java.time.Duration;
 
 
-public abstract class Job {
+public abstract class Job implements Serializable {
 
     protected Project parent;
     protected String name;
