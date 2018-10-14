@@ -118,6 +118,13 @@ public class Client {
         },7000);
     }
     */
+
+    /**
+     * Serializes a project to a file with the name given by the parameters
+     *
+     * @param allFather the project expected to be received (dummy project) and the one we will serialize
+     * @param filename the name of the file where the project is going to be saved
+     */
     public static void serializeProject(Project allFather, String filename){
         // Serialization
         try
@@ -143,6 +150,11 @@ public class Client {
 
     }
 
+    /**
+     * Deserializes a project from a file with the name given by the parameters
+     *
+     * @param filename the name of the file where the project is going to be loaded from
+     */
     public static Project deserializeProject(String filename){
         // Deserialization
         try
