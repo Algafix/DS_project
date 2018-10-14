@@ -1,11 +1,11 @@
 package core.ds.ds_project;
-import android.text.NoCopySpan;
 
-import java.time.Period;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.time.format.DateTimeFormatter;
 
 public class Test {
 
@@ -21,7 +21,7 @@ public class Test {
         Project allFather = new Project(".", "Projecte Pare",null);
 
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
-        final ConcreteTask task3 = allFather.addChild(new ConcreteTask("T3", "Tasca 3", allFather));
+        final ConcreteTask task3 = project1.addChild(new ConcreteTask("T3", "Tasca 3", project1));
 
         final Project project2 = project1.addChild(new Project( "P2", "Project 2", project1));
         final ConcreteTask task1 = project2.addChild(new ConcreteTask("T1", "Tasca 1", project1));
@@ -32,40 +32,42 @@ public class Test {
         AppClock.getInstance(2000);
 
         final Interval interval1 = task3.addInterval("interval1");
-        final Interval interval2 = task2.addInterval("interval1");
-        final Interval interval3 = task1.addInterval("interval1");
-        final Interval interval4 = task3.addInterval("interval1");
+        //final Interval interval2 = task2.addInterval("interval1");
+        //final Interval interval3 = task1.addInterval("interval1");
+        //final Interval interval4 = task3.addInterval("interval1");
+        Timer timerCreateIntervals = new Timer();
+
 
         TimerTask Applicationwindow = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Nom   Temps inici   Temps final     Durada (hh:mm:ss)");
-                System.out.println("----+-------------+-------------+--------------------");
-                System.out.println(project1.name +"                                     "+ Client.formatDuration(project1.duration) );
-                System.out.println(task3.name +"                                    "+ Client.formatDuration(task3.duration));
-                System.out.println(project2.name +"                                    "+ Client.formatDuration(project2.duration));
-                System.out.println(task1.name + "                                      "+ Client.formatDuration(task1.duration));
-                System.out.println(task2.name + "                                      "+ Client.formatDuration(task2.duration));
+                System.out.println("Nom   Temps inici             Temps final              Durada (hh:mm:ss)");
+                System.out.println("----+-----------------------+-----------------------+--------------------");
+                System.out.println(project1.name +"    "+ Client.formatDateTime(project1.startTime)+" "+Client.formatDateTime(project1.endTime)+" "+ Client.formatDuration(project1.duration) );
+                System.out.println(task3.name +"    "+ Client.formatDateTime(task3.startTime) +" "+Client.formatDateTime(task3.endTime)+" "+ Client.formatDuration(task3.duration));
+                System.out.println(project2.name +"    "+ project2.startTime +" "+project2.endTime+" "+ Client.formatDuration(project2.duration));
+                System.out.println(task1.name +"    "+ task1.startTime +" "+task1.endTime+" "+ Client.formatDuration(task1.duration));
+                System.out.println(task2.name +"    "+ task2.startTime +" "+task2.endTime+" "+ Client.formatDuration(task2.duration));
                 System.out.println(interval1.getDuration());
 
             }
         };
 
-
-        TimerTask TaskStartIntervals = new TimerTask(){
+        final TimerTask TaskStartIntervals = new TimerTask(){
             @Override
             public void run() {
                 interval1.stop();
 
             }
-            };
+        };
 
+        timerCreateIntervals.schedule(TaskStartIntervals,3000);
         Timer updateWindow = new Timer();
 
-        Timer timerCreateIntervals = new Timer();
+
 
         updateWindow.scheduleAtFixedRate(Applicationwindow, 0, 2000);
-        timerCreateIntervals.schedule(TaskStartIntervals,3000);
+
 
 
     }
