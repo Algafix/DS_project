@@ -1,5 +1,6 @@
 package core.ds.ds_project;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.ArrayList;
@@ -37,6 +38,15 @@ public class ConcreteTask extends Task {
         Interval newInterval = new Interval(name, this);
         intervals.add(newInterval);
         return newInterval;
+    }
+
+    @Override
+    public Duration stopLastInterval() {
+        if (!intervals.isEmpty()) {
+            Interval last = intervals.get(intervals.size() - 1);
+            return last.stop();
+        }
+        return null;
     }
 
     /**
