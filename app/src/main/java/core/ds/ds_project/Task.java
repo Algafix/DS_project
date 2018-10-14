@@ -1,6 +1,7 @@
 package core.ds.ds_project;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,23 @@ public abstract class Task extends Job{
     @Override
     public abstract void printDebug(String tabs);
 
+
+    /**
+     * Updates the duration of the object and, if the object is not the last, call update on it's
+     * parent.
+     *
+     * @param duration Increment of time.
+     */
+    @Override
+    public void updateDuration(Duration duration, LocalDateTime startTime, LocalDateTime endTime) {
+
+        if(higherLayerDecorator == null) {
+            super.updateDuration(duration, startTime, endTime);
+        }
+        else {
+            higherLayerDecorator.updateDuration(duration, startTime, endTime);
+        }
+    }
 
 
 }

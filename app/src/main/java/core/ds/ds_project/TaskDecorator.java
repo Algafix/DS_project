@@ -15,10 +15,9 @@ public abstract class TaskDecorator extends Task {
         task.setHigherLayerDecorator(this);
     }
 
-    /*
     public List<Interval> getIntervals() {
         return task.getIntervals();
-    }*/
+    }
 
     /**
      * Add's an interval to the interval array passing itself as a parent.
@@ -45,7 +44,5 @@ public abstract class TaskDecorator extends Task {
     public void printDebug(String tabs) {
         task.printDebug(tabs);
     }
-
-    public abstract void setLimitTime(ConcreteTask task, int miliseconds);
 
 }
