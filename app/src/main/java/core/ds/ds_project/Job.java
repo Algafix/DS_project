@@ -48,6 +48,6 @@ public abstract class Job implements Serializable {
      *
      * @param tabs String of concatenated "\t" for visual purpose.
      */
-    abstract void printDebug(String tabs);
+    public abstract void printDebug(String tabs);
 
 }
