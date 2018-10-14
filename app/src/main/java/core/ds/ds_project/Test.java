@@ -1,4 +1,7 @@
 package core.ds.ds_project;
+import android.text.NoCopySpan;
+
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -18,11 +21,11 @@ public class Test {
         Project allFather = new Project(".", "Projecte Pare",null);
 
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
-        final Task task3 = allFather.addChild(new Task("T3", "Tasca 3", allFather));
+        final ConcreteTask task3 = allFather.addChild(new ConcreteTask("T3", "Tasca 3", allFather));
 
         final Project project2 = project1.addChild(new Project( "P2", "Project 2", project1));
-        final Task task1 = project2.addChild(new Task("T1", "Tasca 1", project1));
-        final Task task2 = project2.addChild(new Task("T2", "Tasca 2", project1));
+        final ConcreteTask task1 = project2.addChild(new ConcreteTask("T1", "Tasca 1", project1));
+        final ConcreteTask task2 = project2.addChild(new ConcreteTask("T2", "Tasca 2", project1));
 
         allFather.printDebug("");
 
@@ -157,10 +160,10 @@ public class Test {
         Project projecte1 = allFather.addChild(new Project("Projecte1", "Projecte de test1", allFather));
 
         Project projecte11 = projecte1.addChild(new Project("Projecte11", "Projecte anidat 11", projecte1));
-        Task tasca12 = projecte1.addChild(new Task("Tasca12", "Tasca anidada 12", projecte1));
+        Task tasca12 = projecte1.addChild(new ConcreteTask("Tasca12", "Tasca anidada 12", projecte1));
 
-        Task tasca111 = projecte11.addChild(new Task("Tasca111", "Tasca anidada 111", projecte11));
-        Task tasca112 = projecte11.addChild(new Task("Tasca112", "Tasca anidada 112", projecte11));
+        Task tasca111 = projecte11.addChild(new ConcreteTask("Tasca111", "Tasca anidada 111", projecte11));
+        Task tasca112 = projecte11.addChild(new ConcreteTask("Tasca112", "Tasca anidada 112", projecte11));
 
         Interval interval1 = tasca12.addInterval("interval1");
         Interval interval2 = tasca111.addInterval("interval2");
@@ -186,4 +189,18 @@ public class Test {
 
 
     }
+
+    public static void testDecorator(){
+        Project allFather = new Project(".", "Projecte Pare",null);
+
+
+
+        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
+        final ConcreteTask task3 = allFather.addChild(new ConcreteTask("T3", "Tasca 3", allFather));
+        //task3 = new LimitTime(task3, 1000);
+
+
+    }
+
+
 }

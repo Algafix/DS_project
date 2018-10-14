@@ -52,7 +52,7 @@ public class Client {
     /**
      * Call this function to debug the creation of intervals nested in project tree and propagation
      * of duration.
-     */
+
     public static Project testNestedInterval() {
         final Project allFather = new Project("Projecte Pare", "Projecte Pare",null);
 
@@ -89,10 +89,10 @@ public class Client {
         return allFather;
 
     }
-
+    */
     /**
      * Test the Job and Interval Serialization
-     */
+
     public static void testSerializeSave() {
 
         final Project allFather = testNestedInterval();
@@ -104,7 +104,7 @@ public class Client {
             }
         },7000);
     }
-
+    */
     public static void serializeProject(Project allFather, String filename){
         // Serialization
         try
