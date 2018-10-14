@@ -29,6 +29,9 @@ public class Test {
         AppClock.getInstance(2000);
 
         final Interval interval1 = task3.addInterval("interval1");
+        final Interval interval2 = task2.addInterval("interval1");
+        final Interval interval3 = task1.addInterval("interval1");
+        final Interval interval4 = task3.addInterval("interval1");
 
         TimerTask Applicationwindow = new TimerTask() {
             @Override
@@ -40,12 +43,27 @@ public class Test {
                 System.out.println(project2.name +"                                    "+ Client.formatDuration(project2.duration));
                 System.out.println(task1.name + "                                      "+ Client.formatDuration(task1.duration));
                 System.out.println(task2.name + "                                      "+ Client.formatDuration(task2.duration));
+                System.out.println(interval1.getDuration());
+
             }
         };
 
+
+        TimerTask TaskStartIntervals = new TimerTask(){
+            @Override
+            public void run() {
+                interval1.stop();
+
+            }
+            };
+
         Timer updateWindow = new Timer();
 
+        Timer timerCreateIntervals = new Timer();
+
         updateWindow.scheduleAtFixedRate(Applicationwindow, 0, 2000);
+        timerCreateIntervals.schedule(TaskStartIntervals,3000);
+
 
     }
 
