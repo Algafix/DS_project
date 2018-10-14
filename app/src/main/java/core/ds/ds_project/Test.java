@@ -21,11 +21,11 @@ public class Test {
         Project allFather = new Project(".", "Projecte Pare",null);
 
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
-        final ConcreteTask task3 = project1.addChild(new ConcreteTask("T3", "Tasca 3", project1));
+        final ConcreteTask task3 = (ConcreteTask) project1.addChild(new ConcreteTask("T3", "Tasca 3", project1));
 
         final Project project2 = project1.addChild(new Project( "P2", "Project 2", project1));
-        final ConcreteTask task1 = project2.addChild(new ConcreteTask("T1", "Tasca 1", project1));
-        final ConcreteTask task2 = project2.addChild(new ConcreteTask("T2", "Tasca 2", project1));
+        final ConcreteTask task1 = (ConcreteTask) project2.addChild(new ConcreteTask("T1", "Tasca 1", project1));
+        final ConcreteTask task2 =  (ConcreteTask) project2.addChild(new ConcreteTask("T2", "Tasca 2", project1));
 
         allFather.printDebug("");
 
@@ -192,15 +192,25 @@ public class Test {
 
     }
 
-    public static void testDecorator(){
+    public static void testLimitTimeDecorator(){
         Project allFather = new Project(".", "Projecte Pare",null);
 
-
-
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
-        final ConcreteTask task3 = allFather.addChild(new ConcreteTask("T3", "Tasca 3", allFather));
-        //task3 = new LimitTimeTaskDecorator(task3, 1000);
+        ConcreteTask task3 = new ConcreteTask("T3", "Tasca 3", allFather);
+        final LimitTimeTaskDecorator task31 = new LimitTimeTaskDecorator(task3, 10000);
+        allFather.addChild(task31);
+        // LimitTimeTaskDecorator task3 = new LimitTimeTaskDecorator(task3, 1000);
 
+        final Interval interval = task31.addInterval("Intervalo que deberia pararse en 10s");
+        // interval.printDebug("");
+        System.out.println(interval.getName());
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                interval.printDebug("");
+            }
+        },5000, 5000);
 
     }
 

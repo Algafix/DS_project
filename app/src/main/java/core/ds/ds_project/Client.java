@@ -189,9 +189,13 @@ public class Client {
 
     public static void main(String [] args){
 
+        AppClock.getInstance(2000);
+
         Test test = new Test();
 
-        test.testApenndA1();
+        // test.testApenndA1();
+
+        test.testDecorator();
 
         //testAppClockInterval();
 

@@ -62,7 +62,7 @@ public class Interval implements Observer, Serializable {
      */
     public void printDebug(String tabs) {
 
-        System.out.println(tabs + name + ": " + Client.formatDuration(duration));
+        System.out.println(tabs + name + ": " + Client.formatDuration(Duration.between(startTime, endtime)));
 
     }
 
