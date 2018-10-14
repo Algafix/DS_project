@@ -199,7 +199,7 @@ public class Test {
 
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
         final ConcreteTask task3 = allFather.addChild(new ConcreteTask("T3", "Tasca 3", allFather));
-        //task3 = new LimitTimeDecorator(task3, 1000);
+        //task3 = new LimitTimeTaskDecorator(task3, 1000);
 
 
     }

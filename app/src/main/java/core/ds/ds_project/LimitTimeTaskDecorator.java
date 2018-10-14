@@ -3,14 +3,14 @@ package core.ds.ds_project;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class LimitTimeDecorator extends TaskDecorator {
+public class LimitTimeTaskDecorator extends TaskDecorator {
 
     /**
      * Max duration of an interval in miliseconds
      */
     long maxDuration;
 
-    public LimitTimeDecorator(Task basicTask, long maxDuration){
+    public LimitTimeTaskDecorator(Task basicTask, long maxDuration){
         super(basicTask);
         this.maxDuration = maxDuration;
     }
