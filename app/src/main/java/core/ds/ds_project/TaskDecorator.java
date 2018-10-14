@@ -45,7 +45,4 @@ public abstract class TaskDecorator extends Task {
         task.printDebug(tabs);
     }
 
-
-    public abstract void setLimitTime(BasicTask task, int miliseconds);
-
 }

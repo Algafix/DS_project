@@ -196,7 +196,7 @@ public class Client {
 
         // test.testApenndA1();
 
-        test.testDecorator();
+        test.testLimitTimeDecorator();
 
         //testAppClockInterval();
 
