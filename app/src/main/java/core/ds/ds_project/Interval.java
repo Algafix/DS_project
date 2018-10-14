@@ -40,7 +40,7 @@ public class Interval implements Observer, Serializable {
     public void update(Observable obs, Object obj) {
         Duration partialDuration = Duration.between(endtime, (LocalDateTime) obj);
         endtime = (LocalDateTime) obj;
-        parent.updateDuration(partialDuration);
+        parent.updateDuration(partialDuration, startTime, endtime);
     }
 
 

@@ -2,6 +2,7 @@ package core.ds.ds_project;
 
 import java.io.Serializable;
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 
 public abstract class Job implements Serializable {
@@ -10,6 +11,8 @@ public abstract class Job implements Serializable {
     protected String name;
     protected String description;
     protected Duration duration = null;
+    protected LocalDateTime startTime = null;
+    protected LocalDateTime endTime = null;
 
 
     /**
@@ -32,12 +35,19 @@ public abstract class Job implements Serializable {
      *
      * @param duration Increment of time.
      */
-    public void updateDuration(Duration duration) {
+    public void updateDuration(Duration duration, LocalDateTime startTime, LocalDateTime endTime) {
+
+        if(this.startTime == null) {
+            this.startTime = startTime;
+        }
+
         synchronized (this.duration) {
             this.duration = this.duration.plus(duration);
+            this.endTime = endTime;
         }
+
         if(parent != null) {
-            parent.updateDuration(duration);
+            parent.updateDuration(duration, startTime, endTime);
         }
     }
 
