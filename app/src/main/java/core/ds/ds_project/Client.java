@@ -25,16 +25,17 @@ public class Client {
                 (absSeconds % 3600) / 60,
                 absSeconds % 60);
         return seconds < 0 ? "-" + positive : positive;
+
     }
 
     public static String formatDateTime(LocalDateTime time) {
 
         if(time != null ){
-            final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss");
             return time.format(formatter);
         }
         else{
-            return "        ";
+            return "                       ";
         }
     }
 

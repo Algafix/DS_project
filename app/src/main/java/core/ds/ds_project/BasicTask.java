@@ -6,7 +6,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConcreteTask extends Task {
+public class BasicTask extends Task {
 
     private List<Interval> intervals = new ArrayList<Interval>();
     public Period maxDuration = null;
@@ -18,7 +18,8 @@ public class ConcreteTask extends Task {
      * @param description What will be the job about.
      * @param parent Which is the upper node of the tree.
      */
-    public ConcreteTask(String name, String description, Project parent) {
+
+    public BasicTask(String name, String description, Project parent) {
 
         super(name,description,parent);
     }

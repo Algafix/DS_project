@@ -58,7 +58,7 @@ public class Project extends Job {
      * @param child Instance of Task that will be added.
      * @return Instance of Task that has just been added.
      */
-    public ConcreteTask addChild(ConcreteTask child) {
+    public BasicTask addChild(BasicTask child) {
         children.add(child);
         return child;
     }
