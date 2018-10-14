@@ -1,4 +1,4 @@
-package core.ds.ds_project;
+ package core.ds.ds_project;
 
 import java.io.Serializable;
 import java.time.Duration;
