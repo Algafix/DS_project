@@ -1,8 +1,9 @@
-/***package core.ds.ds_project;
-
+package core.ds.ds_project;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,22 +22,24 @@ public class ProgramatedTask extends TaskDecorator implements Observer {
 
     }
 
-     * Method called when the Observable object where this object is subscribed invoke
+     /** Method called when the Observable object where this object is subscribed invoke
      * "notifyObservers()"
      *
      * @param obs Parameter containing info about the observable object.
      * @param obj Parameter containing info about the update.
-
+      */
     @Override
     public void update(Observable obs, Object obj) {
 
-        if (LocalDateTime)obj  ){
+        long seconds  = ChronoUnit.SECONDS.between((LocalDateTime)obj, ProgramDate);
+
+        if(seconds < 1 && seconds > -1){
             task.addInterval(nameInterval);
         }
     }
 
 
 
-}***/
+}
 
 
