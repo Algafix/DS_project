@@ -89,7 +89,7 @@ public class Test {
         };
 
         task3.addInterval("interval1");
-        timerTask.schedule(Tasktime1,3000);
+        timerTask.schedule(Tasktime1,3100);
         timerTask.schedule(Tasktime2,10000);
         timerTask.schedule(Tasktime3,20000);
         timerTask.schedule(Tasktime4,22000);
