@@ -24,7 +24,7 @@ public class Test {
 
         final Project project2 = project1.addChild(new Project( "P2", "Project 2", project1));
         final BasicTask task1 = (BasicTask) project2.addChild(new BasicTask("T1", "Tasca 1", project1));
-        final BasicTask task2 =  (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2", project1));
+        final BasicTask task2 =  (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2", project2));
 
         allFather.printDebug("");
 
