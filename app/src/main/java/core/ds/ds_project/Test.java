@@ -28,100 +28,6 @@ public class Test {
 
         allFather.printDebug("");
 
-        AppClock.getInstance(1000);
-
-        //final Interval interval1 = task3.addInterval("interval1");
-        final Timer timerTask = new Timer();
-
-
-
-
-        TimerTask Applicationwindow = new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println("Nom   Temps inici                  Temps final                  Durada (hh:mm:ss)");
-                System.out.println("----+----------------------------+----------------------------+--------------------");
-                System.out.println(project1.name +"    "+ Client.formatDateTime(project1.startTime)+"      "+Client.formatDateTime(project1.endTime)+"       "+ Client.formatDuration(project1.duration) );
-                System.out.println(task3.name +"    "+ Client.formatDateTime(task3.startTime) +"      "+Client.formatDateTime(task3.endTime)+"       "+ Client.formatDuration(task3.duration));
-                System.out.println(project2.name +"    "+ Client.formatDateTime(project2.startTime) +"      "+Client.formatDateTime(project2.endTime)+"       "+ Client.formatDuration(project2.duration));
-                System.out.println(task1.name +"    "+ Client.formatDateTime(task1.startTime) +"      "+Client.formatDateTime(task1.endTime)+"       "+ Client.formatDuration(task1.duration));
-                System.out.println(task2.name +"    "+ Client.formatDateTime(task2.startTime) +"      "+Client.formatDateTime(task2.endTime)+"       "+ Client.formatDuration(task2.duration));
-                System.out.println("-----------------------------------------------------------------------------------");
-                System.out.println(" ");
-
-            }
-        };
-
-
-
-        final TimerTask Tasktime1 = new TimerTask(){
-            @Override
-            public void run() {
-                task3.stopLastInterval();
-
-
-            }
-        };
-
-        final TimerTask Tasktime2 = new TimerTask(){
-            @Override
-            public void run() {
-                task2.addInterval("interval1");
-
-            }
-        };
-
-        final TimerTask Tasktime3 = new TimerTask(){
-            @Override
-            public void run() {
-                task2.stopLastInterval();
-                task3.addInterval("interval2");
-            }
-        };
-
-        final TimerTask Tasktime4 = new TimerTask(){
-            @Override
-            public void run() {
-                task3.stopLastInterval();
-
-
-            }
-        };
-
-        task3.addInterval("interval1");
-        timerTask.schedule(Tasktime1,3100);
-        timerTask.schedule(Tasktime2,10000);
-        timerTask.schedule(Tasktime3,20000);
-        timerTask.schedule(Tasktime4,22000);
-
-
-        Timer updateWindow = new Timer();
-
-        updateWindow.scheduleAtFixedRate(Applicationwindow, 0, 2000);
-
-
-
-    }
-
-    /**
-     * This is te test of Append A2 of the project
-     * The tree created is: . -> Project1 (P1): -> Project2 (P2): -> Task1 (T1)
-     *                                                            -> Task2 (T2)
-     *                        -> Task3 (T3)
-     */
-
-    public static void testApenndA2 (){
-        Project allFather = new Project(".", "Projecte Pare",null);
-
-        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
-        final BasicTask task3 = (BasicTask) project1.addChild(new BasicTask("T3", "Tasca 3", project1));
-
-        final Project project2 = project1.addChild(new Project( "P2", "Project 2", project1));
-        final BasicTask task1 = (BasicTask) project2.addChild(new BasicTask("T1", "Tasca 1", project1));
-        final BasicTask task2 =  (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2", project1));
-
-        allFather.printDebug("");
-
         AppClock.getInstance(2000);
 
         //final Interval interval1 = task3.addInterval("interval1");
@@ -147,10 +53,99 @@ public class Test {
         };
 
 
+
         final TimerTask Tasktime1 = new TimerTask(){
             @Override
             public void run() {
+                task3.stopLastInterval();
+
+
+            }
+        };
+
+        final TimerTask Tasktime2 = new TimerTask(){
+            @Override
+            public void run() {
                 task2.addInterval("interval1");
+
+            }
+        };
+
+        final TimerTask Tasktime3 = new TimerTask(){
+            @Override
+            public void run() {
+                task2.stopLastInterval();
+                task3.addInterval("interval2");
+            }
+        };
+
+        final TimerTask Tasktime4 = new TimerTask(){
+            @Override
+            public void run() {
+                task3.stopLastInterval();
+
+
+            }
+        };
+
+        task3.addInterval("interval1");
+        timerTask.schedule(Tasktime1,3070);
+        timerTask.schedule(Tasktime2,10000);
+        timerTask.schedule(Tasktime3,20070);
+        timerTask.schedule(Tasktime4,22000);
+
+
+        Timer updateWindow = new Timer();
+
+        updateWindow.scheduleAtFixedRate(Applicationwindow, 0, 2000);
+
+
+
+    }
+
+    /**
+     * This is te test of Append A2 of the project
+     * The tree created is: . -> Project1 (P1): -> Project2 (P2): -> Task1 (T1)
+     *                                                            -> Task2 (T2)
+     *                        -> Task3 (T3)
+     */
+
+    public static void testApenndA2 (){
+        Project allFather = new Project(".", "Projecte Pare",null);
+
+        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
+        final BasicTask task3 = (BasicTask) project1.addChild(new BasicTask("T3", "Tasca 3", project1));
+
+        final Project project2 = project1.addChild(new Project( "P2", "Project 2", project1));
+        final BasicTask task1 = (BasicTask) project2.addChild(new BasicTask("T1", "Tasca 1", project2));
+        final BasicTask task2 =  (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2", project2));
+
+        allFather.printDebug("");
+
+        AppClock.getInstance(2000);
+
+        final Timer timerTask = new Timer();
+
+        TimerTask Applicationwindow = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("Nom   Temps inici                  Temps final                  Durada (hh:mm:ss)");
+                System.out.println("----+----------------------------+----------------------------+--------------------");
+                System.out.println(project1.name +"    "+ Client.formatDateTime(project1.startTime)+"      "+Client.formatDateTime(project1.endTime)+"       "+ Client.formatDuration(project1.duration) );
+                System.out.println(task3.name +"    "+ Client.formatDateTime(task3.startTime) +"      "+Client.formatDateTime(task3.endTime)+"       "+ Client.formatDuration(task3.duration));
+                System.out.println(project2.name +"    "+ Client.formatDateTime(project2.startTime) +"      "+Client.formatDateTime(project2.endTime)+"       "+ Client.formatDuration(project2.duration));
+                System.out.println(task1.name +"    "+ Client.formatDateTime(task1.startTime) +"      "+Client.formatDateTime(task1.endTime)+"       "+ Client.formatDuration(task1.duration));
+                System.out.println(task2.name +"    "+ Client.formatDateTime(task2.startTime) +"      "+Client.formatDateTime(task2.endTime)+"       "+ Client.formatDuration(task2.duration));
+                System.out.println("-----------------------------------------------------------------------------------");
+                System.out.println(" ");
+
+            }
+        };
+
+        final TimerTask Tasktime1 = new TimerTask(){
+            @Override
+            public void run() {
+                task2.addInterval("interval21");
 
 
             }
@@ -167,7 +162,7 @@ public class Test {
         final TimerTask Tasktime3 = new TimerTask(){
             @Override
             public void run() {
-                task1.addInterval("interval1");
+                task1.addInterval("interval11");
 
 
             }
@@ -193,7 +188,7 @@ public class Test {
         final TimerTask Tasktime6 = new TimerTask(){
             @Override
             public void run() {
-                task3.addInterval("interval2");
+                task3.addInterval("interval32");
 
             }
         };
@@ -206,14 +201,14 @@ public class Test {
             }
         };
 
-        task3.addInterval("interval1");
-        timerTask.schedule(Tasktime1,4000);
-        timerTask.schedule(Tasktime2,6000);
-        timerTask.schedule(Tasktime3,8000);
-        timerTask.schedule(Tasktime5,1200);
-        timerTask.schedule(Tasktime4,14000);
-        timerTask.schedule(Tasktime6,18000);
-        timerTask.schedule(Tasktime7,20000);
+        task3.addInterval("interval31");
+        timerTask.schedule(Tasktime1,4050);
+        timerTask.schedule(Tasktime2,6050);
+        timerTask.schedule(Tasktime3,8050);
+        timerTask.schedule(Tasktime4,12050);
+        timerTask.schedule(Tasktime5,14050);
+        timerTask.schedule(Tasktime6,18050);
+        timerTask.schedule(Tasktime7,20050);
 
         Timer updateWindow = new Timer();
 
@@ -239,42 +234,6 @@ public class Test {
                 },
                 500, 10000
         );
-    }
-
-
-    /**
-     * Peligro mortal cosa de Diego
-     */
-    public static void testIntervalStop(){
-        final AppClock appClock = AppClock.getInstance();
-        final Interval interval1 = new Interval("",null);
-
-        final List<Interval> intervals = new ArrayList<Interval>();
-
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        System.out.println("New interval");
-                        intervals.add(new Interval("",null));
-                    }
-                },
-                1000, 1000
-        );
-
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        if(!intervals.isEmpty()) {
-                            System.out.println("Stop interval1: " + Client.formatDuration(intervals.get(0).stop()));
-                            intervals.remove(0);
-                        }
-                    }
-                },
-                2000, 2000
-        );
-
     }
 
 
