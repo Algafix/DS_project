@@ -17,7 +17,7 @@ public class Client {
      * Corrects the precision error of the clock that adds or subs around 1ms.
      *
      * @param duration Duration object with a time to correct.
-     * @return The same Duration object corrected to seconds in place.
+     * @return The same Duration object with the seconds fixed.
      */
     public static Duration roundToSeconds(Duration duration) {
 
