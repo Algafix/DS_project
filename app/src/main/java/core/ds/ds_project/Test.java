@@ -93,7 +93,7 @@ public class Test {
 
         Timer updateWindow = new Timer();
 
-        updateWindow.scheduleAtFixedRate(Applicationwindow, 0, 2000);
+        updateWindow.scheduleAtFixedRate(Applicationwindow, 0, AppClock.getInstance().getCurrentRefreshTime());
 
 
     }
@@ -205,7 +205,7 @@ public class Test {
 
         Timer updateWindow = new Timer();
 
-        updateWindow.scheduleAtFixedRate(Applicationwindow, 0, 2000);
+        updateWindow.scheduleAtFixedRate(Applicationwindow, 0, AppClock.getInstance().getCurrentRefreshTime());
 
 
     }
@@ -298,8 +298,8 @@ public class Test {
         final Project allFather = new Project(".", "Projecte Pare", null);
 
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
-        final LimitTimeTaskDecorator task3 = (LimitTimeTaskDecorator) allFather.addChild
-                (new LimitTimeTaskDecorator(new BasicTask("T3", "Tasca 3", allFather), 10000));
+        final LimitTimeTaskDecorator task3 = (LimitTimeTaskDecorator) project1.addChild
+                (new LimitTimeTaskDecorator(new BasicTask("T3", "Tasca 3", project1), 10000));
 
         task3.addInterval("Intervalo que deberia pararse en 10s");
 
@@ -309,7 +309,7 @@ public class Test {
             public void run() {
                 allFather.printDebug("");
             }
-        }, 5000, 2000);
+        }, 1000, AppClock.getInstance().getCurrentRefreshTime());
 
     }
 
@@ -324,7 +324,7 @@ public class Test {
         TimerTask Applicationwindow = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Al cap de 5 segons comença la T3 que pertany a P1 ");
+                System.out.println("Al cap de 5 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(5)) +") comença la T3 que pertany a P1 ");
                 System.out.println(" ");
                 System.out.println("Nom   Temps inici                  Temps final                  Durada (hh:mm:ss)");
                 System.out.println("----+----------------------------+----------------------------+--------------------");
@@ -336,7 +336,7 @@ public class Test {
 
         Timer updateWindow = new Timer();
 
-        updateWindow.scheduleAtFixedRate(Applicationwindow,0,2000);
+        updateWindow.scheduleAtFixedRate(Applicationwindow,0,AppClock.getInstance().getCurrentRefreshTime());
 
 
     }

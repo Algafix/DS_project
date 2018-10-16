@@ -12,7 +12,24 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Client {
-    
+
+    /**
+     * Corrects the precision error of the clock that adds or subs around 1ms.
+     *
+     * @param duration Duration object with a time to correct.
+     * @return The same Duration object corrected to seconds in place.
+     */
+    public static Duration roundToSeconds(Duration duration) {
+
+        if(duration.getNano()>995000000) {
+            duration = duration.plusSeconds(1);
+        }
+
+        duration = duration.minusNanos(duration.getNano());
+
+        return duration;
+    }
+
     /**
      * Convierte un duration en un string para mostrar formato HH:mm:ss
      */
@@ -25,7 +42,6 @@ public class Client {
                 (absSeconds % 3600) / 60,
                 absSeconds % 60);
         return seconds < 0 ? "-" + positive : positive;
-
     }
 
     public static String formatDateTime(LocalDateTime time) {
@@ -63,62 +79,6 @@ public class Client {
         }
     }
 
-    /**
-     * Call this function to debug the creation of intervals nested in project tree and propagation
-     * of duration.
-
-    public static Project testNestedInterval() {
-        final Project allFather = new Project("Projecte Pare", "Projecte Pare",null);
-
-        Project projecte1 = allFather.addChild(new Project("Projecte1", "Projecte de test1", allFather));
-
-        Project projecte11 = projecte1.addChild(new Project("Projecte11", "Projecte anidat 11", projecte1));
-        Task tasca12 = projecte1.addChild(new Task("Tasca12", "Tasca anidada 12", projecte1));
-
-        Task tasca111 = projecte11.addChild(new Task("Tasca111", "Tasca anidada 111", projecte11));
-        Task tasca112 = projecte11.addChild(new Task("Tasca112", "Tasca anidada 112", projecte11));
-
-        Interval interval1 = tasca12.addInterval("interval1");
-        Interval interval2 = tasca111.addInterval("interval2");
-        Interval interval3 = tasca111.addInterval("interval3");
-
-        // Prints the tree with initial durations (intervals has null because haven't stopped yet
-        allFather.printDebug("");
-
-        // Stop the intervals
-        final Timer timer = new Timer();
-        timer.schedule(new IntervalTimerTask(interval1) , 2000);
-        timer.schedule(new IntervalTimerTask(interval2), 2000);
-        timer.schedule(new IntervalTimerTask(interval3), 10000);
-
-        // Reprint the tree with updated durations
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                allFather.printDebug("");
-                timer.cancel();
-            }
-        },11000);
-
-        return allFather;
-
-    }
-    */
-    /**
-     * Test the Job and Interval Serialization
-
-    public static void testSerializeSave() {
-
-        final Project allFather = testNestedInterval();
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                serializeProject(allFather, "allFather.ser");
-            }
-        },7000);
-    }
-    */
 
     /**
      * Serializes a project to a file with the name given by the parameters

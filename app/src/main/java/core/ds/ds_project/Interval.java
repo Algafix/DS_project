@@ -39,6 +39,7 @@ public class Interval implements Observer, Serializable {
     @Override
     public void update(Observable obs, Object obj) {
         Duration partialDuration = Duration.between(endtime, (LocalDateTime) obj);
+        partialDuration = Client.roundToSeconds(partialDuration);
         endtime = (LocalDateTime) obj;
         parent.updateDuration(partialDuration, startTime, endtime);
     }
@@ -51,7 +52,6 @@ public class Interval implements Observer, Serializable {
      */
     public Duration stop(){
         AppClock.getInstance().deleteObserver(this);
-        duration = Duration.between(startTime, endtime);
         return duration;
     }
 
