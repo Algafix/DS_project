@@ -33,8 +33,11 @@ public class ProgramatedTask extends TaskDecorator implements Observer {
 
         long seconds  = ChronoUnit.SECONDS.between((LocalDateTime)obj, ProgramDate);
 
-        if(seconds < 1 && seconds > -1){
+        float refreshTimeSeconds = AppClock.getInstance().getCurrentRefreshTime()/1000;
+
+        if(seconds < (refreshTimeSeconds/2) && seconds > -(refreshTimeSeconds/2)){
             task.addInterval(nameInterval);
+            System.out.println("Empezar interval");
         }
     }
 

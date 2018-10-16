@@ -17,6 +17,8 @@ public class AppClock extends Observable {
 
     private static int defaultRefresh = 1000;
 
+    private int currentRefreshTime;
+
 
     /**
      * The constructor starts a thread that will be checking and updating our time
@@ -32,6 +34,7 @@ public class AppClock extends Observable {
             throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
         }
         else {
+            currentRefreshTime = refreshTime;
             time = LocalDateTime.now();
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
@@ -69,4 +72,7 @@ public class AppClock extends Observable {
         return time;
     }
 
+    public int getCurrentRefreshTime() {
+        return currentRefreshTime;
+    }
 }

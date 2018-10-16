@@ -29,8 +29,6 @@ public class Test {
 
         allFather.printDebug("");
 
-        AppClock.getInstance(2000);
-
         //final Interval interval1 = task3.addInterval("interval1");
         final Timer timerTask = new Timer();
 
@@ -118,8 +116,6 @@ public class Test {
         final BasicTask task2 = (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2", project2));
 
         allFather.printDebug("");
-
-        AppClock.getInstance(2000);
 
         final Timer timerTask = new Timer();
 
@@ -313,7 +309,7 @@ public class Test {
             public void run() {
                 allFather.printDebug("");
             }
-        }, 5000, 5000);
+        }, 5000, 2000);
 
     }
 
@@ -322,9 +318,8 @@ public class Test {
 
         final LocalDateTime initTime = LocalDateTime.now();
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
-        final ProgramatedTask task3 = (ProgramatedTask) allFather.addChild
-                (new ProgramatedTask(new BasicTask("T3", "Tasca 3", allFather), initTime.plusSeconds(5), "interval1"));
-
+        final ProgramatedTask task3 = (ProgramatedTask) project1.addChild
+                (new ProgramatedTask(new BasicTask("T3", "Tasca 3", project1), initTime.plusSeconds(5), "interval1"));
 
         TimerTask Applicationwindow = new TimerTask() {
             @Override

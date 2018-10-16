@@ -9,6 +9,7 @@ import java.util.List;
 public class BasicTask extends Task {
 
     private List<Interval> intervals = new ArrayList<Interval>();
+    private Interval runningInterval = null;
     public Period maxDuration = null;
 
     /**
@@ -36,16 +37,22 @@ public class BasicTask extends Task {
      */
     public Interval addInterval(String name) {
 
-        Interval newInterval = new Interval(name, this);
-        intervals.add(newInterval);
-        return newInterval;
+        if(runningInterval == null) {
+
+            runningInterval = new Interval(name, this);
+            intervals.add(runningInterval);
+            return runningInterval;
+
+        }
+        return null;
     }
 
     @Override
     public Duration stopLastInterval() {
-        if (!intervals.isEmpty()) {
-            Interval last = intervals.get(intervals.size() - 1);
-            return last.stop();
+        if (runningInterval != null) {
+            Duration lastDuration = runningInterval.stop();
+            runningInterval = null;
+            return lastDuration;
         }
         return null;
     }
