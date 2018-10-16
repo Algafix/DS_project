@@ -10,7 +10,7 @@ public abstract class TaskDecorator extends Task {
     protected Task task = null;
 
     public TaskDecorator(Task task) {
-        super(task.name,task.description,task.parent);
+        super(task.name,task.description);
         this.task = task;
         task.setHigherLayerDecorator(this);
     }

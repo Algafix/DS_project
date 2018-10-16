@@ -56,31 +56,6 @@ public class Client {
     }
 
     /**
-     * Start an interval that will be stopped afther the given number of seconds. This function is
-     * called from testForInterval()
-     *
-     * @param numero number in seconds.
-     */
-    public static void testInterval(int numero) {
-
-        Interval interval = new Interval("Interval "+numero, null);
-        System.out.println("Creado "+interval.getName());
-
-        new java.util.Timer().schedule(new IntervalTimerTask(interval), numero*1000);
-    }
-
-
-    /**
-     * Call this function to debug the creation of concurrent threads and its time
-     */
-    public static void testForInterval() {
-        for(int i = 1; i<=10 ; i++) {
-            testInterval(i);
-        }
-    }
-
-
-    /**
      * Serializes a project to a file with the name given by the parameters
      *
      * @param allFather the project expected to be received (dummy project) and the one we will serialize
@@ -155,19 +130,13 @@ public class Client {
 
         Test test = new Test();
 
-        //test.testApenndA1();
+        test.testApenndA1();
 
-        test.testApenndA2();
+        //test.testApenndA2();
 
         //test.testLimitTimeDecorator();
 
         //test.testProgramatedtask();
-
-        //testAppClockInterval();
-
-        //testIntervalStop();
-
-        //test.testForInterval();
 
         //test.testNestedInterval();
     }

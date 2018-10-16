@@ -13,11 +13,10 @@ public class Project extends Job {
      *
      * @param name Name of the job.
      * @param description What will be the job about.
-     * @param parent Which is the upper node of the tree.
      */
-    Project(String name, String description, Project parent) {
+    Project(String name, String description) {
 
-        super(name,description,parent);
+        super(name,description);
     }
 
 
@@ -48,6 +47,7 @@ public class Project extends Job {
      * @return Instance of Project that has just been added.
      */
     public Project addChild(Project child) {
+        child.setParent(this);
         children.add(child);
         return child;
     }
@@ -59,6 +59,7 @@ public class Project extends Job {
      * @return Instance of Task that has just been added.
      */
     public Task addChild(Task child) {
+        child.setParent(this);
         children.add(child);
         return child;
     }

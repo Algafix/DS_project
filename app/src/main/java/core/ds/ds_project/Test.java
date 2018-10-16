@@ -18,14 +18,14 @@ public class Test {
      */
 
     public static void testApenndA1() {
-        Project allFather = new Project(".", "Projecte Pare", null);
+        Project allFather = new Project(".", "Projecte Pare");
 
-        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
-        final BasicTask task3 = (BasicTask) project1.addChild(new BasicTask("T3", "Tasca 3", project1));
+        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
+        final BasicTask task3 = (BasicTask) project1.addChild(new BasicTask("T3", "Tasca 3"));
 
-        final Project project2 = project1.addChild(new Project("P2", "Project 2", project1));
-        final BasicTask task1 = (BasicTask) project2.addChild(new BasicTask("T1", "Tasca 1", project1));
-        final BasicTask task2 = (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2", project2));
+        final Project project2 = project1.addChild(new Project("P2", "Project 2"));
+        final BasicTask task1 = (BasicTask) project2.addChild(new BasicTask("T1", "Tasca 1"));
+        final BasicTask task2 = (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2"));
 
         allFather.printDebug("");
 
@@ -106,14 +106,14 @@ public class Test {
      */
 
     public static void testApenndA2() {
-        Project allFather = new Project(".", "Projecte Pare", null);
+        Project allFather = new Project(".", "Projecte Pare");
 
-        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
-        final BasicTask task3 = (BasicTask) project1.addChild(new BasicTask("T3", "Tasca 3", project1));
+        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
+        final BasicTask task3 = (BasicTask) project1.addChild(new BasicTask("T3", "Tasca 3"));
 
-        final Project project2 = project1.addChild(new Project("P2", "Project 2", project1));
-        final BasicTask task1 = (BasicTask) project2.addChild(new BasicTask("T1", "Tasca 1", project2));
-        final BasicTask task2 = (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2", project2));
+        final Project project2 = project1.addChild(new Project("P2", "Project 2"));
+        final BasicTask task1 = (BasicTask) project2.addChild(new BasicTask("T1", "Tasca 1"));
+        final BasicTask task2 = (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2"));
 
         allFather.printDebug("");
 
@@ -259,19 +259,18 @@ public class Test {
      * of duration.
      */
     public static void testNestedInterval() {
-        final Project allFather = new Project("Projecte Pare", "Projecte Pare", null);
+        final Project allFather = new Project("Projecte Pare", "Projecte Pare");
 
-        Project projecte1 = allFather.addChild(new Project("Projecte1", "Projecte de test1", allFather));
+        Project projecte1 = allFather.addChild(new Project("Projecte1", "Projecte de test1"));
 
-        Project projecte11 = projecte1.addChild(new Project("Projecte11", "Projecte anidat 11", projecte1));
-        Task tasca12 = projecte1.addChild(new BasicTask("Tasca12", "Tasca anidada 12", projecte1));
+        Project projecte11 = projecte1.addChild(new Project("Projecte11", "Projecte anidat 11"));
+        Task tasca12 = projecte1.addChild(new BasicTask("Tasca12", "Tasca anidada 12"));
 
-        Task tasca111 = projecte11.addChild(new BasicTask("Tasca111", "Tasca anidada 111", projecte11));
-        Task tasca112 = projecte11.addChild(new BasicTask("Tasca112", "Tasca anidada 112", projecte11));
+        Task tasca111 = projecte11.addChild(new BasicTask("Tasca111", "Tasca anidada 111"));
+        Task tasca112 = projecte11.addChild(new BasicTask("Tasca112", "Tasca anidada 112"));
 
         Interval interval1 = tasca12.addInterval("interval1");
         Interval interval2 = tasca111.addInterval("interval2");
-        Interval interval3 = tasca111.addInterval("interval3");
 
         // Prints the tree with initial durations (intervals has null because haven't stopped yet
         allFather.printDebug("");
@@ -279,8 +278,7 @@ public class Test {
         // Stop the intervals
         final Timer timer = new Timer();
         timer.schedule(new IntervalTimerTask(interval1), 2000);
-        timer.schedule(new IntervalTimerTask(interval2), 2000);
-        timer.schedule(new IntervalTimerTask(interval3), 3000);
+        timer.schedule(new IntervalTimerTask(interval2), 3000);
 
         // Reprint the tree with updated durations
         timer.schedule(new TimerTask() {
@@ -295,11 +293,11 @@ public class Test {
     }
 
     public static void testLimitTimeDecorator() {
-        final Project allFather = new Project(".", "Projecte Pare", null);
+        final Project allFather = new Project(".", "Projecte Pare");
 
-        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
+        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
         final LimitTimeTaskDecorator task3 = (LimitTimeTaskDecorator) project1.addChild
-                (new LimitTimeTaskDecorator(new BasicTask("T3", "Tasca 3", project1), 10000));
+                (new LimitTimeTaskDecorator(new BasicTask("T3", "Tasca 3"), 10000));
 
         task3.addInterval("Intervalo que deberia pararse en 10s");
 
@@ -314,12 +312,12 @@ public class Test {
     }
 
     public static void testProgramatedtask() {
-        final Project allFather = new Project(".", "Projecte Pare", null);
+        final Project allFather = new Project(".", "Projecte Pare");
 
         final LocalDateTime initTime = LocalDateTime.now();
-        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1", allFather));
+        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
         final ProgramatedTask task3 = (ProgramatedTask) project1.addChild
-                (new ProgramatedTask(new BasicTask("T3", "Tasca 3", project1), initTime.plusSeconds(5), "interval1"));
+                (new ProgramatedTask(new BasicTask("T3", "Tasca 3"), initTime.plusSeconds(5), "interval1"));
 
         TimerTask Applicationwindow = new TimerTask() {
             @Override

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public abstract class Job implements Serializable {
 
-    protected Project parent;
+    protected Project parent = null;
     protected String name;
     protected String description;
     protected Duration duration = null;
@@ -20,12 +20,10 @@ public abstract class Job implements Serializable {
      *
      * @param name Name of the job.
      * @param description What will be the job about.
-     * @param parent Which is the upper node of the tree.
      */
-    public Job(String name, String description, Project parent){
+    public Job(String name, String description){
         this.name = name;
         this.description = description;
-        this.parent = parent;
         this.duration = Duration.ofSeconds(0);
     }
 
@@ -49,6 +47,10 @@ public abstract class Job implements Serializable {
         if(parent != null) {
             parent.updateDuration(duration, startTime, endTime);
         }
+    }
+
+    public void setParent(Project parent) {
+        this.parent = parent;
     }
 
 

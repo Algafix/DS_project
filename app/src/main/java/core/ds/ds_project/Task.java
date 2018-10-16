@@ -14,9 +14,9 @@ public abstract class Task extends Job{
     private List<Interval> intervals = new ArrayList<Interval>();
     protected Task higherLayerDecorator = null;
 
-    public Task(String name, String description, Project parent) {
+    public Task(String name, String description) {
 
-        super(name,description,parent);
+        super(name,description);
     }
 
     /**

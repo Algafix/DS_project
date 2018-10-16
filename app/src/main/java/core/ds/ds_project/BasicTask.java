@@ -17,12 +17,11 @@ public class BasicTask extends Task {
      *
      * @param name Name of the job.
      * @param description What will be the job about.
-     * @param parent Which is the upper node of the tree.
      */
 
-    public BasicTask(String name, String description, Project parent) {
+    public BasicTask(String name, String description) {
 
-        super(name,description,parent);
+        super(name,description);
     }
 
     public List<Interval> getIntervals() {
