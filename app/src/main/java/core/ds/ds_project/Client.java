@@ -130,11 +130,11 @@ public class Client {
 
         Test test = new Test();
 
-        test.testApenndA1();
+        //test.testApenndA1();
 
         //test.testApenndA2();
 
-        //test.testLimitTimeDecorator();
+        test.testLimitTimeDecorator();
 
         //test.testProgramatedtask();
 

@@ -292,24 +292,45 @@ public class Test {
 
     }
 
+
+    /**
+     * Test for the implementation of the testLimitTimeDecorator() functionality, an interval is created on T3 who's parent is P1,
+     * immediately after creation is running and after 10 seconds stops seconds the interval start running.
+     *
+     */
+
     public static void testLimitTimeDecorator() {
         final Project allFather = new Project(".", "Projecte Pare");
-
+        final LocalDateTime initTime = LocalDateTime.now();
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
         final LimitTimeTaskDecorator task3 = (LimitTimeTaskDecorator) project1.addChild
                 (new LimitTimeTaskDecorator(new BasicTask("T3", "Tasca 3"), 10000));
 
-        task3.addInterval("Intervalo que deberia pararse en 10s");
+        allFather.printDebug("");
+        task3.addInterval("Interval1");
 
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                allFather.printDebug("");
+                System.out.println("Interval que hauria de pararse al cap de  10s(quan sigui "+ Client.formatDateTime(initTime.plusSeconds(10)) +") comença la T3 que pertany a P1" );
+                System.out.println("");
+                System.out.println("Nom   Temps inici                  Temps final                  Durada (hh:mm:ss)");
+                System.out.println("----+----------------------------+----------------------------+--------------------");
+                System.out.println(project1.name + "    " + Client.formatDateTime(project1.startTime) + "      " + Client.formatDateTime(project1.endTime) + "       " + Client.formatDuration(project1.duration));
+                System.out.println(task3.name + "    " + Client.formatDateTime(task3.startTime) + "      " + Client.formatDateTime(task3.endTime) + "       " + Client.formatDuration(task3.duration));
+                System.out.println("-----------------------------------------------------------------------------------");
+                System.out.println(" ");
             }
         }, 1000, AppClock.getInstance().getCurrentRefreshTime());
 
     }
+
+    /**
+     * Test for the implementation of the ProgramatedTask() functionality, an interval is created on T3 who's parent is P1,
+     * after  5 seconds the interval start running.
+     *
+     */
 
     public static void testProgramatedtask() {
         final Project allFather = new Project(".", "Projecte Pare");
@@ -324,10 +345,11 @@ public class Test {
             public void run() {
                 System.out.println("Al cap de 5 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(5)) +") comença la T3 que pertany a P1 ");
                 System.out.println(" ");
-                System.out.println("Nom   Temps inici                  Temps final                  Durada (hh:mm:ss)");
-                System.out.println("----+----------------------------+----------------------------+--------------------");
+                System.out.println("Nom    Temps inici                     Temps final                  Durada (hh:mm:ss)");
+                System.out.println("----+------------------------------+------------------------------+--------------------");
                 System.out.println(project1.name + "    " + Client.formatDateTime(project1.startTime) + "      " + Client.formatDateTime(project1.endTime) + "       " + Client.formatDuration(project1.duration));
                 System.out.println(task3.name + "    " + Client.formatDateTime(task3.startTime) + "      " + Client.formatDateTime(task3.endTime) + "       " + Client.formatDuration(task3.duration));
+                System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println(" ");
             }
         };
@@ -335,7 +357,41 @@ public class Test {
         Timer updateWindow = new Timer();
 
         updateWindow.scheduleAtFixedRate(Applicationwindow,0,AppClock.getInstance().getCurrentRefreshTime());
-
-
     }
+
+    /**
+     * Test for the implementation of the ProgramatedTask() and LimitTime TasDecorator  functionality at the same time, an interval is created on T3 who's parent is P1,
+     * after  5 seconds the interval start running.
+     *
+     */
+    public static void testProgramatedtaskAndLimitTimeTaskDecarator() {
+        final Project allFather = new Project(".", "Projecte Pare");
+
+        final LocalDateTime initTime = LocalDateTime.now();
+        final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
+        final ProgramatedTask task3 = (ProgramatedTask) project1.addChild
+                (new ProgramatedTask(new BasicTask("T3", "Tasca 3"), initTime.plusSeconds(5), "interval1"));
+
+        TimerTask Applicationwindow = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("Al cap de 5 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(5)) +") comença la T3 que pertany a P1 ");
+                System.out.println(" ");
+                System.out.println("Nom    Temps inici                     Temps final                  Durada (hh:mm:ss)");
+                System.out.println("----+------------------------------+------------------------------+--------------------");
+                System.out.println(project1.name + "    " + Client.formatDateTime(project1.startTime) + "      " + Client.formatDateTime(project1.endTime) + "       " + Client.formatDuration(project1.duration));
+                System.out.println(task3.name + "    " + Client.formatDateTime(task3.startTime) + "      " + Client.formatDateTime(task3.endTime) + "       " + Client.formatDuration(task3.duration));
+                System.out.println("-----------------------------------------------------------------------------------");
+                System.out.println(" ");
+            }
+        };
+
+        Timer updateWindow = new Timer();
+
+        updateWindow.scheduleAtFixedRate(Applicationwindow,0,AppClock.getInstance().getCurrentRefreshTime());
+    }
+
+
+
+
 }
