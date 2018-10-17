@@ -395,9 +395,9 @@ public class Test {
         TimerTask Applicationwindow = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Als 4 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(2)) +") comença la T3 que pertany a P1  i s'acabarà als 12 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(10)) + ")");
-                System.out.println("Als 6 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(4)) +") comença la T2 que pertany a P2  i s'acabarà als 8 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(6))+") està dins T3");
-                System.out.println("Als 10 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(8)) +") comença la T1 que pertany a P2  i s'acabarà als 14 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(12))+") comença abans d'acabar T3 i acaba després");
+                System.out.println("Als 2 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(2)) +") comença la T3 que pertany a P1  i s'acabarà als 10 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(10)) + ")");
+                System.out.println("Als 4 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(4)) +") comença la T2 que pertany a P2  i s'acabarà als 6 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(6))+") està dins T3");
+                System.out.println("Als 8 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(8)) +") comença la T1 que pertany a P2  i s'acabarà als 12 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(12))+") comença abans d'acabar T3 i acaba després");
                 System.out.println(" ");
                 System.out.println("Nom    Temps inici                     Temps final                  Durada (hh:mm:ss)");
                 System.out.println("----+------------------------------+------------------------------+--------------------");
