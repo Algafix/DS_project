@@ -70,7 +70,7 @@ public class BasicTask extends Task {
     @Override
     public void printDebug(String tabs) {
 
-        System.out.println(tabs + name+": ");
+        System.out.println(tabs + name+": "+Client.formatDuration(duration));
 
         tabs = tabs.concat("\t");
 

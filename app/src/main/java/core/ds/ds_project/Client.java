@@ -18,14 +18,19 @@ public class Client {
      * Convierte un duration en un string para mostrar formato HH:mm:ss
      */
     public static String formatDuration(Duration duration) {
-        long seconds = duration.getSeconds();
-        long absSeconds = Math.abs(seconds);
-        String positive = String.format(
-                "%02d:%02d:%02d",
-                absSeconds / 3600,
-                (absSeconds % 3600) / 60,
-                absSeconds % 60);
-        return seconds < 0 ? "-" + positive : positive;
+        if(duration == null) {
+            return null;
+        }else {
+            long seconds = duration.getSeconds();
+            long absSeconds = Math.abs(seconds);
+            String positive = String.format(
+                    "%02d:%02d:%02d",
+                    absSeconds / 3600,
+                    (absSeconds % 3600) / 60,
+                    absSeconds % 60);
+            return seconds < 0 ? "-" + positive : positive;
+        }
+
     }
 
     public static String formatDateTime(LocalDateTime time) {
@@ -118,12 +123,12 @@ public class Client {
 
         //test.testApenndA2();
 
-        test.testProgramatedtaskAndLimitTimeTaskDecarator();
+        //test.testProgramatedtaskAndLimitTimeTaskDecarator();
 
         //test.testLimitTimeDecorator();
 
         //test.testProgramatedtask();
 
-        //test.testNestedInterval();
+        test.testNestedInterval();
     }
 }

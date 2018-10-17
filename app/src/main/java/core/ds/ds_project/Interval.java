@@ -10,7 +10,7 @@ public class Interval implements Observer, Serializable {
 
     private LocalDateTime startTime = null;
     private LocalDateTime endtime = null;
-    private Duration duration = null;
+    private Duration duration = Duration.ofSeconds(0);
     private BasicTask parent = null;
     private String name = null; //debugging purposes
 
@@ -40,6 +40,7 @@ public class Interval implements Observer, Serializable {
     public void update(Observable obs, Object obj) {
         Duration partialDuration = Duration.between(endtime, (LocalDateTime) obj);
         partialDuration = roundToSeconds(partialDuration);
+        duration = duration.plus(partialDuration);
         endtime = (LocalDateTime) obj;
         parent.updateDuration(partialDuration, startTime, endtime);
     }
