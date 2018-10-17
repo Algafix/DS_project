@@ -9,9 +9,9 @@ import java.util.List;
 
 public abstract class Task extends Job{
 
-
-    public Period maxDuration = null;
-    private List<Interval> intervals = new ArrayList<Interval>();
+    /** The Task that wraps the current one. If null, means is the higher layer and the object that
+     *  interactuates with other.
+     */
     protected Task higherLayerDecorator = null;
 
     public Task(String name, String description) {

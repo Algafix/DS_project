@@ -7,6 +7,7 @@ import java.util.TimerTask;
 
 public class AppClock extends Observable {
 
+    // Singleton unique instance
     private static volatile AppClock clockSoleInstance;
 
     // Declaration of the object that will be used to periodically update our time

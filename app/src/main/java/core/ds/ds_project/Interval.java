@@ -11,7 +11,7 @@ public class Interval implements Observer, Serializable {
     private LocalDateTime startTime = null;
     private LocalDateTime endtime = null;
     private Duration duration = null;
-    private Task parent = null;
+    private BasicTask parent = null;
     private String name = null; //debugging purposes
 
 
@@ -19,7 +19,7 @@ public class Interval implements Observer, Serializable {
      * Constructor that creates a new interval
      *
      */
-    public Interval(String name, Task parent){
+    public Interval(String name, BasicTask parent){
         AppClock clock = AppClock.getInstance();
         this.name = name;
         this.startTime = clock.getTime();
@@ -39,7 +39,7 @@ public class Interval implements Observer, Serializable {
     @Override
     public void update(Observable obs, Object obj) {
         Duration partialDuration = Duration.between(endtime, (LocalDateTime) obj);
-        partialDuration = Client.roundToSeconds(partialDuration);
+        partialDuration = roundToSeconds(partialDuration);
         endtime = (LocalDateTime) obj;
         parent.updateDuration(partialDuration, startTime, endtime);
     }
@@ -76,6 +76,23 @@ public class Interval implements Observer, Serializable {
 
     public String getName() {
         return name;
+    }
+
+    /**
+     * Corrects the precision error of the clock that adds or subs around 1ms.
+     *
+     * @param duration Duration object with a time to correct.
+     * @return The same Duration object with the seconds fixed.
+     */
+    public static Duration roundToSeconds(Duration duration) {
+
+        if(duration.getNano()>995000000) {
+            duration = duration.plusSeconds(1);
+        }
+
+        duration = duration.minusNanos(duration.getNano());
+
+        return duration;
     }
 
 }

@@ -13,22 +13,6 @@ import java.util.TimerTask;
 
 public class Client {
 
-    /**
-     * Corrects the precision error of the clock that adds or subs around 1ms.
-     *
-     * @param duration Duration object with a time to correct.
-     * @return The same Duration object with the seconds fixed.
-     */
-    public static Duration roundToSeconds(Duration duration) {
-
-        if(duration.getNano()>995000000) {
-            duration = duration.plusSeconds(1);
-        }
-
-        duration = duration.minusNanos(duration.getNano());
-
-        return duration;
-    }
 
     /**
      * Convierte un duration en un string para mostrar formato HH:mm:ss

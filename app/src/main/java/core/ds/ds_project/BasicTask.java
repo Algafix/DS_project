@@ -24,6 +24,7 @@ public class BasicTask extends Task {
         super(name,description);
     }
 
+
     public List<Interval> getIntervals() {
         return intervals;
     }
@@ -46,6 +47,11 @@ public class BasicTask extends Task {
         return null;
     }
 
+    /**
+     * Stop the last (and presumed only because only one interval should exist at once) interval
+     * running if there's an interval running at all.
+     * @return The duration of the last interval or null if there isn't an interval running
+     */
     @Override
     public Duration stopLastInterval() {
         if (runningInterval != null) {
