@@ -18,7 +18,7 @@ public class Test {
      */
 
     public static void testApenndA1() {
-        Project allFather = new Project(".", "Projecte Pare");
+        final Project allFather = new Project(".", "Projecte Pare");
 
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
         final BasicTask task3 = (BasicTask) project1.addChild(new BasicTask("T3", "Tasca 3"));
@@ -79,8 +79,8 @@ public class Test {
             @Override
             public void run() {
                 task3.stopLastInterval();
-
-
+                Client.serializeProject(allFather, "allFather.ser");
+                allFather.printDebug("");
             }
         };
 
@@ -416,6 +416,10 @@ public class Test {
         updateWindow.scheduleAtFixedRate(Applicationwindow,0,AppClock.getInstance().getCurrentRefreshTime());
     }
 
+    public static void testDeserialize() {
+        Project allFather = Client.deserializeProject("allFather.ser");
+        allFather.printDebug("");
+    }
 
 
 

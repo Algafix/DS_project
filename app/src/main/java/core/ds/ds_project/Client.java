@@ -121,6 +121,8 @@ public class Client {
 
         //test.testApenndA1();
 
+        //test.testDeserialize();
+
         //test.testApenndA2();
 
         //test.testProgramatedtaskAndLimitTimeTaskDecarator();
@@ -129,6 +131,6 @@ public class Client {
 
         //test.testProgramatedtask();
 
-        test.testNestedInterval();
+        //test.testNestedInterval();
     }
 }
