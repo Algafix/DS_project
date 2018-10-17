@@ -38,6 +38,7 @@ public class ProgramatedTask extends TaskDecorator implements Observer {
         if(seconds < (refreshTimeSeconds/2) && seconds > -(refreshTimeSeconds/2)){
             task.addInterval(nameInterval);
         }
+
     }
 
 

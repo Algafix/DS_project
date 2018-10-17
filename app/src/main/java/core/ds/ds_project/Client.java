@@ -118,9 +118,11 @@ public class Client {
 
         //test.testApenndA2();
 
+        test.testProgramatedtaskAndLimitTimeTaskDecarator();
+
         //test.testLimitTimeDecorator();
 
-        test.testProgramatedtask();
+        //test.testProgramatedtask();
 
         //test.testNestedInterval();
     }

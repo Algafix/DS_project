@@ -360,27 +360,52 @@ public class Test {
     }
 
     /**
-     * Test for the implementation of the ProgramatedTask() and LimitTime TasDecorator  functionality at the same time, an interval is created on T3 who's parent is P1,
-     * after  5 seconds the interval start running.
+     * Test for the implementation of the ProgramatedTask() and LimitTime TasDecorator  functionality at the same time,
+     * An interval is created on T3 who's parent is P1, after  at 4 seconds the task3 start running, at  6 seconds
+     * the task3 start running, at 8 second stops thethe task2, at 10 seconds starts task1, at 12 seconds stop task3,
+     * at 14 seconds stop task1
      *
      */
     public static void testProgramatedtaskAndLimitTimeTaskDecarator() {
         final Project allFather = new Project(".", "Projecte Pare");
 
         final LocalDateTime initTime = LocalDateTime.now();
+        //Preparation of programated Task and LimitTaskDecorator
+
+        final ProgramatedTask task31 = new ProgramatedTask( new BasicTask("T3", "Tasca 3"), initTime.plusSeconds(2), "Interval1");
+        final LimitTimeTaskDecorator task32  = new LimitTimeTaskDecorator(task31, 8000);
+        final ProgramatedTask task21 = new ProgramatedTask( new BasicTask("T2", "Tasca 2"), initTime.plusSeconds(4), "Interval1");
+        final LimitTimeTaskDecorator task22  = new LimitTimeTaskDecorator(task21, 1000);
+        final ProgramatedTask task11 = new ProgramatedTask( new BasicTask("T1", "Tasca 1"), initTime.plusSeconds(8), "Interval1");
+        final LimitTimeTaskDecorator task12  = new LimitTimeTaskDecorator(task11, 4000);
+
+
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
-        final ProgramatedTask task3 = (ProgramatedTask) project1.addChild
-                (new ProgramatedTask(new BasicTask("T3", "Tasca 3"), initTime.plusSeconds(5), "interval1"));
+        final Task task3 = project1.addChild(task32);
+
+
+        final Project project2 = allFather.addChild(new Project("P2", "Projecte 2"));
+        final Task task2 = project2.addChild(task22);
+        final Task task1 = project2.addChild(task12);
+
+        allFather.printDebug("");
+
+
 
         TimerTask Applicationwindow = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Al cap de 5 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(5)) +") comença la T3 que pertany a P1 ");
+                System.out.println("Als 4 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(2)) +") comença la T3 que pertany a P1  i s'acabarà als 12 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(10)) + ")");
+                System.out.println("Als 6 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(4)) +") comença la T2 que pertany a P2  i s'acabarà als 8 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(6))+") està dins T3");
+                System.out.println("Als 10 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(8)) +") comença la T1 que pertany a P2  i s'acabarà als 14 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(12))+") comença abans d'acabar T3 i acaba després");
                 System.out.println(" ");
                 System.out.println("Nom    Temps inici                     Temps final                  Durada (hh:mm:ss)");
                 System.out.println("----+------------------------------+------------------------------+--------------------");
                 System.out.println(project1.name + "    " + Client.formatDateTime(project1.startTime) + "      " + Client.formatDateTime(project1.endTime) + "       " + Client.formatDuration(project1.duration));
+                System.out.println(project2.name + "    " + Client.formatDateTime(project2.startTime) + "      " + Client.formatDateTime(project2.endTime) + "       " + Client.formatDuration(project2.duration));
                 System.out.println(task3.name + "    " + Client.formatDateTime(task3.startTime) + "      " + Client.formatDateTime(task3.endTime) + "       " + Client.formatDuration(task3.duration));
+                System.out.println(task2.name + "    " + Client.formatDateTime(task2.startTime) + "      " + Client.formatDateTime(task2.endTime) + "       " + Client.formatDuration(task2.duration));
+                System.out.println(task1.name + "    " + Client.formatDateTime(task1.startTime) + "      " + Client.formatDateTime(task1.endTime) + "       " + Client.formatDuration(task1.duration));
                 System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println(" ");
             }
