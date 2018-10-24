@@ -15,7 +15,7 @@ public class Client {
 
 
     /**
-     * Convierte un duration en un string para mostrar formato HH:mm:ss
+     * Convert object duration to string with format HH:mm:ss
      */
     public static String formatDuration(Duration duration) {
         if(duration == null) {
@@ -76,7 +76,7 @@ public class Client {
     }
 
     /**
-     * Deserializes a project from a file with the name given by the parameters
+     * Deserialize a project from a file with the name given by the parameters
      *
      * @param filename the name of the file where the project is going to be loaded from
      */
@@ -89,13 +89,13 @@ public class Client {
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
-            Project deserializedProject = (Project)in.readObject();
+            Project deserializeProject = (Project)in.readObject();
 
             in.close();
             file.close();
 
-            System.out.println("Object has been deserialized ");
-            return deserializedProject;
+            System.out.println("Object has been deserialize ");
+            return deserializeProject;
         }
 
         catch(IOException ex)
@@ -119,13 +119,13 @@ public class Client {
 
         Test test = new Test();
 
-        //test.testApenndA1();
+        //test.testAppendA1();
 
         //test.testDeserialize();
 
-        //test.testApenndA2();
+        //test.testAppendA2();
 
-        test.testProgramatedtaskAndLimitTimeTaskDecarator();
+        test.testProgrammatedtaskAndLimitTimeTaskDecarator();
 
         //test.testLimitTimeDecorator();
 

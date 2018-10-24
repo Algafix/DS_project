@@ -17,7 +17,7 @@ public class Test {
      * -> Task3 (T3)
      */
 
-    public static void testApenndA1() {
+    public static void testAppendA1() {
         final Project allFather = new Project(".", "Projecte Pare");
 
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
@@ -105,7 +105,7 @@ public class Test {
      * -> Task3 (T3)
      */
 
-    public static void testApenndA2() {
+    public static void testAppendA2() {
         Project allFather = new Project(".", "Projecte Pare");
 
         final Project project1 = allFather.addChild(new Project("P1", "Projecte 1"));
@@ -360,13 +360,13 @@ public class Test {
     }
 
     /**
-     * Test for the implementation of the ProgramatedTask() and LimitTime TasDecorator  functionality at the same time,
+     * Test for the implementation of the ProgrammatedTask() and LimitTime TasDecorator  functionality at the same time,
      * An interval is created on T3 who's parent is P1, after  at 4 seconds the task3 start running, at  6 seconds
      * the task3 start running, at 8 second stops thethe task2, at 10 seconds starts task1, at 12 seconds stop task3,
      * at 14 seconds stop task1
      *
      */
-    public static void testProgramatedtaskAndLimitTimeTaskDecarator() {
+    public static void testProgrammatedtaskAndLimitTimeTaskDecarator() {
         final Project allFather = new Project(".", "Projecte Pare");
 
         final LocalDateTime initTime = LocalDateTime.now();
