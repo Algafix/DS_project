@@ -65,6 +65,14 @@ public class Project extends Job {
     }
 
 
+    @Override
+    public void acceptVisitor(Visitor visitor) {
+        visitor.visitProject(this);
+        for(Job job : children) {
+            job.acceptVisitor(visitor);
+        }
+    }
+
     /**
      * Print info about the Project and call print method of it's child.
      *

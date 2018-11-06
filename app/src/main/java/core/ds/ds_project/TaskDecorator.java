@@ -35,6 +35,11 @@ public abstract class TaskDecorator extends Task {
         return task.stopLastInterval();
     }
 
+    @Override
+    public void acceptVisitor(Visitor visitor) {
+        task.acceptVisitor(visitor);
+    }
+
     /**
      * Prints info about the Task and call print method of it's child.
      *

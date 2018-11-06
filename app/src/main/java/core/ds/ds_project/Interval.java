@@ -56,6 +56,10 @@ public class Interval implements Observer, Serializable {
         return duration;
     }
 
+    public void acceptVisitor(Visitor visitor) {
+        visitor.visitInterval(this);
+    }
+
     /**
      * Prints info about the Interval.
      *
@@ -65,18 +69,6 @@ public class Interval implements Observer, Serializable {
 
         System.out.println(tabs + name + ": " + Client.formatDuration(duration));
 
-    }
-
-    public Duration getDuration(){
-        return duration;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     /**
@@ -96,4 +88,19 @@ public class Interval implements Observer, Serializable {
         return duration;
     }
 
+    public Duration getDuration(){
+        return duration;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public BasicTask getParent() {
+        return parent;
+    }
 }

@@ -28,6 +28,13 @@ public abstract class Job implements Serializable {
     }
 
     /**
+     * Method that implements the visitor pattern, allows the visitor to travel along the three.
+     *
+     * @param visitor Object that will do certain function.
+     */
+    public abstract void acceptVisitor(Visitor visitor);
+
+    /**
      * Updates the duration of the object and, if the object is not the last, call update on it's
      * parent.
      *
@@ -53,6 +60,29 @@ public abstract class Job implements Serializable {
         this.parent = parent;
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public Project getParent(){
+        return parent;
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     /**
      * This function will print recursively the information of every child in the tree.

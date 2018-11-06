@@ -45,15 +45,6 @@ public abstract class Task extends Job{
     public abstract Duration stopLastInterval();
 
     /**
-     * Prints info about the Task and call print method of it's child.
-     *
-     * @param tabs String of concatenated "\t" for visual purpose.
-     */
-    @Override
-    public abstract void printDebug(String tabs);
-
-
-    /**
      * Updates the duration of the object and, if the object is not the last, call update on it's
      * parent.
      *

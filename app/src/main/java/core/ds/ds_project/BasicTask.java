@@ -62,6 +62,15 @@ public class BasicTask extends Task {
         return null;
     }
 
+    @Override
+    public void acceptVisitor(Visitor visitor) {
+        visitor.visitTask(this);
+
+        for (Interval interval : intervals) {
+            interval.acceptVisitor(visitor);
+        }
+    }
+
     /**
      * Prints info about the Task and call print method of it's child.
      *

@@ -16,7 +16,6 @@ public class Test {
      * -> Task2 (T2)
      * -> Task3 (T3)
      */
-
     public static void testAppendA1() {
         final Project allFather = new Project(".", "Projecte Pare");
 
@@ -28,6 +27,7 @@ public class Test {
         final BasicTask task2 = (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2"));
 
         allFather.printDebug("");
+        allFather.acceptVisitor(new Printer());
 
         //final Interval interval1 = task3.addInterval("interval1");
         final Timer timerTask = new Timer();
@@ -81,6 +81,7 @@ public class Test {
                 task3.stopLastInterval();
                 Client.serializeProject(allFather, "allFather.ser");
                 allFather.printDebug("");
+                allFather.acceptVisitor(new Printer());
             }
         };
 
@@ -104,7 +105,6 @@ public class Test {
      * -> Task2 (T2)
      * -> Task3 (T3)
      */
-
     public static void testAppendA2() {
         Project allFather = new Project(".", "Projecte Pare");
 
@@ -116,6 +116,7 @@ public class Test {
         final BasicTask task2 = (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2"));
 
         allFather.printDebug("");
+        allFather.acceptVisitor(new Printer());
 
         final Timer timerTask = new Timer();
 
@@ -213,7 +214,6 @@ public class Test {
     /**
      * Debug the creation and time of 1 interval
      */
-
     public static void testAppClockInterval() {
         final List<Interval> intervals = new ArrayList<Interval>();
 
@@ -274,6 +274,7 @@ public class Test {
 
         // Prints the tree with initial durations (intervals has null because haven't stopped yet
         allFather.printDebug("");
+        allFather.acceptVisitor(new Printer());
 
         // Stop the intervals
         final Timer timer = new Timer();
@@ -298,7 +299,6 @@ public class Test {
      * immediately after creation is running and after 10 seconds stops seconds the interval start running.
      *
      */
-
     public static void testLimitTimeDecorator() {
         final Project allFather = new Project(".", "Projecte Pare");
         final LocalDateTime initTime = LocalDateTime.now();
@@ -307,6 +307,7 @@ public class Test {
                 (new LimitTimeTaskDecorator(new BasicTask("T3", "Tasca 3"), 10000));
 
         allFather.printDebug("");
+        allFather.acceptVisitor(new Printer());
         task3.addInterval("Interval1");
 
 
@@ -331,7 +332,6 @@ public class Test {
      * after  5 seconds the interval start running.
      *
      */
-
     public static void testProgramatedtask() {
         final Project allFather = new Project(".", "Projecte Pare");
 
@@ -389,7 +389,7 @@ public class Test {
         final Task task1 = project2.addChild(task12);
 
         allFather.printDebug("");
-
+        allFather.acceptVisitor(new Printer());
 
 
         TimerTask Applicationwindow = new TimerTask() {
@@ -419,6 +419,7 @@ public class Test {
     public static void testDeserialize() {
         Project allFather = Client.deserializeProject("allFather.ser");
         allFather.printDebug("");
+        allFather.acceptVisitor(new Printer());
     }
 
 
