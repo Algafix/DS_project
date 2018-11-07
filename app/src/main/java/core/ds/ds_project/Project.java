@@ -1,11 +1,12 @@
 package core.ds.ds_project;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Project extends Job {
 
-    private List<Job> children = new ArrayList<Job>();
+    private Collection<Job> children = new ArrayList<Job>();
 
 
     /**
@@ -35,7 +36,7 @@ public class Project extends Job {
      *
      * @return Children list.
      */
-    public List<Job> getChildren() {
+    public Collection<Job> getChildren() {
         return children;
     }
 

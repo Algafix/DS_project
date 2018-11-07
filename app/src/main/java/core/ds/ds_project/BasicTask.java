@@ -4,11 +4,12 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class BasicTask extends Task {
 
-    private List<Interval> intervals = new ArrayList<Interval>();
+    private Collection<Interval> intervals = new ArrayList<Interval>();
     private Interval runningInterval = null;
     public Period maxDuration = null;
 
@@ -25,7 +26,7 @@ public class BasicTask extends Task {
     }
 
 
-    public List<Interval> getIntervals() {
+    public Collection<Interval> getIntervals() {
         return intervals;
     }
 

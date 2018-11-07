@@ -2,6 +2,7 @@ package core.ds.ds_project;
 
 import java.time.Duration;
 import java.time.Period;
+import java.util.Collection;
 import java.util.List;
 
 public abstract class TaskDecorator extends Task {
@@ -15,7 +16,7 @@ public abstract class TaskDecorator extends Task {
         task.setHigherLayerDecorator(this);
     }
 
-    public List<Interval> getIntervals() {
+    public Collection<Interval> getIntervals() {
         return task.getIntervals();
     }
 

@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -26,7 +27,7 @@ public abstract class Task extends Job{
         this.higherLayerDecorator = higherLayerDecorator;
     }
 
-    public abstract List<Interval> getIntervals();
+    public abstract Collection<Interval> getIntervals();
 
     /**
      * Adds an interval to the interval array passing itself as a parent.
