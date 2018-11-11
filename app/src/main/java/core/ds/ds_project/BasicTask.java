@@ -63,6 +63,23 @@ public class BasicTask extends Task {
         return null;
     }
 
+    /**
+     * Method that obtains the activity duration of the job within a range defined by two Dates.
+     *
+     * @param fromDate Date that sets the beginning of the range.
+     * @param toDate Date that sets the end of the range.
+     * @return [Duration] Returns the duration in the specified range.
+     */
+    @Override
+    public Duration getDurationInRange(final LocalDateTime fromDate, final LocalDateTime toDate) {
+        Duration temp = Duration.ofSeconds(0);
+        for (Interval interval : intervals) {
+            temp.plus(interval.getDurationInRange(fromDate, toDate));
+        }
+        return temp;
+    }
+
+
     @Override
     public void acceptVisitor(Visitor visitor) {
         visitor.visitTask(this);

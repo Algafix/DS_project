@@ -1,5 +1,7 @@
 package core.ds.ds_project;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -63,6 +65,22 @@ public class Project extends Job {
         child.setParent(this);
         children.add(child);
         return child;
+    }
+
+    /**
+     * Method that obtains the activity duration of the job within a range defined by two Dates.
+     *
+     * @param fromDate Date that sets the beginning of the range.
+     * @param toDate Date that sets the end of the range.
+     * @return [Duration] Returns the duration in the specified range.
+     */
+    @Override
+    public Duration getDurationInRange(final LocalDateTime fromDate, final LocalDateTime toDate) {
+        Duration temp = Duration.ofSeconds(0);
+        for (Job job : children) {
+            temp.plus(job.getDurationInRange(fromDate, toDate));
+        }
+        return temp;
     }
 
 

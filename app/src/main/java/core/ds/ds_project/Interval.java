@@ -9,7 +9,7 @@ import java.util.Observer;
 public class Interval implements Observer, Serializable {
 
     private LocalDateTime startTime = null;
-    private LocalDateTime endtime = null;
+    private LocalDateTime endTime = null;
     private Duration duration = Duration.ofSeconds(0);
     private BasicTask parent = null;
     private String name = null; //debugging purposes
@@ -23,7 +23,7 @@ public class Interval implements Observer, Serializable {
         AppClock clock = AppClock.getInstance();
         this.name = name;
         this.startTime = clock.getTime();
-        this.endtime = clock.getTime();
+        this.endTime = clock.getTime();
         this.parent = parent;
         clock.addObserver(this);
     }
@@ -38,11 +38,11 @@ public class Interval implements Observer, Serializable {
      */
     @Override
     public void update(Observable obs, Object obj) {
-        Duration partialDuration = Duration.between(endtime, (LocalDateTime) obj);
+        Duration partialDuration = Duration.between(endTime, (LocalDateTime) obj);
         partialDuration = roundToSeconds(partialDuration);
         duration = duration.plus(partialDuration);
-        endtime = (LocalDateTime) obj;
-        parent.updateDuration(partialDuration, startTime, endtime);
+        endTime = (LocalDateTime) obj;
+        parent.updateDuration(partialDuration, startTime, endTime);
     }
 
 
@@ -86,6 +86,26 @@ public class Interval implements Observer, Serializable {
         duration = duration.minusNanos(duration.getNano());
 
         return duration;
+    }
+
+    /**
+     * Method that obtains the activity duration of the job within a range defined by two Dates.
+     *
+     * @param fromDate Date that sets the beginning of the range.
+     * @param toDate Date that sets the end of the range.
+     * @return [Duration] Returns the duration in the specified range.
+     */
+    public Duration getDurationInRange(final LocalDateTime fromDate, final LocalDateTime toDate) {
+        Duration temp = Duration.ofSeconds(0);
+        LocalDateTime startTemp = startTime;
+        LocalDateTime endTemp = endTime;
+        if (!(fromDate.isAfter(endTime) || toDate.isBefore(startTime)) && fromDate.isBefore(toDate)) {
+            if (fromDate.isAfter(startTime)) startTemp = fromDate;
+            if (toDate.isBefore(endTime)) endTemp = toDate;
+
+            temp = Duration.between(startTemp, endTemp);
+        }
+        return temp;
     }
 
     public Duration getDuration(){

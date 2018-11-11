@@ -85,6 +85,16 @@ public abstract class Job implements Serializable {
     }
 
     /**
+     * Method that obtains the activity duration of the job within a range defined by two Dates.
+     *
+     * @param fromDate Date that sets the beginning of the range.
+     * @param toDate Date that sets the end of the range.
+     * @return [Duration] Returns the duration in the specified range.
+     */
+    public abstract Duration getDurationInRange(LocalDateTime fromDate, LocalDateTime toDate);
+
+
+    /**
      * This function will print recursively the information of every child in the tree.
      * In every level, the tabulation will increase in 1 tab (4 spaces).
      *

@@ -1,6 +1,7 @@
 package core.ds.ds_project;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Collection;
 import java.util.List;
@@ -39,6 +40,19 @@ public abstract class TaskDecorator extends Task {
     @Override
     public void acceptVisitor(Visitor visitor) {
         task.acceptVisitor(visitor);
+    }
+
+
+    /**
+     * Method that obtains the activity duration of the job within a range defined by two Dates.
+     *
+     * @param fromDate Date that sets the beginning of the range.
+     * @param toDate Date that sets the end of the range.
+     * @return [Duration] Returns the duration in the specified range.
+     */
+    @Override
+    public Duration getDurationInRange(final LocalDateTime fromDate, final LocalDateTime toDate) {
+        return task.getDurationInRange(fromDate, toDate);
     }
 
     /**
