@@ -112,8 +112,7 @@ public class Client {
     }
 
 
-    public static void main(String [] args){
-
+    public static void main(String [] args) {
 
         AppClock.getInstance(2000);
 
@@ -125,12 +124,14 @@ public class Client {
 
         //test.testAppendA2();
 
-        test.testProgrammatedtaskAndLimitTimeTaskDecarator();
+        //test.testProgrammatedtaskAndLimitTimeTaskDecarator();
 
         //test.testLimitTimeDecorator();
 
         //test.testProgramatedtask();
 
         //test.testNestedInterval();
+
+        test.testReportTreeGenerate();
     }
 }
