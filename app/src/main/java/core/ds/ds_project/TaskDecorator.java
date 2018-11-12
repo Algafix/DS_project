@@ -55,14 +55,4 @@ public abstract class TaskDecorator extends Task {
         return task.getDurationInRange(fromDate, toDate);
     }
 
-    /**
-     * Prints info about the Task and call print method of it's child.
-     *
-     * @param tabs String of concatenated "\t" for visual purpose.
-     */
-    @Override
-    public void printDebug(String tabs) {
-        task.printDebug(tabs);
-    }
-
 }

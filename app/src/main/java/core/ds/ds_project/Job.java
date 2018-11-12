@@ -93,13 +93,4 @@ public abstract class Job implements Serializable {
      */
     public abstract Duration getDurationInRange(LocalDateTime fromDate, LocalDateTime toDate);
 
-
-    /**
-     * This function will print recursively the information of every child in the tree.
-     * In every level, the tabulation will increase in 1 tab (4 spaces).
-     *
-     * @param tabs String of concatenated "\t" for visual purpose.
-     */
-    public abstract void printDebug(String tabs);
-
 }

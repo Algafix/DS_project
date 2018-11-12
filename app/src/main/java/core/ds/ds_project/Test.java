@@ -26,7 +26,6 @@ public class Test {
         final BasicTask task1 = (BasicTask) project2.addChild(new BasicTask("T1", "Tasca 1"));
         final BasicTask task2 = (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2"));
 
-        allFather.printDebug("");
         allFather.acceptVisitor(new Printer());
 
         //final Interval interval1 = task3.addInterval("interval1");
@@ -80,7 +79,6 @@ public class Test {
             public void run() {
                 task3.stopLastInterval();
                 Client.serializeProject(allFather, "allFather.ser");
-                allFather.printDebug("");
                 allFather.acceptVisitor(new Printer());
             }
         };
@@ -115,7 +113,6 @@ public class Test {
         final BasicTask task1 = (BasicTask) project2.addChild(new BasicTask("T1", "Tasca 1"));
         final BasicTask task2 = (BasicTask) project2.addChild(new BasicTask("T2", "Tasca 2"));
 
-        allFather.printDebug("");
         allFather.acceptVisitor(new Printer());
 
         final Timer timerTask = new Timer();
@@ -273,7 +270,6 @@ public class Test {
         Interval interval2 = tasca111.addInterval("interval2");
 
         // Prints the tree with initial durations (intervals has null because haven't stopped yet
-        allFather.printDebug("");
         allFather.acceptVisitor(new Printer());
 
         // Stop the intervals
@@ -285,7 +281,6 @@ public class Test {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                allFather.printDebug("");
                 timer.cancel();
             }
         }, 5000);
@@ -306,7 +301,6 @@ public class Test {
         final LimitTimeTaskDecorator task3 = (LimitTimeTaskDecorator) project1.addChild
                 (new LimitTimeTaskDecorator(new BasicTask("T3", "Tasca 3"), 10000));
 
-        allFather.printDebug("");
         allFather.acceptVisitor(new Printer());
         task3.addInterval("Interval1");
 
@@ -388,7 +382,6 @@ public class Test {
         final Task task2 = project2.addChild(task22);
         final Task task1 = project2.addChild(task12);
 
-        allFather.printDebug("");
         allFather.acceptVisitor(new Printer());
 
 
@@ -418,7 +411,6 @@ public class Test {
 
     public static void testDeserialize() {
         Project allFather = Client.deserializeProject("allFather.ser");
-        allFather.printDebug("");
         allFather.acceptVisitor(new Printer());
     }
 

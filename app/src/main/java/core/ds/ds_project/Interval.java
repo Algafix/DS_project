@@ -13,6 +13,7 @@ public class Interval implements Observer, Serializable {
     private Duration duration = Duration.ofSeconds(0);
     private BasicTask parent = null;
     private String name = null; //debugging purposes
+    private static final int CLOCK_CORRECTOR = 995000000;
 
 
     /**
@@ -79,7 +80,7 @@ public class Interval implements Observer, Serializable {
      */
     public static Duration roundToSeconds(Duration duration) {
 
-        if(duration.getNano()>995000000) {
+        if(duration.getNano()>CLOCK_CORRECTOR) {
             duration = duration.plusSeconds(1);
         }
 

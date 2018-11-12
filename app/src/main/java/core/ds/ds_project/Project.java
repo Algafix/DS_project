@@ -91,22 +91,4 @@ public class Project extends Job {
             job.acceptVisitor(visitor);
         }
     }
-
-    /**
-     * Print info about the Project and call print method of it's child.
-     *
-     * @param tabs String of concatenated "\t" for visual purpose.
-     */
-    @Override
-    public void printDebug(String tabs) {
-
-        System.out.println(tabs + name +": " + Client.formatDuration(duration));
-
-        tabs = tabs.concat("\t");
-
-        for (Job child : children) {
-            child.printDebug(tabs);
-        }
-
-    }
 }
