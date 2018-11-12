@@ -85,7 +85,11 @@ public final class AppClock extends Observable {
             synchronized (AppClock.class) {   //Check for the second time
                 //if there is no instance available... create new one
                 if (clockSoleInstance == null) {
-                    clockSoleInstance = new AppClock(refreshTime.length > 0 ? refreshTime[0] : defaultRefresh);
+                    int selectedRefreshTime = defaultRefresh;
+                    if (refreshTime.length > 0) {
+                        selectedRefreshTime = refreshTime[0];
+                    }
+                    clockSoleInstance = new AppClock(selectedRefreshTime);
                 }
             }
         }
