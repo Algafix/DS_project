@@ -3,37 +3,40 @@ package core.ds.ds_project;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+/**
+ * Not necessary all ready understandable.
+ */
 public class LimitTimeTaskDecorator extends TaskDecorator {
 
     /**
-     * Max duration of an interval in miliseconds
+     * Max duration of an interval in milliseconds.
      */
-    long maxDuration;
+    private long maxDuration;
 
     /**
-     * Constructor of Limit Time Task Decorator
-     * @param basicTask Task that is wrapped by the current decorator
-     * @param maxDuration Max duration of an interval.
+     * Constructor of Limit Time Task Decorator.
+     * @param basicTask Task that is wrapped by the current decorator.
+     * @param maxDurationLim Max duration of an interval.
      */
-    public LimitTimeTaskDecorator(Task basicTask, long maxDuration){
+    public LimitTimeTaskDecorator(final Task basicTask,
+                                  final long maxDurationLim) {
         super(basicTask);
-        this.maxDuration = maxDuration;
+        this.maxDuration = maxDurationLim;
     }
 
-    public void setLimitTime(long maxDuration){
-
-    }
 
     /**
-     * Updates the duration of the object and, if the object is not the last, call update on its
-     * parent.
+     * Updates the duration of the object and, if the object is not the last,
+     * call update on it parent.
      *
      * @param duration Increment of time.
      */
     @Override
-    public void updateDuration(Duration duration, LocalDateTime startTime, LocalDateTime endTime) {
+    public void updateDuration(final Duration duration,
+                               final LocalDateTime startTime,
+                               final LocalDateTime endTime) {
 
-        if (Duration.between(startTime,endTime).toMillis() >= maxDuration){
+        if (Duration.between(startTime, endTime).toMillis() >= maxDuration) {
             task.stopLastInterval();
         }
 
