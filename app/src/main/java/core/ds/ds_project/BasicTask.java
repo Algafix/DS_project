@@ -14,6 +14,7 @@ public class BasicTask extends Task {
      * Array of intervals.
      */
     private Collection<Interval> intervals = new ArrayList<Interval>();
+
     /**
      * The runningInterval.
      */
@@ -26,10 +27,19 @@ public class BasicTask extends Task {
      * @param name Name of the job.
      * @param description What will be the job about.
      */
-
     public BasicTask(final String name, final String description) {
 
         super(name, description);
+        invariant();
+    }
+
+    /**
+     * Invariant of the BasicTask class.
+     */
+    private void invariant() {
+        assert (this.description != null) : "Illegal null description";
+        assert (this.name != null) : "Illegal null name";
+        assert (this.duration != null) : "Illegal null duration";
     }
 
     /**
@@ -49,13 +59,48 @@ public class BasicTask extends Task {
      */
     public Interval addInterval(final String name) {
 
+        /**
+         * Class that will store variables checked at the postcondition.
+         */
+        class DataCopy {
+            private int numIntervals;
+            /**
+             * Saves the data in the current state.
+             * @param numIntervalsCpy We want to save the size of the array.
+             */
+            DataCopy(final int numIntervalsCpy) {
+                numIntervals = numIntervalsCpy;
+            }
+            /**
+             * Check if the array has extended in one element.
+             * @param numIntervalsCheck Current number of intervals
+             * @return True if we have added 1 interval.
+             */
+            public boolean addedOne(final int numIntervalsCheck) {
+                return (numIntervals + 1 == numIntervalsCheck);
+            }
+        }
+
+        DataCopy copy = new DataCopy(intervals.size());
+
+        // Preconditions and invariant
+        invariant();
+        assert (copy != null) : "Datacopy not created";
+
         if (runningInterval == null) {
 
             runningInterval = new Interval(name, this);
             intervals.add(runningInterval);
-            return runningInterval;
 
+            // Postcondition and invariant
+            assert copy.addedOne(intervals.size()) : "Interval not created";
+            invariant();
+            return runningInterval;
         }
+
+        // Postcondition and invariant
+        invariant();
+        assert !copy.addedOne(intervals.size()) : "Illegal interval created";
         return null;
     }
 
@@ -68,11 +113,23 @@ public class BasicTask extends Task {
      */
     @Override
     public Duration stopLastInterval() {
+
+        // Precondition and invarant
+        invariant();
+
         if (runningInterval != null) {
             Duration lastDuration = runningInterval.stop();
             runningInterval = null;
+
+            // Postconditions and invariant
+            assert (runningInterval == null) : "Interval has not stopped";
+            invariant();
             return lastDuration;
         }
+
+        // Postconditions and invariant
+        assert (runningInterval == null) : "Illegal interval has started";
+        invariant();
         return null;
     }
 
@@ -87,10 +144,17 @@ public class BasicTask extends Task {
     @Override
     public Duration getDurationInRange(final LocalDateTime fromDate,
                                        final LocalDateTime toDate) {
+        //Precondition and invariant
+        invariant();
+
         Duration temp = Duration.ofSeconds(0);
         for (Interval interval : intervals) {
             temp.plus(interval.getDurationInRange(fromDate, toDate));
         }
+
+        //Postcondition and invariant
+        invariant();
+        assert (temp != null) : "Invalid return";
         return temp;
     }
 
@@ -99,11 +163,18 @@ public class BasicTask extends Task {
      */
     @Override
     public void acceptVisitor(final Visitor visitor) {
+
+        // Preconditions and invariant
+        invariant();
+
         visitor.visitTask(this);
 
         for (Interval interval : intervals) {
             interval.acceptVisitor(visitor);
         }
+
+        // Postconditions and invariant
+        invariant();
     }
 
 }
