@@ -5,36 +5,51 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AppClock extends Observable {
+/**
+ * Not necessary understandable.
+ */
 
-    // Singleton unique instance
+public final class AppClock extends Observable {
+    /**
+     * Singleton unique instance.
+     */
     private static volatile AppClock clockSoleInstance;
 
-    // Declaration of the object that will be used to periodically update our time
+    /**
+     * Declaration of the object used to periodically update our time.
+     */
     private Timer timer = new Timer();
 
-    // java.time package is only available on API26 and above
+    /**
+     * java.time package is only available on API26 and above.
+     */
     private LocalDateTime time = null;
 
-    private static int defaultRefresh = 1000;
 
+    /**
+     * the refresh time time we are actually using.
+     */
     private int currentRefreshTime;
 
 
     /**
-     * The constructor starts a thread that will be checking and updating our time
-     * every given refreshTime. If the user manage to access this constructor before creating an
+     * The constructor starts a thread that will be checking and updating
+     * our time every given refreshTime. If the user manage to access this
+     * constructor before creating an
      * object, an exemption is raised.
      *
-     * @param refreshTime   In miliseconds.
+     * @param refreshTime   In milliseconds.
      */
-    private AppClock(int refreshTime) {
+    private AppClock(final int refreshTime) {
 
         //Prevent form the reflection api.
-        if (clockSoleInstance != null){
-            throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
-        }
-        else {
+        if (clockSoleInstance != null) {
+
+            throw new RuntimeException(
+                    "Use getInstance() method to get the single instance.");
+
+        } else {
+
             currentRefreshTime = refreshTime;
             time = LocalDateTime.now();
             timer.scheduleAtFixedRate(new TimerTask() {
@@ -51,28 +66,45 @@ public class AppClock extends Observable {
 
 
     /**
-     * Function used to obtain the instance of the singleton. It check's 2 times before creating
-     * the objects, even check thread race condition.
+     * Function used to obtain the instance of the singleton.
+     * It check's 2 times before creatin the objects,
+     * even check thread race condition.
      *
-     * @param refreshTime The time will be updated at this rate, in ms. Optional parameter.
+     * @param refreshTime The time will be updated at this rate, in ms.
+     * Optional parameter.
      * @return Instance of AppClock object.
      */
-    public static AppClock getInstance(int... refreshTime) {
+    public static AppClock getInstance(final int... refreshTime) {
+        /**
+         * Refresh time.
+         */
+        final int defaultRefresh = 1000;
+
         //Double check locking pattern
         if (clockSoleInstance == null) { //Check for the first time
             synchronized (AppClock.class) {   //Check for the second time
                 //if there is no instance available... create new one
-                if (clockSoleInstance == null) clockSoleInstance = new AppClock(refreshTime.length > 0 ? refreshTime[0] : AppClock.defaultRefresh);
+                if (clockSoleInstance == null) {
+                    clockSoleInstance = new AppClock(refreshTime.length > 0 ? refreshTime[0] : defaultRefresh);
+                }
             }
         }
         return clockSoleInstance;
     }
 
+    /**
+     * Get the current time.
+     * @return the current time
+     */
+    public LocalDateTime getTime() {
 
-    public LocalDateTime getTime(){
         return time;
     }
 
+    /**
+     * Get the current refresh time.
+     * @return the current refresh time
+     */
     public int getCurrentRefreshTime() {
         return currentRefreshTime;
     }

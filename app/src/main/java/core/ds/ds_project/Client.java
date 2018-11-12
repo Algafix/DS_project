@@ -167,6 +167,6 @@ public final class Client {
 
         //test.testNestedInterval();
 
-        //test.testReportTreeGenerate();
+        test.testReportTreeGenerate();
     }
 }
