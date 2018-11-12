@@ -1,22 +1,31 @@
 package core.ds.ds_project;
 
-import java.time.Duration;
 import java.util.TimerTask;
 
 /**
  * Class for debugging purposes.
  */
 public class IntervalTimerTask extends TimerTask {
+    /**
+     * An interval.
+     */
+    private Interval interval;
+    /**
+     * Set an interval.
+     * @param theInterval the interval.
+     */
+    IntervalTimerTask(final Interval theInterval) {
 
-    Interval interval;
-
-    IntervalTimerTask(Interval interval) {
-        this.interval = interval;
+        this.interval = theInterval;
     }
-
+    /**
+     * Run an interval.
+     */
     @Override
     public void run() {
         interval.stop();
-        System.out.println("Parado "+interval.getName()+" en: "+ Client.formatDuration(interval.getDuration()));
+        String firstVar = interval.getName();
+        String finalVar = Client.formatDuration(interval.getDuration());
+        System.out.println("Parado " + firstVar  + " en: " + finalVar);
     }
 }
