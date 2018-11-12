@@ -453,7 +453,6 @@ public class Test {
         final Project project2 = allFather.addChild(new Project("P2", "Projecte 2"));
         final Task task3 = project2.addChild(task33);
 
-        allFather.printDebug("");
         allFather.acceptVisitor(new Printer());
 
 
