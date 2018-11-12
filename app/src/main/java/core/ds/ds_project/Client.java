@@ -10,12 +10,24 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * The Client class implements two methods that change date format
+ *  another method to deserialize projects and the main where the app and
+ *  test are executed.
+ *
+ * @author Adrià Figuerola, Aleix Galan, Diego Fraile
+ * @version 1.0
+ */
 
-public class Client {
+public final class Client {
 
-    private static final int secondsHour = 3600;
-    private static final int minutesHour = 60;
 
+    /**
+     * Constructor of class Client never called.
+     */
+    private Client() {
+        //not called
+    }
 
     /**
      * Convert object duration to string with format HH:mm:ss.
@@ -24,6 +36,15 @@ public class Client {
      * @return the duration with format HH:mm:ss
      */
     public static String formatDuration(final Duration duration) {
+        /**
+         * The seconds of an hour.
+         */
+        final int secondsHour = 3600;
+        /**
+         * The minutes of an hour.
+         */
+        final int minutesHour = 60;
+
         if (duration == null) {
             return null;
         } else {
@@ -34,15 +55,22 @@ public class Client {
                     absSeconds / secondsHour,
                     (absSeconds % secondsHour) / minutesHour,
                     absSeconds % minutesHour);
-            return seconds < 0 ? "-" + positive : positive;
+
+            return positive;
         }
 
     }
+    /**
+     * Convert object LocalDateTime to string with format dd-MMM-yyyy HH:mm:ss.
+     *
+     * @param time .
+     * @return the duration with format HH:mm:ss
+     */
+    public static String formatDateTime(final LocalDateTime time) {
 
-    public static String formatDateTime(LocalDateTime time) {
-
-        if (time != null ) {
-            final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss");
+        if (time != null) {
+            final DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss");
             return time.format(formatter);
         } else {
             return "                       ";
@@ -50,15 +78,17 @@ public class Client {
     }
 
     /**
-     * Serializes a project to a file with the name given by the parameters
+     * Serializes a project to a file with the name given by the parameters.
      *
-     * @param allFather the project expected to be received (dummy project) and the one we will serialize
-     * @param filename the name of the file where the project is going to be saved
+     * @param allFather the project expected to be received (dummy project)
+     * and the one we will serialize
+     * @param filename the name of the file where the project wil be saved
      */
-    public static void serializeProject(Project allFather, String filename){
-        // Serialization
-        try
-        {
+    public static void serializeProject(final Project allFather,
+                                        final String filename) {
+
+        try {
+
             //Saving of object in a file
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -71,22 +101,21 @@ public class Client {
 
             System.out.println("Object has been serialized");
 
-        }
+        } catch (IOException ex) {
 
-        catch(IOException ex)
-        {
             System.out.println("IOException is caught");
         }
 
     }
 
     /**
-     * Deserialize a project from a file with the name given by the parameters
+     * Deserialize a project from a file with the name given by the parameters.
      *
-     * @param filename the name of the file where the project is going to be loaded from
+     * @param filename the name of the file where the project will be loaded
+     * @return the project deserialize
      */
     public static Project deserializeProject(final String filename) {
-        // Deserialization
+
         try {
             // Reading the object from a file
             FileInputStream file = new FileInputStream(filename);
@@ -100,21 +129,27 @@ public class Client {
 
             System.out.println("Object has been deserialize ");
             return deserializeProject;
-        } catch(IOException ex) {
+        } catch (IOException ex) {
 
             System.out.println("IOException is caught");
             return null;
-        } catch(ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
 
             System.out.println("ClassNotFoundException is caught");
             return null;
         }
     }
 
-
+    /**
+     * Executes test of the app .
+     *
+     * @param args arguments necessary to main
+     */
     public static void main(final String[] args) {
 
-        AppClock.getInstance(2000);
+        final int timeUpdate = 2000;
+
+        AppClock.getInstance(timeUpdate);
 
         Test test = new Test();
 
@@ -132,6 +167,6 @@ public class Client {
 
         //test.testNestedInterval();
 
-        test.testReportTreeGenerate();
+        //test.testReportTreeGenerate();
     }
 }
