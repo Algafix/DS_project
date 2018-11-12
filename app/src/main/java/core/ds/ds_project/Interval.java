@@ -6,40 +6,64 @@ import java.time.LocalDateTime;
 import java.util.Observable;
 import java.util.Observer;
 
+ /**
+  * Not necessary all ready understandable.
+  */
+
 public class Interval implements Observer, Serializable {
 
+    /**
+    * The start time.
+    */
     private LocalDateTime startTime = null;
+    /**
+    * The end time.
+     */
     private LocalDateTime endTime = null;
+    /**
+    * the duration in seconds.
+    */
     private Duration duration = Duration.ofSeconds(0);
+    /**
+    * Pointer to the parent of a task.
+    */
     private BasicTask parent = null;
+    /**
+    * Not necessary all ready understandable.
+    */
     private String name = null; //debugging purposes
+    /**
+    * Not necessary all ready understandable.
+    */
     private static final int CLOCK_CORRECTOR = 995000000;
 
 
     /**
-     * Constructor that creates a new interval
-     *
+     * Constructor that creates a new interval.
+     * @param nameInterval the name of the interval.
+     * @param parentInterval the parent of the interval.
      */
-    public Interval(String name, BasicTask parent){
+    public Interval(final String nameInterval, final BasicTask parentInterval) {
         AppClock clock = AppClock.getInstance();
-        this.name = name;
+        this.name = nameInterval;
         this.startTime = clock.getTime();
         this.endTime = clock.getTime();
-        this.parent = parent;
+        this.parent = parentInterval;
         clock.addObserver(this);
     }
 
 
     /**
-     * Method called when the Observable object where this object is subscribed invoke
+     * Method called when the Observable object is subscribed invoke.
      * "notifyObservers()"
      *
      * @param obs Parameter containing info about the observable object.
      * @param obj Parameter containing info about the update.
      */
     @Override
-    public void update(Observable obs, Object obj) {
-        Duration partialDuration = Duration.between(endTime, (LocalDateTime) obj);
+    public void update(final Observable obs, final Object obj) {
+        Duration partialDuration =
+                Duration.between(endTime, (LocalDateTime) obj);
         partialDuration = roundToSeconds(partialDuration);
         duration = duration.plus(partialDuration);
         endTime = (LocalDateTime) obj;
@@ -48,16 +72,22 @@ public class Interval implements Observer, Serializable {
 
 
     /**
-     * Method called to stop an interval previously started and calculate it's duration.
+     * Method called to stop an interval previously started and
+     * calculate it's duration.
      *
      * @return Object Duration with the time lasted by the interval.
      */
-    public Duration stop(){
+    public Duration stop() {
         AppClock.getInstance().deleteObserver(this);
         return duration;
     }
 
-    public void acceptVisitor(Visitor visitor) {
+    /**
+    * Accepts a visitor.
+    *
+    * @param visitor the accepted visitor.
+    */
+    public void acceptVisitor(final Visitor visitor) {
         visitor.visitInterval(this);
     }
 
@@ -66,9 +96,10 @@ public class Interval implements Observer, Serializable {
      *
      * @param tabs String of concatenated "\t" for visual purpose.
      */
-    public void printDebug(String tabs) {
+    public void printDebug(final String tabs) {
 
-        System.out.println(tabs + name + ": " + Client.formatDuration(duration));
+        System.out.println(
+                tabs + name + ": " + Client.formatDuration(duration));
 
     }
 
@@ -80,7 +111,7 @@ public class Interval implements Observer, Serializable {
      */
     public static Duration roundToSeconds(Duration duration) {
 
-        if(duration.getNano()>CLOCK_CORRECTOR) {
+        if (duration.getNano() > CLOCK_CORRECTOR) {
             duration = duration.plusSeconds(1);
         }
 
@@ -90,37 +121,59 @@ public class Interval implements Observer, Serializable {
     }
 
     /**
-     * Method that obtains the activity duration of the job within a range defined by two Dates.
+     * Method that obtains the activity duration
+     * of the job within a range defined by two Dates.
      *
      * @param fromDate Date that sets the beginning of the range.
      * @param toDate Date that sets the end of the range.
      * @return [Duration] Returns the duration in the specified range.
      */
-    public Duration getDurationInRange(final LocalDateTime fromDate, final LocalDateTime toDate) {
+    public Duration getDurationInRange(final LocalDateTime fromDate,
+                                       final LocalDateTime toDate) {
         Duration temp = Duration.ofSeconds(0);
         LocalDateTime startTemp = startTime;
         LocalDateTime endTemp = endTime;
-        if (!(fromDate.isAfter(endTime) || toDate.isBefore(startTime)) && fromDate.isBefore(toDate)) {
-            if (fromDate.isAfter(startTime)) startTemp = fromDate;
-            if (toDate.isBefore(endTime)) endTemp = toDate;
+        if (!(fromDate.isAfter(endTime) || toDate.isBefore(startTime))
+                && fromDate.isBefore(toDate)) {
+            if (fromDate.isAfter(startTime)) {
+                startTemp = fromDate;
+            }
+            if (toDate.isBefore(endTime)) {
+                endTemp = toDate;
+            }
 
             temp = Duration.between(startTemp, endTemp);
         }
         return temp;
     }
+     /**
+      * Get the duration.
+      * @return the duration.
+      */
+    public Duration getDuration() {
 
-    public Duration getDuration(){
         return duration;
     }
+     /**
+      * Set the name.
+      * @param nameInterval the name of the interval
+      */
+    public void setName(final String nameInterval) {
 
-    public void setName(String name) {
-        this.name = name;
+        this.name = nameInterval;
     }
-
+     /**
+      * Get the duration.
+      * @return the duration.
+      */
     public String getName() {
+
         return name;
     }
-
+     /**
+      * Get the duration.
+      * @return the duration.
+      */
     public BasicTask getParent() {
         return parent;
     }
