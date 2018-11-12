@@ -1,4 +1,8 @@
 package core.ds.ds_project;
 
-public abstract class DetailedReportGeneratorVisitor extends ReportGeneratorVisitor {
+/**
+ * Not necessary understandable if necessary explain the class.
+ */
+public abstract class DetailedReportGeneratorVisitor
+        extends ReportGeneratorVisitor {
 }
