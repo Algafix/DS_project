@@ -1,7 +1,13 @@
 package core.ds.ds_project;
 
+/**
+ * Not necessary all ready understandable.
+ */
 public class Printer extends Visitor {
-
+    /**
+     * Constructor of Limit Time Task Decorator.
+     * @param basicTask Task that is wrapped by the current decorator.
+     */
     @Override
     public void visitProject(Project project){
 

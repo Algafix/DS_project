@@ -1,6 +1,11 @@
 package core.ds.ds_project;
-
+/**
+ * Not necessary understandable if necessary explain the class.
+ */
 public abstract class ReportGeneratorVisitor extends Visitor {
-    protected Report report = null;
+    /**
+     * Explained variable report.
+     */
+    private Report report = null;
 
 }
