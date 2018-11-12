@@ -28,12 +28,12 @@ public class Interval implements Observer, Serializable {
     * Pointer to the parent of a task.
     */
     private BasicTask parent = null;
-    /**
-    * Not necessary all ready understandable.
-    */
+     /**
+      * The name.
+      */
     private String name = null; //debugging purposes
     /**
-    * Not necessary all ready understandable.
+    * A variable that permits tolerance of the clock.
     */
     private static final int CLOCK_CORRECTOR = 995000000;
 
@@ -163,8 +163,8 @@ public class Interval implements Observer, Serializable {
         this.name = nameInterval;
     }
      /**
-      * Get the duration.
-      * @return the duration.
+      * Get the name.
+      * @return the name.
       */
     public String getName() {
 
