@@ -2,16 +2,23 @@ package core.ds.ds_project;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
+/**
+ * Not necessary understandable.
+ */
 public class BasicTask extends Task {
 
+    /**
+     * Array of intervals.
+     */
     private Collection<Interval> intervals = new ArrayList<Interval>();
+    /**
+     * The runningInterval.
+     */
     private Interval runningInterval = null;
-    public Period maxDuration = null;
+
 
     /**
      * Constructor of the class, only calls the super constructor.
@@ -20,12 +27,16 @@ public class BasicTask extends Task {
      * @param description What will be the job about.
      */
 
-    public BasicTask(String name, String description) {
+    public BasicTask(final String name, final String description) {
 
-        super(name,description);
+        super(name, description);
     }
 
-
+    /**
+     * Get the intervals.
+     *
+     * @return all the intervals
+     */
     public Collection<Interval> getIntervals() {
         return intervals;
     }
@@ -36,9 +47,9 @@ public class BasicTask extends Task {
      * @param name Name of the interval for debug purposes.
      * @return The interval created.
      */
-    public Interval addInterval(String name) {
+    public Interval addInterval(final String name) {
 
-        if(runningInterval == null) {
+        if (runningInterval == null) {
 
             runningInterval = new Interval(name, this);
             intervals.add(runningInterval);
@@ -49,9 +60,11 @@ public class BasicTask extends Task {
     }
 
     /**
-     * Stop the last (and presumed only because only one interval should exist at once) interval
-     * running if there's an interval running at all.
-     * @return The duration of the last interval or null if there isn't an interval running
+     * Stop the last (and presumed only because only one interval
+     * should exist at once) interval running if there's an interval
+     * running at all.
+     * @return The duration of the last interval or null if there
+     * isn't an interval running
      */
     @Override
     public Duration stopLastInterval() {
@@ -64,14 +77,16 @@ public class BasicTask extends Task {
     }
 
     /**
-     * Method that obtains the activity duration of the job within a range defined by two Dates.
+     * Method that obtains the activity duration of the job
+     * within a range defined by two Dates.
      *
      * @param fromDate Date that sets the beginning of the range.
      * @param toDate Date that sets the end of the range.
      * @return [Duration] Returns the duration in the specified range.
      */
     @Override
-    public Duration getDurationInRange(final LocalDateTime fromDate, final LocalDateTime toDate) {
+    public Duration getDurationInRange(final LocalDateTime fromDate,
+                                       final LocalDateTime toDate) {
         Duration temp = Duration.ofSeconds(0);
         for (Interval interval : intervals) {
             temp.plus(interval.getDurationInRange(fromDate, toDate));
@@ -79,9 +94,11 @@ public class BasicTask extends Task {
         return temp;
     }
 
-
+    /**
+     * Accepts a visitor.
+     */
     @Override
-    public void acceptVisitor(Visitor visitor) {
+    public void acceptVisitor(final Visitor visitor) {
         visitor.visitTask(this);
 
         for (Interval interval : intervals) {
