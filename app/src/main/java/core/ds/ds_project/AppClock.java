@@ -51,11 +51,10 @@ public final class AppClock extends Observable {
 
             currentRefreshTime = refreshTime;
             time = LocalDateTime.now();
-            /*
-      Declaration of the object used to periodically update our time.
-     */ /**
-             * Declaration of the object used to periodically update our time.
-             */Timer timer = new Timer();
+            /**
+            * Declaration of the object used to periodically update our time.
+            */
+            Timer timer = new Timer();
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
@@ -98,9 +97,7 @@ public final class AppClock extends Observable {
                         selectedRefreshTime = refreshTime[0];
                     }
                     clockSoleInstance = new AppClock(selectedRefreshTime);
-                    log.info("------------------------------------------");
-                    log.info(" Ha començat a correr el rellotge");
-                    log.info("------------------------------------------");
+                    log.info("Clock has started");
                 }
             }
         }

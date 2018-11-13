@@ -53,13 +53,12 @@ public class Interval implements Observer, Serializable {
         AppClock clock = AppClock.getInstance();
         this.name = nameInterval;
         this.startTime = clock.getTime();
-        log.info("------------------------------------------");
-        log.info("Ha començat l'interval " + name);
-        log.info("Ha començat el " + Client.formatDateTime(startTime));
-        log.info("------------------------------------------");
         this.endTime = clock.getTime();
         this.parent = parentInterval;
         clock.addObserver(this);
+
+        log.info("Started interval " + name + " at "
+                + Client.formatDateTime(startTime));
     }
 
 
@@ -89,12 +88,9 @@ public class Interval implements Observer, Serializable {
      */
     public Duration stop() {
         AppClock.getInstance().deleteObserver(this);
-        log.info("------------------------------------------");
-        log.info("S'ha aturat l'interval " + name);
-        log.info("Ha començat el " + Client.formatDateTime(startTime));
-        log.info("Ha acabat el " + Client.formatDateTime(endTime));
-        log.info("Per tant a durat " + Client.formatDuration(duration));
-        log.info("------------------------------------------");
+
+        log.info("Interval " + name + " stopped. Lasted for "
+                + Client.formatDuration(duration));
         return duration;
     }
 
