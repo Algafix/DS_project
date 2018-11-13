@@ -2,31 +2,43 @@ package core.ds.ds_project;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.util.ArrayList;
+
 import java.util.Collection;
-import java.util.List;
 
 
-public abstract class Task extends Job{
+/**
+ * Not necessary all ready understandable.
+ */
+public abstract class Task extends Job {
 
-    /** The Task that wraps the current one. If null, means is the higher layer and the object that
+    /** The Task that wraps the current one.
+     * If null, means is the higher layer and the object that
      *  interactuates with other.
      */
     protected Task higherLayerDecorator = null;
 
-    public Task(String name, String description) {
+    /**
+     * Not necessary all ready understandable.
+     * @param name .
+     * @param description .
+     */
+    public Task(final String name, final String description) {
 
-        super(name,description);
+        super(name, description);
     }
 
     /**
-     * Sets the higher layer decorator, that is the Decorator that wraps the current task
+     * Sets the higher layer decorator, that is the
+     * Decorator that wraps the current task.
+     * @param higherLayerDecorator1 .
      */
-    public void setHigherLayerDecorator(Task higherLayerDecorator){
-        this.higherLayerDecorator = higherLayerDecorator;
+    public void setHigherLayerDecorator(final Task higherLayerDecorator1) {
+        this.higherLayerDecorator = higherLayerDecorator1;
     }
-
+    /**
+     * Not necessary all ready understandable.
+     * @return  the intervals.
+     */
     public abstract Collection<Interval> getIntervals();
 
     /**
@@ -38,7 +50,8 @@ public abstract class Task extends Job{
     public abstract Interval addInterval(String name);
 
     /**
-     * Stops the last interval, which is presumed to be the only one running, considering there's an
+     * Stops the last interval, which is presumed to be the only one running,
+     * considering there's an
      * interval running at all.
      *
      * @return Duration of the last Interval
@@ -46,18 +59,20 @@ public abstract class Task extends Job{
     public abstract Duration stopLastInterval();
 
     /**
-     * Updates the duration of the object and, if the object is not the last, call update on it's
+     * Updates the duration of the object and,
+     * if the object is not the last, call update on it's
      * parent.
      *
      * @param duration Increment of time.
      */
     @Override
-    public void updateDuration(Duration duration, LocalDateTime startTime, LocalDateTime endTime) {
+    public void updateDuration(final Duration duration,
+                               final LocalDateTime startTime,
+                               final LocalDateTime endTime) {
 
-        if(higherLayerDecorator == null) {
+        if (higherLayerDecorator == null) {
             super.updateDuration(duration, startTime, endTime);
-        }
-        else {
+        } else {
             higherLayerDecorator.updateDuration(duration, startTime, endTime);
         }
     }
