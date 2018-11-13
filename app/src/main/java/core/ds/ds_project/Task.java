@@ -105,7 +105,7 @@ public abstract class Task extends Job {
             log.error("Illegal argument at call", e);
         }
 
-        //Postconditions and invariant
+        //Postcondition and invariant
         invariant();
     }
 
