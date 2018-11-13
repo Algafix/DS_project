@@ -153,7 +153,7 @@ public final class Client {
 
         Test test = new Test();
 
-        test.testAppendA1();
+        //test.testAppendA1();
 
         //test.testDeserialize();
 
@@ -167,6 +167,6 @@ public final class Client {
 
         //test.testNestedInterval();
 
-        //test.testReportTreeGenerate();
+        test.testReportTreeGenerate();
     }
 }
