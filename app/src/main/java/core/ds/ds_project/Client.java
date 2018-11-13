@@ -50,13 +50,12 @@ public final class Client {
         } else {
             long seconds = duration.getSeconds();
             long absSeconds = Math.abs(seconds);
-            String positive = String.format(Locale.getDefault(),
+
+            return String.format(Locale.getDefault(),
                     "%02d:%02d:%02d",
                     absSeconds / secondsHour,
                     (absSeconds % secondsHour) / minutesHour,
                     absSeconds % minutesHour);
-
-            return positive;
         }
 
     }
@@ -157,16 +156,16 @@ public final class Client {
 
         //test.testDeserialize();
 
-        test.testAppendA2();
-
-        //test.testProgrammatedtaskAndLimitTimeTaskDecarator();
+        //test.testAppendA2();
 
         //test.testLimitTimeDecorator();
+
+        //testProgrammatedTaskAndLimitTimeTaskDecorator;
 
         //test.testProgramatedtask();
 
         //test.testNestedInterval();
 
-        //test.testReportTreeGenerate();
+        test.testReportTreeGenerate();
     }
 }

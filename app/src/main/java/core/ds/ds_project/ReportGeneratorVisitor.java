@@ -54,10 +54,15 @@ public abstract class ReportGeneratorVisitor extends Visitor {
         int a = 0;
     }
 
-    protected void getInfoProject() { };
-    protected void handleInfoProject() { };
-    protected void getInfoTask() { };
-    protected void handleInfoTask() { };
-    protected void getInfoInterval() { };
-    protected void handleInfoInterval() { };
+    protected void getInfoProject() { }
+
+    protected void handleInfoProject() { }
+
+    protected void getInfoTask() { }
+
+    protected void handleInfoTask() { }
+
+    protected void getInfoInterval() { }
+
+    protected void handleInfoInterval() { }
 }
