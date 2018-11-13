@@ -167,13 +167,13 @@ public final class Client {
 
         //test.testLimitTimeDecorator();
 
-        //test.testProgrammatedTaskAndLimitTimeTaskDecorator();
+        test.testProgrammatedTaskAndLimitTimeTaskDecorator();
 
         //test.testProgramatedtask();
 
         //test.testNestedInterval();
 
-        test.testReportTreeGenerate();
+        //test.testReportTreeGenerate();
 
         //test.testBasicReportASCII(deserializeProject("allFather2.ser"));
     }
