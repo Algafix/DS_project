@@ -95,7 +95,10 @@ public abstract class Task extends Job {
                         + " updateDuration");
             } else {
                 if (higherLayerDecorator == null) {
-                    super.updateDuration(duration, startTime, endTime);
+                    if (this.getParent() != null) {
+                        this.getParent().updateDuration(duration,
+                                startTime, endTime);
+                    }
                 } else {
                     higherLayerDecorator.updateDuration(duration,
                             startTime, endTime);

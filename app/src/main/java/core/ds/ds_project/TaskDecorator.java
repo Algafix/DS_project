@@ -79,4 +79,60 @@ public abstract class TaskDecorator extends Task {
 
         return task;
     }
+
+
+    /**
+     * Get the duration.
+     * @return the duration.
+     */
+    @Override
+    public Duration getDuration() {
+        return task.getDuration();
+    }
+
+    /**
+     * Set the duration.
+     * @return duration.
+     */
+    @Override
+    public void setDuration(final Duration durationParam) {
+        this.task.setDuration(durationParam);
+    }
+
+    /**
+     * Get the endTime.
+     * @return endTime.
+     */
+    @Override
+    public LocalDateTime getEndTime() {
+        return task.getEndTime();
+    }
+
+    /**
+     * Set the endTime.
+     * @return endTime.
+     */
+    @Override
+    public void setEndTime(final LocalDateTime endTimeParam) {
+        this.task.setEndTime(endTimeParam);
+    }
+
+    /**
+     * Get the start time.
+     * @return the start time.
+     */
+    @Override
+    public LocalDateTime getStartTime() {
+        return task.getStartTime();
+    }
+    /**
+     * Set the startTime.
+     * @param startTimeParam.
+     */
+    @Override
+    public void setStartTime(final LocalDateTime startTimeParam) {
+        this.task.setStartTime(startTimeParam);
+    }
+
+
 }

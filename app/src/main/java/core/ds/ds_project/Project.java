@@ -110,7 +110,7 @@ public class Project extends Job {
         if (!(fromDate.isAfter(getEndTime()) || toDate.isBefore(getStartTime()))
                 && fromDate.isBefore(toDate)) {
             for (Job job : children) {
-                temp.plus(job.getDurationInRange(fromDate, toDate));
+                temp = temp.plus(job.getDurationInRange(fromDate, toDate));
             }
         }
         return temp;
