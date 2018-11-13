@@ -4,10 +4,15 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
+/**
+ * Not necessary all ready understandable.
+ */
 public class Project extends Job {
 
+    /**
+     * Not necessary all ready understandable.
+     */
     private Collection<Job> children = new ArrayList<Job>();
 
 
@@ -17,9 +22,9 @@ public class Project extends Job {
      * @param name Name of the job.
      * @param description What will be the job about.
      */
-    Project(String name, String description) {
+    Project(final String name, final String description) {
 
-        super(name,description);
+        super(name, description);
     }
 
 
@@ -49,7 +54,7 @@ public class Project extends Job {
      * @param child Instance of Project that will be added.
      * @return Instance of Project that has just been added.
      */
-    public Project addChild(Project child) {
+    public Project addChild(final Project child) {
         child.setParent(this);
         children.add(child);
         return child;
@@ -61,21 +66,23 @@ public class Project extends Job {
      * @param child Instance of Task that will be added.
      * @return Instance of Task that has just been added.
      */
-    public Task addChild(Task child) {
+    public Task addChild(final Task child) {
         child.setParent(this);
         children.add(child);
         return child;
     }
 
     /**
-     * Method that obtains the activity duration of the job within a range defined by two Dates.
+     * Method that obtains the activity duration of the
+     * job within a range defined by two Dates.
      *
      * @param fromDate Date that sets the beginning of the range.
      * @param toDate Date that sets the end of the range.
      * @return [Duration] Returns the duration in the specified range.
      */
     @Override
-    public Duration getDurationInRange(final LocalDateTime fromDate, final LocalDateTime toDate) {
+    public Duration getDurationInRange(final LocalDateTime fromDate,
+                                       final LocalDateTime toDate) {
         Duration temp = Duration.ofSeconds(0);
         for (Job job : children) {
             temp.plus(job.getDurationInRange(fromDate, toDate));
@@ -83,11 +90,13 @@ public class Project extends Job {
         return temp;
     }
 
-
+    /**
+     * Not necessary all ready understandable.
+     */
     @Override
-    public void acceptVisitor(Visitor visitor) {
+    public void acceptVisitor(final Visitor visitor) {
         visitor.visitProject(this);
-        for(Job job : children) {
+        for (final Job job : children) {
             job.acceptVisitor(visitor);
         }
     }
