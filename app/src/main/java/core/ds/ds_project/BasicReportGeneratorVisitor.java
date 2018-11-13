@@ -42,6 +42,7 @@ public class BasicReportGeneratorVisitor
     protected void initializeReport() {
         Report report = new Report(TITLE, SECTIONS_TITLES, SECTIONS_DESCRIPTIONS,
                 SECTIONS_COLUMNS_NUMBERS, SECTIONS_HEADERS);
+        this.setReport(report);
     }
 
     @Override

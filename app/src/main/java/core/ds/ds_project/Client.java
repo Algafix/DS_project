@@ -173,6 +173,8 @@ public final class Client {
 
         //test.testNestedInterval();
 
-        //test.testReportTreeGenerate();
+        test.testReportTreeGenerate();
+
+        //test.testBasicReportASCII(deserializeProject("allFather2.ser"));
     }
 }
