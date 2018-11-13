@@ -5,6 +5,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Observable;
 import java.util.Observer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
  /**
   * Not necessary all ready understandable.
@@ -12,6 +14,10 @@ import java.util.Observer;
 
 public class Interval implements Observer, Serializable {
 
+     /**
+      * Logger of the class Interval.
+      */
+     private final Logger log = LoggerFactory.getLogger(Interval.class);
     /**
     * The start time.
     */
@@ -47,6 +53,10 @@ public class Interval implements Observer, Serializable {
         AppClock clock = AppClock.getInstance();
         this.name = nameInterval;
         this.startTime = clock.getTime();
+        log.info("------------------------------------------");
+        log.info("Ha començat l'interval " + name);
+        log.info("Ha començat el " + Client.formatDateTime(startTime));
+        log.info("------------------------------------------");
         this.endTime = clock.getTime();
         this.parent = parentInterval;
         clock.addObserver(this);
@@ -79,6 +89,12 @@ public class Interval implements Observer, Serializable {
      */
     public Duration stop() {
         AppClock.getInstance().deleteObserver(this);
+        log.info("------------------------------------------");
+        log.info("S'ha aturat l'interval " + name);
+        log.info("Ha començat el " + Client.formatDateTime(startTime));
+        log.info("Ha acabat el " + Client.formatDateTime(endTime));
+        log.info("Per tant a durat " + Client.formatDuration(duration));
+        log.info("------------------------------------------");
         return duration;
     }
 
