@@ -7,16 +7,16 @@ import java.time.LocalDateTime;
  */
 public abstract class ReportGeneratorVisitor extends Visitor {
 
+    private Report report;
+    private LocalDateTime endReportDate;
+    private LocalDateTime startReportDate;
+
     public ReportGeneratorVisitor(final LocalDateTime startReportDateParam,
                                   final  LocalDateTime endReportDateParam,
                                   final Report reportParam) {
-        /*
-      Explained variable report.
-     */ /**
-         * Explained variable report.
-         */Report report = reportParam;
-        LocalDateTime endReportDate = endReportDateParam;
-        LocalDateTime startReportDate = startReportDateParam;
+        report = reportParam;
+        endReportDate = endReportDateParam;
+        startReportDate = startReportDateParam;
         initializeReport();
     }
 
@@ -26,8 +26,10 @@ public abstract class ReportGeneratorVisitor extends Visitor {
      */
     @Override
     public void visitProject(final Project project) {
-        getInfoProject();
-        handleInfoProject();
+        if (isVisitableProject(project)) {
+            getInfoProject(project);
+            handleInfoProject(project);
+        }
     }
 
     /**
@@ -36,8 +38,10 @@ public abstract class ReportGeneratorVisitor extends Visitor {
      */
     @Override
     public void visitTask(final Task task) {
-        getInfoTask();
-        handleInfoTask();
+        if (isVisitableTask(task)) {
+            getInfoTask(task);
+            handleInfoTask(task);
+        }
     }
 
     /**
@@ -46,23 +50,40 @@ public abstract class ReportGeneratorVisitor extends Visitor {
      */
     @Override
     public void visitInterval(final Interval interval) {
-        getInfoInterval();
-        handleInfoInterval();
+        if (isVisitableInterval(interval)) {
+            getInfoInterval(interval);
+            handleInfoInterval(interval);
+        }
     }
 
-    protected void initializeReport() {
-        int a = 0;
+    protected void initializeReport() { };
+
+    protected boolean isVisitableProject(final Project project) {
+        return false;
     }
+    protected void getInfoProject(final Project project) { };
+    protected void handleInfoProject(final Project project) { };
+    protected boolean isVisitableTask(final Task task) {
+        return false;
+    }
+    protected void getInfoTask(final Task task) { };
+    protected void handleInfoTask(final Task task) { };
+    protected boolean isVisitableInterval(final Interval interval) {
+        return false;
+    }
+    protected void getInfoInterval(final Interval interval) { };
+    protected void handleInfoInterval(final Interval interval) { };
 
-    protected void getInfoProject() { }
-
-    protected void handleInfoProject() { }
-
-    protected void getInfoTask() { }
-
-    protected void handleInfoTask() { }
-
-    protected void getInfoInterval() { }
-
-    protected void handleInfoInterval() { }
+    public LocalDateTime getEndReportDate() {
+        return endReportDate;
+    }
+    public LocalDateTime getStartReportDate() {
+        return startReportDate;
+    }
+    public Report getReport() {
+        return report;
+    }
+    public void setReport(final Report reportParam) {
+        this.report = reportParam;
+    }
 }

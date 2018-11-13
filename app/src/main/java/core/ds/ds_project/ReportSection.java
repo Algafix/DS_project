@@ -1,16 +1,21 @@
 package core.ds.ds_project;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReportSection {
     private String subtitle = "";
     private String description = "";
     private Taula table = null;
 
-    public ReportSection(final String subtitleParam, final String descriptionParam, final int columnsNumber) {
+    public ReportSection(final String subtitleParam,
+                         final String descriptionParam,
+                         final int columnsNumber,
+                         final List tableHeaders) {
         subtitle = subtitleParam;
         description = descriptionParam;
         table = new Taula(0, columnsNumber);
+        table.afegeixFila((ArrayList) tableHeaders);
     }
 
     public String getDescription() {
@@ -37,8 +42,8 @@ public class ReportSection {
         table = tableParam;
     }
 
-    public void addRow(final ArrayList stringsList) {
-        table.afegeixFila(stringsList);
+    public void addRow(final List stringsList) {
+        table.afegeixFila((ArrayList) stringsList);
     }
 
 }

@@ -157,8 +157,11 @@ public class BasicTask extends Task {
         invariant();
 
         Duration temp = Duration.ofSeconds(0);
-        for (Interval interval : intervals) {
-            temp = temp.plus(interval.getDurationInRange(fromDate, toDate));
+        if (!(fromDate.isAfter(getEndTime()) || toDate.isBefore(getStartTime()))
+                && fromDate.isBefore(toDate)) {
+            for (Interval interval : intervals) {
+                temp = temp.plus(interval.getDurationInRange(fromDate, toDate));
+            }
         }
 
         //Postcondition and invariant
