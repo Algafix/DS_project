@@ -51,6 +51,7 @@ public abstract class Task extends Job {
     public void setHigherLayerDecorator(final Task higherLayerDecoratorParam) {
         this.higherLayerDecorator = higherLayerDecoratorParam;
     }
+
     /**
      * Not necessary all ready understandable.
      * @return  the intervals.
@@ -81,7 +82,6 @@ public abstract class Task extends Job {
      *
      * @param duration Increment of time.
      */
-
     @Override
     public void updateDuration(final Duration duration,
                                final LocalDateTime startTime,
@@ -108,6 +108,4 @@ public abstract class Task extends Job {
         //Postcondition and invariant
         invariant();
     }
-
-
 }

@@ -167,7 +167,7 @@ public final class Client {
 
         //test.testLimitTimeDecorator();
 
-        //testProgrammatedTaskAndLimitTimeTaskDecorator;
+        //test.testProgrammatedTaskAndLimitTimeTaskDecorator();
 
         //test.testProgramatedtask();
 
