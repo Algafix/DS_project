@@ -106,10 +106,12 @@ public class Interval implements Observer, Serializable {
     /**
      * Corrects the precision error of the clock that adds or subs around 1ms.
      *
-     * @param duration Duration object with a time to correct.
+     * @param durationParam Duration object with a time to correct.
      * @return The same Duration object with the seconds fixed.
      */
-    public static Duration roundToSeconds(@SuppressWarnings("CheckStyle") Duration duration) {
+    public static Duration roundToSeconds(final Duration durationParam) {
+
+        Duration duration = durationParam;
 
         if (duration.getNano() > CLOCK_CORRECTOR) {
             duration = duration.plusSeconds(1);

@@ -108,6 +108,7 @@ public abstract class Job implements Serializable {
 
         return parent;
     }
+
     /**
      * Get the duration.
      * @return the duration.
