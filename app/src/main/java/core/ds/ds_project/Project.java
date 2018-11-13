@@ -39,6 +39,25 @@ public class Project extends Job {
 
 
     /**
+     * Whether this project is the dummie or not.
+     *
+     * @return True if the project is the Dummie, False otherwise.
+     */
+    public boolean isDummie() {
+        return getParent() == null;
+    }
+
+    /**
+     * Whether this project is one of the root projects or not.
+     *
+     * @return True if the project is Root, False otherwise.
+     */
+    public boolean isRoot() {
+        return getParent().isDummie();
+    }
+
+
+    /**
      * Returns the children list.
      *
      * @return Children list.
@@ -84,8 +103,11 @@ public class Project extends Job {
     public Duration getDurationInRange(final LocalDateTime fromDate,
                                        final LocalDateTime toDate) {
         Duration temp = Duration.ofSeconds(0);
-        for (Job job : children) {
-            temp.plus(job.getDurationInRange(fromDate, toDate));
+        if (!(fromDate.isAfter(getEndTime()) || toDate.isBefore(getStartTime()))
+                && fromDate.isBefore(toDate)) {
+            for (Job job : children) {
+                temp.plus(job.getDurationInRange(fromDate, toDate));
+            }
         }
         return temp;
     }
