@@ -103,12 +103,14 @@ public class BasicTask extends Task {
             // Postcondition and invariant
             assert copy.addedOne(intervals.size()) : "Interval not created";
             invariant();
+
             return runningInterval;
         }
 
         // Postcondition and invariant
         invariant();
         assert !copy.addedOne(intervals.size()) : "Illegal interval created";
+
         return null;
     }
 
@@ -131,6 +133,7 @@ public class BasicTask extends Task {
 
             // Postconditions and invariant
             invariant();
+
             return lastDuration;
         } catch (Exception e) {
             log.warn("There is no interval running", e);
@@ -139,6 +142,7 @@ public class BasicTask extends Task {
         // Postconditions and invariant
         assert (runningInterval == null) : "Illegal interval has started";
         invariant();
+
         return null;
     }
 
@@ -167,6 +171,7 @@ public class BasicTask extends Task {
         //Postcondition and invariant
         invariant();
         assert (temp != null) : "Invalid return";
+
         return temp;
     }
 
