@@ -47,6 +47,7 @@ public class BasicTask extends Task {
         assert (this.getDescription() != null) : "Illegal null description";
         assert (this.getName() != null) : "Illegal null name";
         assert (this.getDuration() != null) : "Illegal null duration";
+        assert (this.intervals != null) : "Intervals can't be null";
     }
 
     /**
