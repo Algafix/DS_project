@@ -17,23 +17,23 @@ public abstract class Job implements Serializable {
     /**
      * The name.
      */
-    protected String name;
+    private String name;
     /**
      * The description..
      */
-    protected String description;
+    private String description;
     /**
      * The duration.
      */
-    protected Duration duration = null;
+    private Duration duration = null;
     /**
      * The start time.
      */
-    protected LocalDateTime startTime = null;
+    private LocalDateTime startTime = null;
     /**
      * The end time.
      */
-    protected LocalDateTime endTime = null;
+    private LocalDateTime endTime = null;
 
 
     /**

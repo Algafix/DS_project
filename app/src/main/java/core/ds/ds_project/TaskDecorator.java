@@ -12,14 +12,14 @@ public abstract class TaskDecorator extends Task {
     /**
      * Not necessary all ready understandable.
      */
-    protected Task task = null;
+    private Task task = null;
 
     /**
      * Not necessary all ready understandable.
      * @param task1 .
      */
     public TaskDecorator(final Task task1) {
-        super(task1.name, task1.description);
+        super(task1.getName(), task1.getDescription());
         this.task = task1;
         task.setHigherLayerDecorator(this);
     }
@@ -71,4 +71,12 @@ public abstract class TaskDecorator extends Task {
         return task.getDurationInRange(fromDate, toDate);
     }
 
+    /**
+     * Get the name.
+     * @return the task.
+     */
+    public Task getTask() {
+
+        return task;
+    }
 }

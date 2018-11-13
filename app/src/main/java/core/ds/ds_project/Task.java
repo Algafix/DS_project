@@ -32,9 +32,9 @@ public abstract class Task extends Job {
      * Invariant of the BasicTask class.
      */
     private void invariant() {
-        assert (this.description != null) : "Illegal null description";
-        assert (this.name != null) : "Illegal null name";
-        assert (this.duration != null) : "Illegal null duration";
+        assert (this.getDescription() != null) : "Illegal null description";
+        assert (this.getName() != null) : "Illegal null name";
+        assert (this.getDuration() != null) : "Illegal null duration";
     }
 
     /**
@@ -75,6 +75,7 @@ public abstract class Task extends Job {
      *
      * @param duration Increment of time.
      */
+
     @Override
     public void updateDuration(final Duration duration,
                                final LocalDateTime startTime,

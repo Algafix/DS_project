@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@SuppressWarnings("fileLength")
+@SuppressWarnings("CheckStyle")
 /**
  * The Test class implements all the set of test that the app must pass.
  */
@@ -126,16 +126,17 @@ public class Test {
             public void run() {
                 System.out.println("Nom   Temps inici                  Temps final                  Durada (hh:mm:ss)");
                 System.out.println("----+----------------------------+----------------------------+--------------------");
-                System.out.println(project1.name + "    " + Client.formatDateTime(project1.startTime) + "      " + Client.formatDateTime(project1.endTime) + "       " + Client.formatDuration(project1.duration));
-                System.out.println(task3.name + "    " + Client.formatDateTime(task3.startTime) + "      " + Client.formatDateTime(task3.endTime) + "       " + Client.formatDuration(task3.duration));
-                System.out.println(project2.name + "    " + Client.formatDateTime(project2.startTime) + "      " + Client.formatDateTime(project2.endTime) + "       " + Client.formatDuration(project2.duration));
-                System.out.println(task1.name + "    " + Client.formatDateTime(task1.startTime) + "      " + Client.formatDateTime(task1.endTime) + "       " + Client.formatDuration(task1.duration));
-                System.out.println(task2.name + "    " + Client.formatDateTime(task2.startTime) + "      " + Client.formatDateTime(task2.endTime) + "       " + Client.formatDuration(task2.duration));
+                System.out.println(project1.getName()+ "    " + Client.formatDateTime(project1.getStartTime()) + "      " + Client.formatDateTime(project1.getEndTime()) + "       " + Client.formatDuration(project1.getDuration()));
+                System.out.println(task3.getName() + "    " + Client.formatDateTime(task3.getStartTime()) + "      " + Client.formatDateTime(task3.getEndTime()) + "       " + Client.formatDuration(task3.getDuration()));
+                System.out.println(project2.getName() + "    " + Client.formatDateTime(project2.getStartTime()) + "      " + Client.formatDateTime(project2.getEndTime()) + "       " + Client.formatDuration(project2.getDuration()));
+                System.out.println(task1.getName() + "    " + Client.formatDateTime(task1.getStartTime()) + "      " + Client.formatDateTime(task1.getEndTime()) + "       " + Client.formatDuration(task1.getDuration()));
+                System.out.println(task2.getName() + "    " + Client.formatDateTime(task2.getStartTime()) + "      " + Client.formatDateTime(task2.getEndTime()) + "       " + Client.formatDuration(task2.getDuration()));
                 System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println(" ");
 
             }
         };
+
 
         final TimerTask Tasktime1 = new TimerTask() {
             @Override
@@ -316,8 +317,8 @@ public class Test {
                 System.out.println("");
                 System.out.println("Nom   Temps inici                  Temps final                  Durada (hh:mm:ss)");
                 System.out.println("----+----------------------------+----------------------------+--------------------");
-                System.out.println(project1.name + "    " + Client.formatDateTime(project1.startTime) + "      " + Client.formatDateTime(project1.endTime) + "       " + Client.formatDuration(project1.duration));
-                System.out.println(task3.name + "    " + Client.formatDateTime(task3.startTime) + "      " + Client.formatDateTime(task3.endTime) + "       " + Client.formatDuration(task3.duration));
+                System.out.println(project1.getName() + "    " + Client.formatDateTime(project1.getStartTime()) + "      " + Client.formatDateTime(project1.getEndTime()) + "       " + Client.formatDuration(project1.getDuration()));
+                System.out.println(task3.getName() + "    " + Client.formatDateTime(task3.getStartTime()) + "      " + Client.formatDateTime(task3.getEndTime()) + "       " + Client.formatDuration(task3.getDuration()));
                 System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println(" ");
             }
@@ -341,12 +342,12 @@ public class Test {
         TimerTask Applicationwindow = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Al cap de 5 segons (quan sigui "+ Client.formatDateTime(initTime.plusSeconds(5)) +") comença la T3 que pertany a P1 ");
-                System.out.println(" ");
-                System.out.println("Nom    Temps inici                     Temps final                  Durada (hh:mm:ss)");
-                System.out.println("----+------------------------------+------------------------------+--------------------");
-                System.out.println(project1.name + "    " + Client.formatDateTime(project1.startTime) + "      " + Client.formatDateTime(project1.endTime) + "       " + Client.formatDuration(project1.duration));
-                System.out.println(task3.name + "    " + Client.formatDateTime(task3.startTime) + "      " + Client.formatDateTime(task3.endTime) + "       " + Client.formatDuration(task3.duration));
+                System.out.println("Interval que hauria de pararse al cap de  10s(quan sigui "+ Client.formatDateTime(initTime.plusSeconds(10)) +") comença la T3 que pertany a P1" );
+                System.out.println("");
+                System.out.println("Nom   Temps inici                  Temps final                  Durada (hh:mm:ss)");
+                System.out.println("----+----------------------------+----------------------------+--------------------");
+                System.out.println(project1.getName() + "    " + Client.formatDateTime(project1.getStartTime()) + "      " + Client.formatDateTime(project1.getEndTime()) + "       " + Client.formatDuration(project1.getDuration()));
+                System.out.println(task3.getName() + "    " + Client.formatDateTime(task3.getStartTime()) + "      " + Client.formatDateTime(task3.getEndTime()) + "       " + Client.formatDuration(task3.getDuration()));
                 System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println(" ");
             }
@@ -398,11 +399,11 @@ public class Test {
                 System.out.println(" ");
                 System.out.println("Nom    Temps inici                     Temps final                  Durada (hh:mm:ss)");
                 System.out.println("----+------------------------------+------------------------------+--------------------");
-                System.out.println(project1.name + "    " + Client.formatDateTime(project1.startTime) + "      " + Client.formatDateTime(project1.endTime) + "       " + Client.formatDuration(project1.duration));
-                System.out.println(project2.name + "    " + Client.formatDateTime(project2.startTime) + "      " + Client.formatDateTime(project2.endTime) + "       " + Client.formatDuration(project2.duration));
-                System.out.println(task3.name + "    " + Client.formatDateTime(task3.startTime) + "      " + Client.formatDateTime(task3.endTime) + "       " + Client.formatDuration(task3.duration));
-                System.out.println(task2.name + "    " + Client.formatDateTime(task2.startTime) + "      " + Client.formatDateTime(task2.endTime) + "       " + Client.formatDuration(task2.duration));
-                System.out.println(task1.name + "    " + Client.formatDateTime(task1.startTime) + "      " + Client.formatDateTime(task1.endTime) + "       " + Client.formatDuration(task1.duration));
+                System.out.println(project1.getName() + "    " + Client.formatDateTime(project1.getStartTime()) + "      " + Client.formatDateTime(project1.getEndTime()) + "       " + Client.formatDuration(project1.getDuration()));
+                System.out.println(project2.getName() + "    " + Client.formatDateTime(project2.getStartTime()) + "      " + Client.formatDateTime(project2.getEndTime()) + "       " + Client.formatDuration(project2.getDuration()));
+                System.out.println(task3.getName() + "    " + Client.formatDateTime(task3.getStartTime()) + "      " + Client.formatDateTime(task3.getEndTime()) + "       " + Client.formatDuration(task3.getDuration()));
+                System.out.println(task2.getName() + "    " + Client.formatDateTime(task2.getStartTime()) + "      " + Client.formatDateTime(task2.getEndTime()) + "       " + Client.formatDuration(task2.getDuration()));
+                System.out.println(task1.getName() + "    " + Client.formatDateTime(task1.getStartTime()) + "      " + Client.formatDateTime(task1.getEndTime()) + "       " + Client.formatDuration(task1.getDuration()));
                 System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println(" ");
             }
@@ -472,15 +473,17 @@ public class Test {
                 System.out.println(" ");
                 System.out.println("Nom    Temps inici                     Temps final                  Durada (hh:mm:ss)");
                 System.out.println("----+------------------------------+------------------------------+--------------------");
-                System.out.println(project1.name + "    " + Client.formatDateTime(project1.startTime) + "      " + Client.formatDateTime(project1.endTime) + "       " + Client.formatDuration(project1.duration));
-                System.out.println(task1.name + "    " + Client.formatDateTime(task1.startTime) + "      " + Client.formatDateTime(task1.endTime) + "       " + Client.formatDuration(task1.duration));
-                System.out.println(task2.name + "    " + Client.formatDateTime(task2.startTime) + "      " + Client.formatDateTime(task2.endTime) + "       " + Client.formatDuration(task2.duration));
-                System.out.println(project12.name + "    " + Client.formatDateTime(project12.startTime) + "      " + Client.formatDateTime(project12.endTime) + "       " + Client.formatDuration(project12.duration));
-                System.out.println(task4.name + "    " + Client.formatDateTime(task4.startTime) + "      " + Client.formatDateTime(task4.endTime) + "       " + Client.formatDuration(task4.duration));
-                System.out.println(project2.name + "    " + Client.formatDateTime(project2.startTime) + "      " + Client.formatDateTime(project2.endTime) + "       " + Client.formatDuration(project2.duration));
-                System.out.println(task3.name + "    " + Client.formatDateTime(task3.startTime) + "      " + Client.formatDateTime(task3.endTime) + "       " + Client.formatDuration(task3.duration));
+                System.out.println(project1.getName()+ "    " + Client.formatDateTime(project1.getStartTime()) + "      " + Client.formatDateTime(project1.getEndTime()) + "       " + Client.formatDuration(project1.getDuration()));
+                System.out.println(task1.getName() + "    " + Client.formatDateTime(task1.getStartTime()) + "      " + Client.formatDateTime(task1.getEndTime()) + "       " + Client.formatDuration(task1.getDuration()));
+                System.out.println(task2.getName() + "    " + Client.formatDateTime(task2.getStartTime()) + "      " + Client.formatDateTime(task2.getEndTime()) + "       " + Client.formatDuration(task2.getDuration()));
+                System.out.println(project12.getName() + "    " + Client.formatDateTime(project12.getStartTime()) + "      " + Client.formatDateTime(project12.getEndTime()) + "       " + Client.formatDuration(project12.getDuration()));
+                System.out.println(task4.getName() + "    " + Client.formatDateTime(task4.getStartTime()) + "      " + Client.formatDateTime(task4.getEndTime()) + "       " + Client.formatDuration(task4.getDuration()));
+                System.out.println(project2.getName() + "    " + Client.formatDateTime(project2.getStartTime()) + "      " + Client.formatDateTime(project2.getEndTime()) + "       " + Client.formatDuration(project2.getDuration()));
+                System.out.println(task3.getName() + "    " + Client.formatDateTime(task3.getStartTime()) + "      " + Client.formatDateTime(task3.getEndTime()) + "       " + Client.formatDuration(task3.getDuration()));
                 System.out.println("-----------------------------------------------------------------------------------");
+
                 System.out.println(" ");
+
             }
         };
 

@@ -37,7 +37,7 @@ public class LimitTimeTaskDecorator extends TaskDecorator {
                                final LocalDateTime endTime) {
 
         if (Duration.between(startTime, endTime).toMillis() >= maxDuration) {
-            task.stopLastInterval();
+            getTask().stopLastInterval();
         }
 
         super.updateDuration(duration, startTime, endTime);
