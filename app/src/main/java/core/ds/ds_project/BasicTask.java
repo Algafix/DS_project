@@ -117,7 +117,7 @@ public class BasicTask extends Task {
         // Precondition and invarant
         invariant();
 
-        if (runningInterval != null) {
+        try {
             Duration lastDuration = runningInterval.stop();
             runningInterval = null;
 
@@ -125,6 +125,8 @@ public class BasicTask extends Task {
             assert (runningInterval == null) : "Interval has not stopped";
             invariant();
             return lastDuration;
+        } catch (Exception e) {
+            System.out.println(e);
         }
 
         // Postconditions and invariant

@@ -25,15 +25,25 @@ public abstract class Task extends Job {
     public Task(final String name, final String description) {
 
         super(name, description);
+        invariant();
+    }
+
+    /**
+     * Invariant of the BasicTask class.
+     */
+    private void invariant() {
+        assert (this.description != null) : "Illegal null description";
+        assert (this.name != null) : "Illegal null name";
+        assert (this.duration != null) : "Illegal null duration";
     }
 
     /**
      * Sets the higher layer decorator, that is the
      * Decorator that wraps the current task.
-     * @param higherLayerDecorator1 .
+     * @param higherLayerDecoratorParam Parameter for setting.
      */
-    public void setHigherLayerDecorator(final Task higherLayerDecorator1) {
-        this.higherLayerDecorator = higherLayerDecorator1;
+    public void setHigherLayerDecorator(final Task higherLayerDecoratorParam) {
+        this.higherLayerDecorator = higherLayerDecoratorParam;
     }
     /**
      * Not necessary all ready understandable.
@@ -69,12 +79,27 @@ public abstract class Task extends Job {
     public void updateDuration(final Duration duration,
                                final LocalDateTime startTime,
                                final LocalDateTime endTime) {
+        //Preconditions and invariant
+        invariant();
 
-        if (higherLayerDecorator == null) {
-            super.updateDuration(duration, startTime, endTime);
-        } else {
-            higherLayerDecorator.updateDuration(duration, startTime, endTime);
+        try {
+            if (duration == null || startTime == null || endTime == null) {
+                throw new IllegalArgumentException("Null argument in"
+                        + " updateDuration");
+            } else {
+                if (higherLayerDecorator == null) {
+                    super.updateDuration(duration, startTime, endTime);
+                } else {
+                    higherLayerDecorator.updateDuration(duration,
+                            startTime, endTime);
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.toString());
         }
+
+        //Postconditions and invariant
+        invariant();
     }
 
 
