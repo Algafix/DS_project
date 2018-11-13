@@ -14,10 +14,10 @@ import org.slf4j.LoggerFactory;
 
 public class Interval implements Observer, Serializable {
 
-     /**
-      * Logger of the class Interval.
-      */
-     private final Logger log = LoggerFactory.getLogger(Interval.class);
+    /**
+    * Logger of the class Interval.
+    */
+    private final Logger log = LoggerFactory.getLogger(Interval.class);
     /**
     * The start time.
     */
@@ -57,7 +57,8 @@ public class Interval implements Observer, Serializable {
         this.parent = parentInterval;
         clock.addObserver(this);
 
-        log.info("Started interval " + name + " at "
+        log.info("Started interval " + name + " for "
+                + parent.getName() + " at "
                 + Client.formatDateTime(startTime));
     }
 
@@ -89,7 +90,8 @@ public class Interval implements Observer, Serializable {
     public Duration stop() {
         AppClock.getInstance().deleteObserver(this);
 
-        log.info("Interval " + name + " stopped. Lasted for "
+        log.info("Interval " + name + " for "
+                + parent.getName() + "stopped. Lasted for "
                 + Client.formatDuration(duration));
         return duration;
     }
