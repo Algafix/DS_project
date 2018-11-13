@@ -161,6 +161,7 @@ public class Interval implements Observer, Serializable {
             }
 
             temp = Duration.between(startTemp, endTemp);
+            temp = roundToSeconds(temp);
         }
         return temp;
     }
