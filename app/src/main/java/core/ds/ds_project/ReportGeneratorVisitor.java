@@ -6,21 +6,17 @@ import java.time.LocalDateTime;
  * Not necessary understandable if necessary explain the class.
  */
 public abstract class ReportGeneratorVisitor extends Visitor {
-    /**
-     * Explained variable report.
-     */
-    private Report report = null;
-
-    private LocalDateTime startReportDate;
-
-    private LocalDateTime endReportDate;
 
     public ReportGeneratorVisitor(final LocalDateTime startReportDateParam,
                                   final  LocalDateTime endReportDateParam,
                                   final Report reportParam) {
-        report = reportParam;
-        endReportDate = endReportDateParam;
-        startReportDate = startReportDateParam;
+        /*
+      Explained variable report.
+     */ /**
+         * Explained variable report.
+         */Report report = reportParam;
+        LocalDateTime endReportDate = endReportDateParam;
+        LocalDateTime startReportDate = startReportDateParam;
         initializeReport();
     }
 

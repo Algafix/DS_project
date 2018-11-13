@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@SuppressWarnings("fileLength")
+@SuppressWarnings("CheckStyle")
 /**
  * The Test class implements all the set of test that the app must pass.
  */
