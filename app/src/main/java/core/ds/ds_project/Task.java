@@ -15,7 +15,7 @@ public abstract class Task extends Job {
      * If null, means is the higher layer and the object that
      *  interactuates with other.
      */
-    protected Task higherLayerDecorator = null;
+    private Task higherLayerDecorator = null;
 
     /**
      * Not necessary all ready understandable.
