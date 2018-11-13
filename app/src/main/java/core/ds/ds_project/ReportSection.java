@@ -15,7 +15,7 @@ public class ReportSection {
         subtitle = subtitleParam;
         description = descriptionParam;
         table = new Taula(0, columnsNumber);
-        table.afegeixFila((ArrayList) tableHeaders);
+        table.afegeixFila(tableHeaders);
     }
 
     public String getDescription() {

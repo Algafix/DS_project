@@ -487,12 +487,29 @@ public class Test {
             }
         };
 
+        final TimerTask Tasktime1 = new TimerTask() {
+            @Override
+            public void run() {
+                Client.serializeProject(allFather, "allFather2.ser");
+            }
+        };
+        new Timer().schedule(Tasktime1, 22000);
+
 
         Timer updateWindow = new Timer();
 
         updateWindow.scheduleAtFixedRate(applicationWindow, 0, AppClock.getInstance().getCurrentRefreshTime());
     }
 
+
+    /**
+     * Creates a BasicReport with ASCII
+     */
+    public static void testBasicReportASCII(Project allFather) {
+        //Visitor visitor = new BasicReportGeneratorVisitor(allFather.getStartTime().plusSeconds(4), allFather.getStartTime().plusSeconds(14));
+        Visitor visitor = new Printer();
+        allFather.acceptVisitor(visitor);
+    }
 
 
 }

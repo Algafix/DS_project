@@ -12,9 +12,7 @@ public abstract class ReportGeneratorVisitor extends Visitor {
     private LocalDateTime startReportDate;
 
     public ReportGeneratorVisitor(final LocalDateTime startReportDateParam,
-                                  final  LocalDateTime endReportDateParam,
-                                  final Report reportParam) {
-        report = reportParam;
+                                  final  LocalDateTime endReportDateParam) {
         endReportDate = endReportDateParam;
         startReportDate = startReportDateParam;
         initializeReport();

@@ -10,8 +10,7 @@ public abstract class DetailedReportGeneratorVisitor
 
     public DetailedReportGeneratorVisitor(
                                         final LocalDateTime startReportDateParam,
-                                        final LocalDateTime endReportDateParam,
-                                        final Report reportParam) {
-        super(startReportDateParam, endReportDateParam, reportParam);
+                                        final LocalDateTime endReportDateParam) {
+        super(startReportDateParam, endReportDateParam);
     }
 }

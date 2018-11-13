@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Not necessary understandable if necessary explain the class.
  */
-public abstract class BasicReportGeneratorVisitor
+public class BasicReportGeneratorVisitor
         extends ReportGeneratorVisitor {
 
     private Duration calculatedDuration;
@@ -34,9 +34,8 @@ public abstract class BasicReportGeneratorVisitor
             }});
 
     public BasicReportGeneratorVisitor(final LocalDateTime startReportDateParam,
-                                       final LocalDateTime endReportDateParam,
-                                       final Report reportParam) {
-        super(startReportDateParam, endReportDateParam, reportParam);
+                                       final LocalDateTime endReportDateParam) {
+        super(startReportDateParam, endReportDateParam);
     }
 
     @Override

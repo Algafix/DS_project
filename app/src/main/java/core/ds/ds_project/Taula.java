@@ -1,5 +1,6 @@
 package core.ds.ds_project;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -109,7 +110,7 @@ public class Taula {
      * Adds a given arraylist as a row in the table.
      * @param llistaStrings Array that represents a row.
      */
-    public void afegeixFila(final ArrayList llistaStrings) {
+    public void afegeixFila(final List llistaStrings) {
         getTaula().add(llistaStrings);
         setNfiles(getNfiles() + 1);
     }
