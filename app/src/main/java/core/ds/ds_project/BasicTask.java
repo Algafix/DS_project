@@ -194,4 +194,27 @@ public class BasicTask extends Task {
         invariant();
     }
 
+    /**
+     * Updates the duration of the object and,
+     * if the object is not the last, call update on it's
+     * parent.
+     *
+     * @param duration Increment of time.
+     */
+    @Override
+    public void updateDuration(final Duration duration,
+                               final LocalDateTime startTime,
+                               final LocalDateTime endTime) {
+        if (this.getStartTime() == null) {
+            this.setStartTime(startTime);
+        }
+
+        synchronized (this.getDuration()) {
+            this.setDuration(this.getDuration().plus(duration));
+            this.setEndTime(endTime);
+        }
+
+        super.updateDuration(duration, startTime, endTime);
+    }
+
 }

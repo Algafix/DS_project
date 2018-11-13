@@ -118,11 +118,27 @@ public abstract class Job implements Serializable {
     }
 
     /**
+     * Set the duration.
+     * @return duration.
+     */
+    public void setDuration(final Duration durationParam) {
+        this.duration = durationParam;
+    }
+
+    /**
      * Get the endTime.
      * @return endTime.
      */
     public LocalDateTime getEndTime() {
         return endTime;
+    }
+
+    /**
+     * Set the endTime.
+     * @return endTime.
+     */
+    public void setEndTime(final LocalDateTime endTimeParam) {
+        this.endTime = endTimeParam;
     }
 
     /**
@@ -132,6 +148,15 @@ public abstract class Job implements Serializable {
     public LocalDateTime getStartTime() {
         return startTime;
     }
+    /**
+     * Set the startTime.
+     * @return startTime.
+     */
+    public void setStartTime(final LocalDateTime startTimeParam) {
+        this.startTime = startTimeParam;
+    }
+
+
     /**
      * Get the description.
      * @return the description.
