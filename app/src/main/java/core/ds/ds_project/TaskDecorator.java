@@ -72,8 +72,8 @@ public abstract class TaskDecorator extends Task {
     }
 
     /**
-     * Get the name.
-     * @return the task.
+     * Obtain the internal class of the decorator.
+     * @return Wrapped task.
      */
     public Task getTask() {
 
@@ -82,8 +82,8 @@ public abstract class TaskDecorator extends Task {
 
 
     /**
-     * Get the duration.
-     * @return the duration.
+     * Get the duration of the internal class.
+     * @return Duration of the internal class.
      */
     @Override
     public Duration getDuration() {
@@ -91,8 +91,8 @@ public abstract class TaskDecorator extends Task {
     }
 
     /**
-     * Set the duration.
-     * @return duration.
+     * Set the duration of the internal class.
+     * @param durationParam Duration time for the task.
      */
     @Override
     public void setDuration(final Duration durationParam) {
@@ -100,8 +100,8 @@ public abstract class TaskDecorator extends Task {
     }
 
     /**
-     * Get the endTime.
-     * @return endTime.
+     * Get the endTime of the internal class.
+     * @return DateTime object with the end time.
      */
     @Override
     public LocalDateTime getEndTime() {
@@ -109,8 +109,8 @@ public abstract class TaskDecorator extends Task {
     }
 
     /**
-     * Set the endTime.
-     * @return endTime.
+     * Set the endTime of the internal class.
+     * @param endTimeParam End time for the task.
      */
     @Override
     public void setEndTime(final LocalDateTime endTimeParam) {
@@ -118,16 +118,17 @@ public abstract class TaskDecorator extends Task {
     }
 
     /**
-     * Get the start time.
-     * @return the start time.
+     * Get the start time of the internal class.
+     * @return DateTime object with the start time.
      */
     @Override
     public LocalDateTime getStartTime() {
         return task.getStartTime();
     }
+
     /**
-     * Set the startTime.
-     * @param startTimeParam.
+     * Set the startTime of the internal class.
+     * @param startTimeParam StartTime for the class.
      */
     @Override
     public void setStartTime(final LocalDateTime startTimeParam) {

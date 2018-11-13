@@ -119,7 +119,7 @@ public abstract class Job implements Serializable {
 
     /**
      * Set the duration.
-     * @return duration.
+     * @param durationParam New duration.
      */
     public void setDuration(final Duration durationParam) {
         this.duration = durationParam;
@@ -135,7 +135,7 @@ public abstract class Job implements Serializable {
 
     /**
      * Set the endTime.
-     * @return endTime.
+     * @param endTimeParam New end time.
      */
     public void setEndTime(final LocalDateTime endTimeParam) {
         this.endTime = endTimeParam;
@@ -150,7 +150,7 @@ public abstract class Job implements Serializable {
     }
     /**
      * Set the startTime.
-     * @return startTime.
+     * @param startTimeParam New start time.
      */
     public void setStartTime(final LocalDateTime startTimeParam) {
         this.startTime = startTimeParam;

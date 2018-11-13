@@ -40,7 +40,6 @@ public abstract class Task extends Job {
     private void invariant() {
         assert (this.getDescription() != null) : "Illegal null description";
         assert (this.getName() != null) : "Illegal null name";
-        assert (this.getDuration() != null) : "Illegal null duration";
     }
 
     /**
