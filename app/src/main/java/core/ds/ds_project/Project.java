@@ -53,7 +53,11 @@ public class Project extends Job {
      * @return True if the project is Root, False otherwise.
      */
     public boolean isRoot() {
-        return getParent().isDummie();
+        if (this.isDummie()) {
+            return false;
+        } else {
+            return getParent().isDummie();
+        }
     }
 
 
