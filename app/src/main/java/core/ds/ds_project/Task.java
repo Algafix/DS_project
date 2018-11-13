@@ -2,7 +2,8 @@ package core.ds.ds_project;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Collection;
 
 
@@ -16,6 +17,11 @@ public abstract class Task extends Job {
      *  interactuates with other.
      */
     private Task higherLayerDecorator = null;
+
+    /**
+     * Logger of the class BasicTask.
+     */
+    private final Logger log = LoggerFactory.getLogger(Task.class);
 
     /**
      * Not necessary all ready understandable.
@@ -96,7 +102,7 @@ public abstract class Task extends Job {
                 }
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(e.toString());
+            log.error("Illegal argument at call", e);
         }
 
         //Postconditions and invariant

@@ -4,6 +4,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Not necessary understandable.
@@ -19,6 +21,11 @@ public class BasicTask extends Task {
      * The runningInterval.
      */
     private Interval runningInterval = null;
+
+    /**
+     * Logger of the class BasicTask.
+     */
+    private final Logger log = LoggerFactory.getLogger(BasicTask.class);
 
 
     /**
@@ -125,7 +132,7 @@ public class BasicTask extends Task {
             invariant();
             return lastDuration;
         } catch (Exception e) {
-            System.out.println(e);
+            log.warn("There is no interval running", e);
         }
 
         // Postconditions and invariant
