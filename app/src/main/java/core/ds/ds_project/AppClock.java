@@ -4,12 +4,16 @@ import java.time.LocalDateTime;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Not necessary understandable.
  */
 
 public final class AppClock extends Observable {
+
+
     /**
      * Singleton unique instance.
      */
@@ -80,6 +84,10 @@ public final class AppClock extends Observable {
          */
         final int defaultRefresh = 1000;
 
+
+         final Logger log = LoggerFactory.getLogger(Interval.class);
+
+
         //Double check locking pattern
         if (clockSoleInstance == null) { //Check for the first time
             synchronized (AppClock.class) {   //Check for the second time
@@ -90,6 +98,9 @@ public final class AppClock extends Observable {
                         selectedRefreshTime = refreshTime[0];
                     }
                     clockSoleInstance = new AppClock(selectedRefreshTime);
+                    log.info("------------------------------------------");
+                    log.info(" Ha començat a correr el rellotge");
+                    log.info("------------------------------------------");
                 }
             }
         }
