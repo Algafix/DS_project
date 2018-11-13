@@ -9,6 +9,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Client class implements two methods that change date format
@@ -28,6 +30,11 @@ public final class Client {
     private Client() {
         //not called
     }
+
+    /**
+     * Logger of the class BasicTask.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(Client.class);
 
     /**
      * Convert object duration to string with format HH:mm:ss.
@@ -98,11 +105,11 @@ public final class Client {
             out.close();
             file.close();
 
-            System.out.println("Object has been serialized");
+            LOG.info("Object has been serialized");
 
         } catch (IOException ex) {
 
-            System.out.println("IOException is caught");
+            LOG.error("IOException when serializing the project", ex);
         }
 
     }
@@ -126,21 +133,21 @@ public final class Client {
             in.close();
             file.close();
 
-            System.out.println("Object has been deserialize ");
+            LOG.info("Object has been deserialized");
             return deserializeProject;
         } catch (IOException ex) {
 
-            System.out.println("IOException is caught");
+            LOG.error("IOexception while deserializing the Project", ex);
             return null;
         } catch (ClassNotFoundException ex) {
 
-            System.out.println("ClassNotFoundException is caught");
+            LOG.error("Class not found when deserializing the Project", ex);
             return null;
         }
     }
 
     /**
-     * Executes test of the app .
+     * Executes test of the app.
      *
      * @param args arguments necessary to main
      */
@@ -166,6 +173,6 @@ public final class Client {
 
         //test.testNestedInterval();
 
-        test.testReportTreeGenerate();
+        //test.testReportTreeGenerate();
     }
 }
