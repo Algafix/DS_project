@@ -365,7 +365,7 @@ public class Test {
      * at 14 seconds stop task1
      *
      */
-    public static void testProgrammatedtaskAndLimitTimeTaskDecarator() {
+    public static void testProgrammatedTaskAndLimitTimeTaskDecorator() {
         final Project allFather = new Project(".", "Projecte Pare");
 
         final LocalDateTime initTime = LocalDateTime.now();

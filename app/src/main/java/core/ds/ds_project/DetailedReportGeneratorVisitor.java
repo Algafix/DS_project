@@ -8,9 +8,10 @@ import java.time.LocalDateTime;
 public abstract class DetailedReportGeneratorVisitor
         extends ReportGeneratorVisitor {
 
-    public DetailedReportGeneratorVisitor(final LocalDateTime startReportDateParam,
-                                       final LocalDateTime endReportDateParam,
-                                       final Report reportParam) {
+    public DetailedReportGeneratorVisitor(
+                                        final LocalDateTime startReportDateParam,
+                                        final LocalDateTime endReportDateParam,
+                                        final Report reportParam) {
         super(startReportDateParam, endReportDateParam, reportParam);
     }
 }

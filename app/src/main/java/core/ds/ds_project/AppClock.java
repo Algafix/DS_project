@@ -67,7 +67,7 @@ public final class AppClock extends Observable {
 
     /**
      * Function used to obtain the instance of the singleton.
-     * It check's 2 times before creatin the objects,
+     * It check's 2 times before creating the objects,
      * even check thread race condition.
      *
      * @param refreshTime The time will be updated at this rate, in ms.
