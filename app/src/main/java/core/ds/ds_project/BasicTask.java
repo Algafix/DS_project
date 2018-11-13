@@ -85,7 +85,7 @@ public class BasicTask extends Task {
 
         // Preconditions and invariant
         invariant();
-        assert (copy != null) : "Datacopy not created";
+        assert (copy != null) : "Datacopy not created, memory issue?";
 
         if (runningInterval == null) {
 
@@ -106,8 +106,8 @@ public class BasicTask extends Task {
 
     /**
      * Stop the last (and presumed only because only one interval
-     * should exist at once) interval running if there's an interval
-     * running at all.
+     * should exist at once per task) interval running if there's
+     * an interval running at all.
      * @return The duration of the last interval or null if there
      * isn't an interval running
      */
@@ -122,7 +122,6 @@ public class BasicTask extends Task {
             runningInterval = null;
 
             // Postconditions and invariant
-            assert (runningInterval == null) : "Interval has not stopped";
             invariant();
             return lastDuration;
         } catch (Exception e) {
@@ -151,7 +150,7 @@ public class BasicTask extends Task {
 
         Duration temp = Duration.ofSeconds(0);
         for (Interval interval : intervals) {
-            temp.plus(interval.getDurationInRange(fromDate, toDate));
+            temp = temp.plus(interval.getDurationInRange(fromDate, toDate));
         }
 
         //Postcondition and invariant
