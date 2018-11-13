@@ -109,7 +109,7 @@ public class Interval implements Observer, Serializable {
      * @param duration Duration object with a time to correct.
      * @return The same Duration object with the seconds fixed.
      */
-    public static Duration roundToSeconds(Duration duration) {
+    public static Duration roundToSeconds(@SuppressWarnings("CheckStyle") Duration duration) {
 
         if (duration.getNano() > CLOCK_CORRECTOR) {
             duration = duration.plusSeconds(1);
