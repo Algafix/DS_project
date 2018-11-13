@@ -491,6 +491,7 @@ public class Test {
             @Override
             public void run() {
                 Client.serializeProject(allFather, "allFather2.ser");
+                testBasicReportASCII(allFather);
             }
         };
         new Timer().schedule(Tasktime1, 22000);
@@ -506,8 +507,8 @@ public class Test {
      * Creates a BasicReport with ASCII
      */
     public static void testBasicReportASCII(Project allFather) {
-        //Visitor visitor = new BasicReportGeneratorVisitor(allFather.getStartTime().plusSeconds(4), allFather.getStartTime().plusSeconds(14));
-        Visitor visitor = new Printer();
+        Visitor visitor = new BasicReportGeneratorVisitor(allFather.getStartTime().plusSeconds(4), allFather.getStartTime().plusSeconds(14));
+        //Visitor visitor = new Printer();
         allFather.acceptVisitor(visitor);
     }
 
