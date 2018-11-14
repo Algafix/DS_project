@@ -220,16 +220,33 @@ public class BasicTask extends Task {
     public void updateDuration(final Duration duration,
                                final LocalDateTime startTime,
                                final LocalDateTime endTime) {
-        if (this.getStartTime() == null) {
-            this.setStartTime(startTime);
+
+        // Preconditions and invariant
+        invariant();
+
+        try {
+            if (duration == null || startTime == null || endTime == null) {
+                throw new IllegalArgumentException("Some parameter is null");
+            } else {
+                if (this.getStartTime() == null) {
+                    this.setStartTime(startTime);
+                }
+
+                synchronized (this.getDuration()) {
+                    this.setDuration(this.getDuration().plus(duration));
+                    this.setEndTime(endTime);
+                }
+
+                super.updateDuration(duration, startTime, endTime);
+            }
+        } catch (IllegalArgumentException ex) {
+            log.error("updateDuration parameters can't be null", ex);
+        } catch (Exception ex) {
+            log.error("Some error in the updateDuration method", ex);
         }
 
-        synchronized (this.getDuration()) {
-            this.setDuration(this.getDuration().plus(duration));
-            this.setEndTime(endTime);
-        }
-
-        super.updateDuration(duration, startTime, endTime);
+        // Postconditions and invariant
+        invariant();
     }
 
 }
