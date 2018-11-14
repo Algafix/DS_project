@@ -4,6 +4,8 @@ package core.ds.ds_project;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Superclass that will handle de different
@@ -11,6 +13,10 @@ import java.util.Map;
  */
 public class Report {
 
+    /**
+     * Logger of the class Report.
+     */
+    private final Logger log = LoggerFactory.getLogger(Interval.class);
     /**
      * Title of the report.
      */
@@ -63,8 +69,10 @@ public class Report {
     public void addRowIntoSection(final String sectionName, final List row) {
         reportSectionCollection.computeIfPresent(sectionName, (k, v) -> {
             v.addRow(row);
+            log.debug("Row correctly added into key" + k);
             return v;
         });
+
     }
 
     /**
