@@ -5,7 +5,7 @@ Període
                                  Data                             
 Desde                            14-de nov.-2018 03:22:46         
 Fins a                           14-de nov.-2018 03:22:56         
-Data de generació de l'informe   14-de nov.-2018 07:52:25         
+Data de generació de l'informe   14-de nov.-2018 07:59:17         
 
 -----------------------------------------------------------------------------------------------------------------------------
 Projectes Arrel
