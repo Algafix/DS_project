@@ -67,6 +67,10 @@ public class BasicTask extends Task {
      */
     public Interval addInterval(final String name) {
 
+        /**
+         * Class that save the current state
+         * of postcondition variables.
+         */
         class DataCopy {
             private int numIntervals;
             /**
