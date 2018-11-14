@@ -43,13 +43,7 @@ public final class Client {
      * @return the duration with format HH:mm:ss
      */
     public static String formatDuration(final Duration duration) {
-        /**
-         * The seconds of an hour.
-         */
         final int secondsHour = 3600;
-        /**
-         * The minutes of an hour.
-         */
         final int minutesHour = 60;
 
         if (duration == null) {
@@ -159,7 +153,7 @@ public final class Client {
 
         Test test = new Test();
 
-        //test.testAppendA1();
+        test.testAppendA1();
 
         //test.testDeserialize();
 
@@ -175,12 +169,12 @@ public final class Client {
 
         //test.testReportTreeGenerate();
 
-        test.testBasicReportASCII(deserializeProject("allFather2.ser"));
+        //test.testBasicReportASCII(deserializeProject("allFather2.ser"));
 
-        test.testDetailedReportASCII(deserializeProject("allFather2.ser"));
+        //test.testDetailedReportASCII(deserializeProject("allFather2.ser"));
 
-        test.testBasicReportHTML(deserializeProject("allFather2.ser"));
+        //test.testBasicReportHTML(deserializeProject("allFather2.ser"));
 
-        test.testDetailedReportHTML(deserializeProject("allFather2.ser"));
+        //test.testDetailedReportHTML(deserializeProject("allFather2.ser"));
     }
 }

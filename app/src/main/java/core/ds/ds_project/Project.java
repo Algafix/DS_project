@@ -16,7 +16,7 @@ public class Project extends Job {
     /**
      * Collection of jobs that conform this project.
      */
-    private Collection<Job> children = new ArrayList<Job>();
+    private Collection<Job> children = new ArrayList<>();
 
 
     /**

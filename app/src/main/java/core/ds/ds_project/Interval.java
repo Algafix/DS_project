@@ -90,9 +90,6 @@ public class Interval implements Observer, Serializable {
     @Override
     public void update(final Observable obs, final Object obj) {
 
-        /**
-         * Class that will store variables checked at the postcondition.
-         */
         class DataCopy {
             private Duration duration;
             /**

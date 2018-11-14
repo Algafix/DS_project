@@ -8,9 +8,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 @SuppressWarnings("CheckStyle")
-/**
- * The Test class implements all the set of test that the app must pass.
- */
 public class Test {
 
 
@@ -217,7 +214,7 @@ public class Test {
      * Debug the creation and time of 1 interval
      */
     public static void testAppClockInterval() {
-        final List<Interval> intervals = new ArrayList<Interval>();
+        final List<Interval> intervals = new ArrayList<>();
 
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {

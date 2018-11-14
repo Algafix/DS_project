@@ -15,7 +15,7 @@ public class BasicTask extends Task {
     /**
      * Array of intervals.
      */
-    private Collection<Interval> intervals = new ArrayList<Interval>();
+    private Collection<Interval> intervals = new ArrayList<>();
 
     /**
      * The runningInterval.
@@ -67,9 +67,6 @@ public class BasicTask extends Task {
      */
     public Interval addInterval(final String name) {
 
-        /**
-         * Class that will store variables checked at the postcondition.
-         */
         class DataCopy {
             private int numIntervals;
             /**

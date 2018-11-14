@@ -101,7 +101,8 @@ public abstract class ReportGeneratorVisitor extends Visitor {
     /**
      * To initialize a report.
      */
-    protected void initializeReport() { };
+    protected void initializeReport() { }
+
     /**
      * For pruning the structure tree of projects, tasks,...
      * @param project .
@@ -114,12 +115,14 @@ public abstract class ReportGeneratorVisitor extends Visitor {
      * To get info of a project.
      * @param project .
      */
-    protected void getInfoProject(final Project project) { };
+    protected void getInfoProject(final Project project) { }
+
     /**
      * To handle infoProject.
      * @param project .
      */
-    protected void handleInfoProject(final Project project) { };
+    protected void handleInfoProject(final Project project) { }
+
     /**
      * To know if a task is visited.
      * @param task .
@@ -132,12 +135,14 @@ public abstract class ReportGeneratorVisitor extends Visitor {
      * To get info of a a task.
      * @param task .
      */
-    protected void getInfoTask(final Task task) { };
+    protected void getInfoTask(final Task task) { }
+
     /**
      * To handle info of a task.
      * @param task .
      */
-    protected void handleInfoTask(final Task task) { };
+    protected void handleInfoTask(final Task task) { }
+
     /**
      * To know if a interval is visited.
      * @param interval .
@@ -150,12 +155,14 @@ public abstract class ReportGeneratorVisitor extends Visitor {
      * To get info of an interval.
      * @param interval .
      */
-    protected void getInfoInterval(final Interval interval) { };
+    protected void getInfoInterval(final Interval interval) { }
+
     /**
      * To handle an interval.
      * @param interval .
      */
-    protected void handleInfoInterval(final Interval interval) { };
+    protected void handleInfoInterval(final Interval interval) { }
+
     /**
      * To get the end report date.
      * @return end date report.

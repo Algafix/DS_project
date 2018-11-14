@@ -51,9 +51,6 @@ public final class AppClock extends Observable {
 
             currentRefreshTime = refreshTime;
             time = LocalDateTime.now();
-            /**
-            * Declaration of the object used to periodically update our time.
-            */
             Timer timer = new Timer();
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
@@ -78,9 +75,6 @@ public final class AppClock extends Observable {
      * @return Instance of AppClock object.
      */
     public static AppClock getInstance(final int... refreshTime) {
-        /**
-         * Refresh time.
-         */
         final int defaultRefresh = 1000;
 
 
