@@ -516,6 +516,19 @@ public class Test {
     }
 
     /**
+     * Creates a DetailedReport with ASCII
+     */
+    public static void testDetailedReportASCII(Project allFather) {
+        ReportSaver saver = new ReportSaverAsASCII();
+        Visitor visitor = new DetailedReportGeneratorVisitor(allFather.getStartTime().plusSeconds(4),
+                allFather.getStartTime().plusSeconds(14), saver);
+        //Visitor visitor = new Printer();
+        allFather.acceptVisitor(visitor);
+        ((ReportGeneratorVisitor) visitor).save();
+        boolean finished = true;
+    }
+
+    /**
      * Creates a BasicReport with HTML
      */
     public static void testBasicReportHTML(Project allFather) {

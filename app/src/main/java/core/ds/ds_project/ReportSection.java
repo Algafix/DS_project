@@ -25,20 +25,58 @@ public class ReportSection {
     private Taula table = null;
 
     /**
+     * Whether the first row is a header row or not
+     */
+    private boolean isFirstRowHeader;
+
+    /**
+     * Default value for isFirstRowHeader
+     */
+    private static final boolean IS_FIRST_ROW_HEADER = true;
+
+    /**
+     * Whether the first row is a header row or not
+     */
+    private boolean isFirstColumnHeader;
+
+    /**
+     * Default value for isFirstColumnHeader
+     */
+    private static final boolean IS_FIRST_COLUMN_HEADER = false;
+
+    /**
      * Constructor of the ReportSection.
      * @param subtitleParam Subtitle of the section.
      * @param descriptionParam Description of the section.
      * @param columnsNumber Columns of the info table.
      * @param tableHeaders Headers of the table.
+     * @param isFirstRowColumnHeaderParam An optional array that contains the boolean values
+     *                                    indicating whether the first row is a header and
+     *                                    if the first column is a header. If only one is passed,
+     *                                    it is supposed to be the row one. If none is passed, both
+     *                                    will have the default values.
      */
     public ReportSection(final String subtitleParam,
                          final String descriptionParam,
                          final int columnsNumber,
-                         final List tableHeaders) {
+                         final List tableHeaders,
+                         final boolean... isFirstRowColumnHeaderParam) {
         subtitle = subtitleParam;
         description = descriptionParam;
         table = new Taula(0, columnsNumber);
         table.afegeixFila(tableHeaders);
+        if (isFirstRowColumnHeaderParam.length > 0) {
+            if (isFirstRowColumnHeaderParam.length == 1) {
+                isFirstRowHeader = isFirstRowColumnHeaderParam[0];
+                isFirstColumnHeader = IS_FIRST_COLUMN_HEADER;
+            } else {
+                isFirstRowHeader = isFirstRowColumnHeaderParam[0];
+                isFirstColumnHeader = isFirstRowColumnHeaderParam[1];
+            }
+        } else {
+            isFirstRowHeader = IS_FIRST_ROW_HEADER;
+            isFirstColumnHeader = IS_FIRST_COLUMN_HEADER;
+        }
     }
 
     /**
@@ -63,6 +101,14 @@ public class ReportSection {
      */
     public Taula getTable() {
         return table;
+    }
+
+    /**
+     * Returns the info table of the section as an ArrayList
+     * @return ArrayList with the info of the section.
+     */
+    public ArrayList getTableAsArrayList() {
+        return table.getTaula();
     }
 
     /**
@@ -98,7 +144,7 @@ public class ReportSection {
     }
 
     /**
-     * Print the info talble.
+     * Print the info table.
      */
     public void printTable() {
         table.imprimeix();
@@ -110,5 +156,21 @@ public class ReportSection {
      */
     public String tableToString() {
         return table.toString();
+    }
+
+    /**
+     * Indicates if the first column is a header.
+     * @return the boolean value.
+     */
+    public boolean isFirstColumnHeader() {
+        return isFirstColumnHeader;
+    }
+
+    /**
+     * Indicates if the first row is a header.
+     * @return the boolean value.
+     */
+    public boolean isFirstRowHeader() {
+        return isFirstRowHeader;
     }
 }

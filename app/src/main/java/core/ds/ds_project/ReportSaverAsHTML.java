@@ -16,8 +16,6 @@ public class ReportSaverAsHTML extends ReportSaver {
     private static final int SUBHEADER = 2;
     private static final boolean IS_SUBHEADER_CENTERED = false;
     private static final boolean IS_MAIN_HEADER_CENTERED = true;
-    private static final boolean IS_PRIM = true;
-    private static final boolean IS_COL = true;
 
     @Override
     //TODO Hay que cambiar lo de la tabla,
@@ -30,9 +28,10 @@ public class ReportSaverAsHTML extends ReportSaver {
         for (final String subtitle: subtitlesList) {
             ReportSection section = report.getFromReportSectionCollection(subtitle);
             webPage.afegeixHeader(section.getSubtitle(), SUBHEADER, IS_SUBHEADER_CENTERED);
-            webPage.afegeixSaltDeLinia();
             webPage.afegeixTextNormal(section.getDescription());
-            webPage.afegeixTaula(section.getTable().getTaula(), IS_PRIM, IS_COL);
+            webPage.afegeixSaltDeLinia();
+            webPage.afegeixTaula(section.getTableAsArrayList(), section.isFirstRowHeader(),
+                    section.isFirstColumnHeader());
             webPage.afegeixLiniaSeparacio();
         }
         saveFile(filename, webPage);

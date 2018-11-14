@@ -29,9 +29,11 @@ public abstract class ReportGeneratorVisitor extends Visitor {
     }
 
     //TODO
+    private static int counter = 0;
     private String getFileName() {
         //return "Report" + startReportDate.toString() + endReportDate.toString();
-        return  "Report";
+        counter++;
+        return  "Report" + counter;
     }
 
     /**
