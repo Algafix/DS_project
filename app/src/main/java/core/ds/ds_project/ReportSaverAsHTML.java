@@ -18,7 +18,7 @@ public class ReportSaverAsHTML extends ReportSaver {
      * Initialize the extension.
      */
     private static final String EXTENSION = ".html";
-    
+
     /**
      * Logger of the class ReportSaverAsASCII.
      */
@@ -41,7 +41,7 @@ public class ReportSaverAsHTML extends ReportSaver {
      */
     private static final boolean IS_MAIN_HEADER_CENTERED = true;
     /**
-     * To save all the table.
+     * To save the Report.
      */
     @Override
     public void save(final Report report,
