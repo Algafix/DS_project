@@ -507,9 +507,13 @@ public class Test {
      * Creates a BasicReport with ASCII
      */
     public static void testBasicReportASCII(Project allFather) {
-        Visitor visitor = new BasicReportGeneratorVisitor(allFather.getStartTime().plusSeconds(4), allFather.getStartTime().plusSeconds(14));
+        ReportSaver saver = new ReportSaverAsASCII();
+        Visitor visitor = new BasicReportGeneratorVisitor(allFather.getStartTime().plusSeconds(4),
+                allFather.getStartTime().plusSeconds(14), saver);
         //Visitor visitor = new Printer();
         allFather.acceptVisitor(visitor);
+        ((ReportGeneratorVisitor) visitor).save();
+        boolean finished = true;
     }
 
 

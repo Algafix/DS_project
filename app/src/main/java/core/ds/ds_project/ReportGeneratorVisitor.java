@@ -1,21 +1,37 @@
 package core.ds.ds_project;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Not necessary understandable if necessary explain the class.
  */
 public abstract class ReportGeneratorVisitor extends Visitor {
 
+    private ReportSaver saver;
     private Report report;
     private LocalDateTime endReportDate;
     private LocalDateTime startReportDate;
 
     public ReportGeneratorVisitor(final LocalDateTime startReportDateParam,
-                                  final  LocalDateTime endReportDateParam) {
+                                  final  LocalDateTime endReportDateParam,
+                                  final ReportSaver saverParam) {
         endReportDate = endReportDateParam;
         startReportDate = startReportDateParam;
+        saver = saverParam;
         initializeReport();
+    }
+
+    public abstract void save();
+
+    protected void save(final List<String> subtitles) {
+        saver.save(report, subtitles, getFileName());
+    }
+
+    //TODO
+    private String getFileName() {
+        //return "Report" + startReportDate.toString() + endReportDate.toString();
+        return  "Report";
     }
 
     /**

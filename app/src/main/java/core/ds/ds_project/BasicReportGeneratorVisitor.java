@@ -33,9 +33,18 @@ public class BasicReportGeneratorVisitor
                                                                 "Temps Final", "Temps Total")));
             }});
 
+    public static final int PERIOD_INDEX = 0;
+    public static final int PROOT_INDEX = 1;
+
     public BasicReportGeneratorVisitor(final LocalDateTime startReportDateParam,
-                                       final LocalDateTime endReportDateParam) {
-        super(startReportDateParam, endReportDateParam);
+                                       final LocalDateTime endReportDateParam,
+                                       final ReportSaver saverParam) {
+        super(startReportDateParam, endReportDateParam, saverParam);
+    }
+
+    @Override
+    public void save() {
+        super.save(SECTIONS_TITLES);
     }
 
     @Override
@@ -43,6 +52,25 @@ public class BasicReportGeneratorVisitor
         Report report = new Report(TITLE, SECTIONS_TITLES, SECTIONS_DESCRIPTIONS,
                 SECTIONS_COLUMNS_NUMBERS, SECTIONS_HEADERS);
         this.setReport(report);
+
+        List<String> newRow = new ArrayList<String>() {{
+            add("Desde");
+            add(Client.formatDateTime(getStartReportDate()));
+        }};
+        getReport().addRowIntoSection(SECTIONS_TITLES.get(PERIOD_INDEX), newRow);
+
+        newRow = new ArrayList<String>() {{
+            add("Fins a");
+            add(Client.formatDateTime(getEndReportDate()));
+        }};
+        getReport().addRowIntoSection(SECTIONS_TITLES.get(PERIOD_INDEX), newRow);
+
+        newRow = new ArrayList<String>() {{
+            add("Data de generació de l'informe");
+            add(Client.formatDateTime(LocalDateTime.now()));
+        }};
+        getReport().addRowIntoSection(SECTIONS_TITLES.get(PERIOD_INDEX), newRow);
+
     }
 
     @Override
@@ -72,11 +100,11 @@ public class BasicReportGeneratorVisitor
     protected void handleInfoProject(final Project project) {
         List<String> newRow = new ArrayList<String>() {{
             add(project.getName());
-            add(determinedStartTime.toString());
-            add(determinedEndTime.toString());
+            add(Client.formatDateTime(determinedStartTime));
+            add(Client.formatDateTime(determinedEndTime));
             add(Client.formatDuration(calculatedDuration));
         }};
-        getReport().addRowIntoSection(SECTIONS_TITLES.get(1), newRow);
+        getReport().addRowIntoSection(SECTIONS_TITLES.get(PROOT_INDEX), newRow);
     }
 
 }

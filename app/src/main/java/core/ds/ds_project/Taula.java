@@ -1,12 +1,16 @@
 package core.ds.ds_project;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 /**
  * Class that handle a Table for the reports.
  */
 public class Taula {
+
+    public static final int COL_SEPARATION = 3;
 
     /**
      * Number of rows.
@@ -53,7 +57,7 @@ public class Taula {
     /**
      * Array that represents a table.
      */
-    private ArrayList taula = null;
+    private ArrayList<List<String>> taula = null;
 
     /**
      * Get the object table.
@@ -110,7 +114,7 @@ public class Taula {
      * Adds a given arraylist as a row in the table.
      * @param llistaStrings Array that represents a row.
      */
-    public void afegeixFila(final List llistaStrings) {
+    public void afegeixFila(final List<String> llistaStrings) {
         getTaula().add(llistaStrings);
         setNfiles(getNfiles() + 1);
     }
@@ -142,6 +146,46 @@ public class Taula {
      * Prints the table object.
      */
     public void imprimeix() {
-        System.out.println(this.getTaula());
+        int maxLength = getMaxLength();
+        for (final List<String> row: taula) {
+            for (int i = 0; i < ncolumnes; i++) {
+                String padding = IntStream
+                        .range(0, maxLength - row.get(i).length() + COL_SEPARATION)
+                        .mapToObj(j -> " ")
+                        .collect(Collectors.joining(""));
+                System.out.print(row.get(i) + padding);
+            }
+            System.out.print("\n");
+        }
     }
+
+    private int getMaxLength() {
+        int maxLength = 0;
+        for (final List<String> row: taula) {
+            for (int i = 0; i < ncolumnes; i++) {
+                if (maxLength < row.get(i).length()) {
+                    maxLength = row.get(i).length();
+                }
+            }
+        }
+        return maxLength;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        int maxLength = getMaxLength();
+        for (final List<String> row: taula) {
+            for (int i = 0; i < ncolumnes; i++) {
+                String padding = IntStream
+                        .range(0, maxLength - row.get(i).length() + COL_SEPARATION)
+                        .mapToObj(j -> " ")
+                        .collect(Collectors.joining(""));
+                sb.append(row.get(i) + padding);
+            }
+            sb.append('\n');
+        }
+        return sb.toString();
+    }
+
+
 }

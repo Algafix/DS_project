@@ -38,4 +38,15 @@ public class Report {
         });
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public Map<String, ReportSection> getReportSectionCollection() {
+        return reportSectionCollection;
+    }
+
+    public ReportSection getFromReportSectionCollection(final String subtitle) {
+        return reportSectionCollection.get(subtitle);
+    }
 }

@@ -46,4 +46,9 @@ public class ReportSection {
         table.afegeixFila((ArrayList) stringsList);
     }
 
+    public void printTable() { table.imprimeix(); }
+
+    public String tableToString() {
+        return table.toString();
+    }
 }
