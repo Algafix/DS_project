@@ -5,38 +5,61 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import paginaweb.PaginaWeb;
-
+/**
+ * Not necessary understandable.
+ */
 public class ReportSaverAsHTML extends ReportSaver {
+    /**
+     * Initialize the extension.
+     */
     private static final String EXTENSION = ".html";
+    /**
+     * Initialize the main header.
+     */
     private static final int MAIN_HEADER = 1;
+    /**
+     * Initialize the sub header.
+     */
     private static final int SUBHEADER = 2;
+    /**
+     * Initialize the sub header centered.
+     */
     private static final boolean IS_SUBHEADER_CENTERED = false;
+    /**
+     * Initialize the extension the sub header centered.
+     */
     private static final boolean IS_MAIN_HEADER_CENTERED = true;
-
+    /**
+     * To save all the table  .
+     */
     @Override
-    //TODO Hay que cambiar lo de la tabla,
-    // ella misma deberia saber si su primera col y fila se remarcan
-    public void save(final Report report, final List<String> subtitlesList, final String filename) {
+    public void save(final Report report,
+                     final List<String> subtitlesList,
+                     final String filename) {
         PaginaWeb webPage = new PaginaWeb();
         webPage.afegeixLiniaSeparacio();
-        webPage.afegeixHeader(report.getTitle(), MAIN_HEADER, IS_MAIN_HEADER_CENTERED);
+        webPage.afegeixHeader(report.getTitle(), MAIN_HEADER,
+                IS_MAIN_HEADER_CENTERED);
         webPage.afegeixLiniaSeparacio();
         for (final String subtitle: subtitlesList) {
-            ReportSection section = report.getFromReportSectionCollection(subtitle);
-            webPage.afegeixHeader(section.getSubtitle(), SUBHEADER, IS_SUBHEADER_CENTERED);
+            ReportSection section = (
+                    report.getFromReportSectionCollection(subtitle));
+            webPage.afegeixHeader(section.getSubtitle(), SUBHEADER,
+                    IS_SUBHEADER_CENTERED);
             webPage.afegeixTextNormal(section.getDescription());
             webPage.afegeixSaltDeLinia();
-            webPage.afegeixTaula(section.getTableAsArrayList(), section.isFirstRowHeader(),
+            webPage.afegeixTaula(section.getTableAsArrayList(),
+                    section.isFirstRowHeader(),
                     section.isFirstColumnHeader());
             webPage.afegeixLiniaSeparacio();
         }
         saveFile(filename, webPage);
     }
-
+    /**
+     * To save the file.
+     */
     @Override
     protected void saveFile(final String filename, final StringBuilder sb) {
         try {
@@ -48,10 +71,15 @@ public class ReportSaverAsHTML extends ReportSaver {
 
         } catch (IOException ex) {
 
-            System.out.print("IOException when serializing the project" + ex.getMessage());
+            System.out.print("IOException when serializing the project"
+                    + ex.getMessage());
         }
     }
-
+    /**
+     * To save a file.
+     * @param filename .
+     * @param pw  web page.
+     */
     private void saveFile(final String filename, final PaginaWeb pw) {
 
         try {
@@ -67,7 +95,8 @@ public class ReportSaverAsHTML extends ReportSaver {
 
         } catch (IOException ex) {
 
-            System.out.print("IOException when serializing the project" + ex.getMessage());
+            System.out.print("IOException when serializing the project"
+                    + ex.getMessage());
         }
     }
 }
