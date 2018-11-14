@@ -10,6 +10,9 @@ import java.util.stream.IntStream;
  */
 public class Taula {
 
+    /**
+     * Fixed column separation for visual purposes.
+     */
     public static final int COL_SEPARATION = 3;
 
     /**
@@ -150,7 +153,8 @@ public class Taula {
         for (final List<String> row: taula) {
             for (int i = 0; i < ncolumnes; i++) {
                 String padding = IntStream
-                        .range(0, maxLength - row.get(i).length() + COL_SEPARATION)
+                        .range(0, maxLength - row.get(i).length()
+                                + COL_SEPARATION)
                         .mapToObj(j -> " ")
                         .collect(Collectors.joining(""));
                 System.out.print(row.get(i) + padding);
@@ -159,6 +163,10 @@ public class Taula {
         }
     }
 
+    /**
+     * Returns the maximum length by checking all the rows.
+     * @return Length of the longest row.
+     */
     private int getMaxLength() {
         int maxLength = 0;
         for (final List<String> row: taula) {
@@ -171,13 +179,19 @@ public class Taula {
         return maxLength;
     }
 
+    /**
+     * Generates beautiful and understandable
+     * way to print the table.
+     * @return String with the formatted table.
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         int maxLength = getMaxLength();
         for (final List<String> row: taula) {
             for (int i = 0; i < ncolumnes; i++) {
                 String padding = IntStream
-                        .range(0, maxLength - row.get(i).length() + COL_SEPARATION)
+                        .range(0, maxLength - row.get(i).length()
+                                + COL_SEPARATION)
                         .mapToObj(j -> " ")
                         .collect(Collectors.joining(""));
                 sb.append(row.get(i) + padding);
