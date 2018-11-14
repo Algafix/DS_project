@@ -4,7 +4,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 /**
- * Not necessary all ready understandable.
+ * Task type with limit time, after this time
+ * the interval will be stopped.
  */
 public class LimitTimeTaskDecorator extends TaskDecorator {
 

@@ -6,23 +6,25 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Not necessary all ready understandable.
+ * Task type that starts at fixed time.
  */
 public class ProgramatedTask extends TaskDecorator implements Observer {
+
     /**
-     * Not necessary all ready understandable.
+     * Name of the programed interval for debug purposes.
      */
     private final String nameInterval;
+
     /**
-     * Not necessary all ready understandable.
+     * Date where the interval will be started.
      */
     private final  LocalDateTime programDate;
 
     /**
-     * Not necessary all ready understandable.
-     * @param basicTask .
-     * @param programDateParam .
-     * @param nameIntervalParam .
+     * Constructor of the ProgramedTask kind of Task.
+     * @param basicTask Task to be wrapped in the decorator.
+     * @param programDateParam Date to start the interval.
+     * @param nameIntervalParam Name of the launched interval.
      */
     public ProgramatedTask(final Task basicTask,
                            final LocalDateTime programDateParam,

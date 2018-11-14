@@ -175,6 +175,6 @@ public final class Client {
 
         //test.testReportTreeGenerate();
 
-        test.testBasicReportASCII(deserializeProject("allFather2.ser"));
+        //test.testBasicReportASCII(deserializeProject("allFather2.ser"));
     }
 }
