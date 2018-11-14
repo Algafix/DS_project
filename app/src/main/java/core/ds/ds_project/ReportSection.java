@@ -25,22 +25,22 @@ public class ReportSection {
     private Taula table = null;
 
     /**
-     * Whether the first row is a header row or not
+     * Whether the first row is a header row or not.
      */
     private boolean isFirstRowHeader;
 
     /**
-     * Default value for isFirstRowHeader
+     * Default value for isFirstRowHeader.
      */
     private static final boolean IS_FIRST_ROW_HEADER = true;
 
     /**
-     * Whether the first row is a header row or not
+     * Whether the first row is a header row or not.
      */
     private boolean isFirstColumnHeader;
 
     /**
-     * Default value for isFirstColumnHeader
+     * Default value for isFirstColumnHeader.
      */
     private static final boolean IS_FIRST_COLUMN_HEADER = false;
 
@@ -50,11 +50,12 @@ public class ReportSection {
      * @param descriptionParam Description of the section.
      * @param columnsNumber Columns of the info table.
      * @param tableHeaders Headers of the table.
-     * @param isFirstRowColumnHeaderParam An optional array that contains the boolean values
-     *                                    indicating whether the first row is a header and
-     *                                    if the first column is a header. If only one is passed,
-     *                                    it is supposed to be the row one. If none is passed, both
-     *                                    will have the default values.
+     * @param isFirstRowColumnHeaderParam An optional
+     *        array that contains the boolean values
+     *        indicating whether the first row is a header and
+     *        if the first column is a header. If only one is passed,
+     *        it is supposed to be the row one. If none is passed, both
+     *        will have the default values.
      */
     public ReportSection(final String subtitleParam,
                          final String descriptionParam,
@@ -104,7 +105,7 @@ public class ReportSection {
     }
 
     /**
-     * Returns the info table of the section as an ArrayList
+     * Returns the info table of the section as an ArrayList.
      * @return ArrayList with the info of the section.
      */
     public ArrayList getTableAsArrayList() {
