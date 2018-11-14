@@ -177,6 +177,8 @@ public final class Client {
 
         //test.testBasicReportASCII(deserializeProject("allFather2.ser"));
 
-        test.testBasicReportHTML(deserializeProject("allFather2.ser"));
+        // test.testBasicReportHTML(deserializeProject("allFather2.ser"));
+
+        //test.testDetailedReportHTML(deserializeProject("allFather2.ser"));
     }
 }

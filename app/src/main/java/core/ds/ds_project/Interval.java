@@ -276,4 +276,20 @@ public class Interval implements Observer, Serializable {
     public BasicTask getParent() {
         return parent;
     }
-}
+
+     /**
+      * Get the startTime.
+      * @return the startTime.
+      */
+     public LocalDateTime getStartTime() {
+         return startTime;
+     }
+
+     /**
+      * Get the endTime.
+      * @return the endTime.
+      */
+     public LocalDateTime getEndTime() {
+         return endTime;
+     }
+ }

@@ -528,5 +528,18 @@ public class Test {
         boolean finished = true;
     }
 
+    /**
+     * Creates a DetailedReport with HTML
+     */
+    public static void testDetailedReportHTML(Project allFather) {
+        ReportSaver saver = new ReportSaverAsHTML();
+        Visitor visitor = new DetailedReportGeneratorVisitor(allFather.getStartTime().plusSeconds(4),
+                allFather.getStartTime().plusSeconds(14), saver);
+        //Visitor visitor = new Printer();
+        allFather.acceptVisitor(visitor);
+        ((ReportGeneratorVisitor) visitor).save();
+        boolean finished = true;
+    }
+
 
 }

@@ -110,6 +110,14 @@ public abstract class Job implements Serializable {
     }
 
     /**
+     * Get the name of the parent.
+     * @return the parent name as String.
+     */
+    public String getParentName() {
+        return parent.getName();
+    }
+
+    /**
      * Get the duration.
      * @return the duration.
      */

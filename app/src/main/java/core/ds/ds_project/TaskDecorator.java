@@ -140,5 +140,15 @@ public abstract class TaskDecorator extends Task {
         this.task.setStartTime(startTimeParam);
     }
 
+    /**
+     * Set the parent to every sublayer.
+     * @param jobParent set the parent
+     */
+    @Override
+    public void setParent(final Project jobParent) {
+        super.setParent(jobParent);
+        task.setParent(jobParent);
+    }
+
 
 }
