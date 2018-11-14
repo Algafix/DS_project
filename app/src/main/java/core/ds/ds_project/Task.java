@@ -8,13 +8,18 @@ import java.util.Collection;
 
 
 /**
- * Not necessary all ready understandable.
+ * Task objects are always leafs of the Job tree,
+ * they can't be subdivided in other Job objects.
+ * The task objects are the only objects of the tree
+ * that can be timed (intervals will be used for this
+ * purpose). Task can be normal tasks, limited time tasks,
+ * programated tasks or any combination.
  */
 public abstract class Task extends Job {
 
     /** The Task that wraps the current one.
      * If null, means is the higher layer and the object that
-     *  interactuates with other.
+     * interactuates with other.
      */
     private Task higherLayerDecorator = null;
 
@@ -24,9 +29,9 @@ public abstract class Task extends Job {
     private final Logger log = LoggerFactory.getLogger(Task.class);
 
     /**
-     * Not necessary all ready understandable.
-     * @param name .
-     * @param description .
+     * Constructor of the task class.
+     * @param name Name of the task.
+     * @param description What is this task about.
      */
     public Task(final String name, final String description) {
 
@@ -35,7 +40,7 @@ public abstract class Task extends Job {
     }
 
     /**
-     * Invariant of the BasicTask class.
+     * Invariant of the Task class.
      */
     private void invariant() {
         assert (this.getDescription() != null) : "Illegal null description";
@@ -52,8 +57,8 @@ public abstract class Task extends Job {
     }
 
     /**
-     * Not necessary all ready understandable.
-     * @return  the intervals.
+     * Returns the collection of intervals.
+     * @return  Collection of intervals.
      */
     public abstract Collection<Interval> getIntervals();
 
@@ -61,7 +66,7 @@ public abstract class Task extends Job {
      * Adds an interval to the interval array passing itself as a parent.
      *
      * @param name Name of the interval for debug purposes.
-     * @return The interval created.
+     * @return The intervot necessary all ready understandable.al created.
      */
     public abstract Interval addInterval(String name);
 

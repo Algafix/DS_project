@@ -6,26 +6,31 @@ import java.util.Collection;
 
 
 /**
- * Not necessary all ready understandable.
+ * Class to apply the Decorator pattern, it will have
+ * an attribute of the class Task to wrap and apply
+ * different decorators. The logic of the task class
+ * (duration, startTime, intervals, etc.) will be
+ * stored in the last wrapped task.
  */
 public abstract class TaskDecorator extends Task {
     /**
-     * Not necessary all ready understandable.
+     * Task object to wrap.
      */
     private Task task = null;
 
     /**
-     * Not necessary all ready understandable.
-     * @param task1 .
+     * Constructor of the TaskDecorator.
+     * @param taskParam Task that will be wrapped with this decorator.
      */
-    public TaskDecorator(final Task task1) {
-        super(task1.getName(), task1.getDescription());
-        this.task = task1;
+    public TaskDecorator(final Task taskParam) {
+        super(taskParam.getName(), taskParam.getDescription());
+        this.task = taskParam;
         task.setHigherLayerDecorator(this);
     }
+
     /**
-     * Not necessary all ready understandable.
-     * @return the intervals of a task
+     * Get the intervals of the wrapped class.
+     * @return Interval collection of the wrapped task.
      */
     public Collection<Interval> getIntervals() {
         return task.getIntervals();
@@ -41,21 +46,22 @@ public abstract class TaskDecorator extends Task {
     public Interval addInterval(final String name) {
         return task.addInterval(name);
     }
+
     /**
-     * Not necessary all ready understandable.
+     * Stop the running interval of the wrapped task.
      */
     @Override
     public Duration stopLastInterval() {
         return task.stopLastInterval();
     }
+
     /**
-     * Not necessary all ready understandable.
+     * Accept a visitor object.
      */
     @Override
     public void acceptVisitor(final Visitor visitor) {
         task.acceptVisitor(visitor);
     }
-
 
     /**
      * Method that obtains the activity duration of the job
@@ -79,7 +85,6 @@ public abstract class TaskDecorator extends Task {
 
         return task;
     }
-
 
     /**
      * Get the duration of the internal class.

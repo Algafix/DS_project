@@ -5,25 +5,25 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 /**
- * Not necessary all ready understandable.
+ * Job is a superclass that defines the common interface
+ * for the objects of the work tree.
  */
-
 public abstract class Job implements Serializable {
 
     /**
-     * Pointer to the parent of a task.
+     * Pointer to the parent of a job.
      */
     private Project parent = null;
     /**
-     * The name.
+     * Name of the job.
      */
     private String name;
     /**
-     * The description..
+     * Description of the work to do.
      */
     private String description;
     /**
-     * The duration.
+     * The duration of the work.
      */
     private Duration duration = null;
     /**
