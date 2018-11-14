@@ -153,11 +153,11 @@ public final class Client {
 
         Test test = new Test();
 
-        test.testAppendA1();
+        //test.testAppendA1();
 
         //test.testDeserialize();
 
-        // test.testAppendA2();
+        //test.testAppendA2();
 
         //test.testLimitTimeDecorator();
 

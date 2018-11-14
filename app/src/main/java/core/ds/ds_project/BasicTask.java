@@ -162,11 +162,25 @@ public class BasicTask extends Task {
         invariant();
 
         Duration temp = Duration.ofSeconds(0);
-        if (!(fromDate.isAfter(getEndTime()) || toDate.isBefore(getStartTime()))
-                && fromDate.isBefore(toDate)) {
-            for (Interval interval : intervals) {
-                temp = temp.plus(interval.getDurationInRange(fromDate, toDate));
+        try {
+
+            if (toDate.isBefore(fromDate)) {
+                throw new IllegalArgumentException(
+                        "The dates are not coherent");
+            } else {
+                if (!(fromDate.isAfter(getEndTime())
+                        || toDate.isBefore(getStartTime()))) {
+
+                    for (Interval interval : intervals) {
+                        temp = temp.plus(
+                                interval.getDurationInRange(fromDate, toDate));
+                    }
+                }
             }
+        } catch (NullPointerException e) {
+            log.error("Null parameters", e);
+        } catch (IllegalArgumentException e) {
+            log.error("Argument with invalid values", e);
         }
 
         //Postcondition and invariant
