@@ -1,5 +1,8 @@
 package core.ds.ds_project;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -8,13 +11,19 @@ import java.util.List;
 
 import paginaweb.PaginaWeb;
 /**
- * Not necessary understandable.
+ * ReportSaver with the implementation to save the report as a HTML file.
  */
 public class ReportSaverAsHTML extends ReportSaver {
     /**
      * Initialize the extension.
      */
     private static final String EXTENSION = ".html";
+    
+    /**
+     * Logger of the class ReportSaverAsASCII.
+     */
+    private final Logger log =
+            LoggerFactory.getLogger(ReportSaverAsHTML.class);
     /**
      * Initialize the main header.
      */
@@ -32,7 +41,7 @@ public class ReportSaverAsHTML extends ReportSaver {
      */
     private static final boolean IS_MAIN_HEADER_CENTERED = true;
     /**
-     * To save all the table  .
+     * To save all the table.
      */
     @Override
     public void save(final Report report,
@@ -57,28 +66,11 @@ public class ReportSaverAsHTML extends ReportSaver {
         }
         saveFile(filename, webPage);
     }
-    /**
-     * To save the file.
-     */
-    @Override
-    protected void saveFile(final String filename, final StringBuilder sb) {
-        try {
-            PrintWriter writer = new PrintWriter(filename + EXTENSION, "UTF-8");
-            writer.write(sb.toString());
-            writer.close();
 
-            System.out.print("Object has been serialized");
-
-        } catch (IOException ex) {
-
-            System.out.print("IOException when serializing the project"
-                    + ex.getMessage());
-        }
-    }
     /**
      * To save a file.
-     * @param filename .
-     * @param pw  web page.
+     * @param filename String with the name of the file
+     * @param pw A web page object to be saved.
      */
     private void saveFile(final String filename, final PaginaWeb pw) {
 
@@ -93,10 +85,11 @@ public class ReportSaverAsHTML extends ReportSaver {
 
             System.setOut(console);
 
+            log.info("The report has been saved");
+
         } catch (IOException ex) {
 
-            System.out.print("IOException when serializing the project"
-                    + ex.getMessage());
+            log.error("IOException when saving the report", ex);
         }
     }
 }
