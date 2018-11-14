@@ -487,14 +487,13 @@ public class Test {
             }
         };
 
-        final TimerTask Tasktime1 = new TimerTask() {
+        final TimerTask Tasktime = new TimerTask() {
             @Override
             public void run() {
                 Client.serializeProject(allFather, "allFather2.ser");
-                testBasicReportASCII(allFather);
             }
         };
-        new Timer().schedule(Tasktime1, 22000);
+        new Timer().schedule(Tasktime, 22000);
 
 
         Timer updateWindow = new Timer();
@@ -508,6 +507,19 @@ public class Test {
      */
     public static void testBasicReportASCII(Project allFather) {
         ReportSaver saver = new ReportSaverAsASCII();
+        Visitor visitor = new BasicReportGeneratorVisitor(allFather.getStartTime().plusSeconds(4),
+                allFather.getStartTime().plusSeconds(14), saver);
+        //Visitor visitor = new Printer();
+        allFather.acceptVisitor(visitor);
+        ((ReportGeneratorVisitor) visitor).save();
+        boolean finished = true;
+    }
+
+    /**
+     * Creates a BasicReport with HTML
+     */
+    public static void testBasicReportHTML(Project allFather) {
+        ReportSaver saver = new ReportSaverAsHTML();
         Visitor visitor = new BasicReportGeneratorVisitor(allFather.getStartTime().plusSeconds(4),
                 allFather.getStartTime().plusSeconds(14), saver);
         //Visitor visitor = new Printer();
