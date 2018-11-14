@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Not necessary all ready understandable.
+ * Project objects are nodes of the Job tree
+ * that can be subdivided in other projects or tasks.
+ * In other words, the project contains different,
+ * more specific, jobs.
  */
 public class Project extends Job {
 
     /**
-     * Not necessary all ready understandable.
+     * Collection of jobs that conform this project.
      */
     private Collection<Job> children = new ArrayList<Job>();
 
@@ -117,7 +120,7 @@ public class Project extends Job {
     }
 
     /**
-     * Not necessary all ready understandable.
+     * Accept a visitor object.
      */
     @Override
     public void acceptVisitor(final Visitor visitor) {

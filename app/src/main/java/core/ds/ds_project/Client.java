@@ -163,11 +163,11 @@ public final class Client {
 
         //test.testDeserialize();
 
-        //test.testAppendA2();
+        test.testAppendA2();
 
         //test.testLimitTimeDecorator();
 
-        test.testProgrammatedTaskAndLimitTimeTaskDecorator();
+        //test.testProgrammatedTaskAndLimitTimeTaskDecorator();
 
         //test.testProgramatedtask();
 
