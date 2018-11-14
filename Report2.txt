@@ -3,40 +3,40 @@ Informe Detallat
 Període
 
                                  Data                             
-Desde                            14-Nov-2018 03:22:46             
-Fins a                           14-Nov-2018 03:22:56             
-Data de generació de l'informe   14-Nov-2018 13:20:51             
+Desde                            14-nov-2018 03:22:46             
+Fins a                           14-nov-2018 03:22:56             
+Data de generació de l'informe   14-nov-2018 14:29:05             
 
 -----------------------------------------------------------------------------------------------------------------------------
 Projectes Arrel
 
 Projecte               Data d'Inici           Data Final             Data Total             
-P1                     14-Nov-2018 03:22:46   14-Nov-2018 03:22:56   00:00:12               
-P2                     14-Nov-2018 03:22:52   14-Nov-2018 03:22:56   00:00:04               
+P1                     14-nov-2018 03:22:46   14-nov-2018 03:22:56   00:00:12               
+P2                     14-nov-2018 03:22:52   14-nov-2018 03:22:56   00:00:04               
 
 -----------------------------------------------------------------------------------------------------------------------------
 Subprojectes
 S'inclouen en la següent taula només els subprojectesque tinguin alguna tasca amb algun interval dins delperíode.
 Projecte Pare          Projecte               Data d'Inici           Data Final             Data Total             
-P1                     P1.2                   14-Nov-2018 03:22:46   14-Nov-2018 03:22:52   00:00:06               
+P1                     P1.2                   14-nov-2018 03:22:46   14-nov-2018 03:22:52   00:00:06               
 
 -----------------------------------------------------------------------------------------------------------------------------
 Tasques
 S'inclouen en la següent taula la durada de totes lestasques al període i s'especifica el projecte al qualpertanyen.
 Projecte Pare          Tasca                  Data d'Inici           Data Final             Data Total             
-T1                     T1                     14-Nov-2018 03:22:46   14-Nov-2018 03:22:46   00:00:00               
-T2                     T2                     14-Nov-2018 03:22:46   14-Nov-2018 03:22:56   00:00:06               
-T4                     T4                     14-Nov-2018 03:22:46   14-Nov-2018 03:22:52   00:00:06               
-T3                     T3                     14-Nov-2018 03:22:52   14-Nov-2018 03:22:56   00:00:04               
+T1                     T1                     14-nov-2018 03:22:46   14-nov-2018 03:22:46   00:00:00               
+T2                     T2                     14-nov-2018 03:22:46   14-nov-2018 03:22:56   00:00:06               
+T4                     T4                     14-nov-2018 03:22:46   14-nov-2018 03:22:52   00:00:06               
+T3                     T3                     14-nov-2018 03:22:52   14-nov-2018 03:22:56   00:00:04               
 
 -----------------------------------------------------------------------------------------------------------------------------
 Intervals
 S'inclouen en la següent taula la data d'inici, final idurada de tots els intervals que es troben entre lesdates especificades, afegint també la tasca i projecteal qual pertanyen. 
 Projecte Pare          Tasca                  Interval               Data d'Inici           Data Final             Data Total             
-P1                     T1                     Interval 1             14-Nov-2018 03:22:46   14-Nov-2018 03:22:46   00:00:00               
-P1                     T2                     Interval1              14-Nov-2018 03:22:46   14-Nov-2018 03:22:52   00:00:06               
-P1                     T2                     Interval2              14-Nov-2018 03:22:56   14-Nov-2018 03:22:56   00:00:00               
-P1.2                   T4                     Interval 1             14-Nov-2018 03:22:46   14-Nov-2018 03:22:52   00:00:06               
-P2                     T3                     Interval1              14-Nov-2018 03:22:52   14-Nov-2018 03:22:56   00:00:04               
+P1                     T1                     Interval 1             14-nov-2018 03:22:46   14-nov-2018 03:22:46   00:00:00               
+P1                     T2                     Interval1              14-nov-2018 03:22:46   14-nov-2018 03:22:52   00:00:06               
+P1                     T2                     Interval2              14-nov-2018 03:22:56   14-nov-2018 03:22:56   00:00:00               
+P1.2                   T4                     Interval 1             14-nov-2018 03:22:46   14-nov-2018 03:22:52   00:00:06               
+P2                     T3                     Interval1              14-nov-2018 03:22:52   14-nov-2018 03:22:56   00:00:04               
 
 -----------------------------------------------------------------------------------------------------------------------------

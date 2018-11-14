@@ -64,18 +64,17 @@ public class ReportSaverAsASCII extends ReportSaver {
      * @param filename Name of the file to be filled.
      * @param sb String with the text to be writted.
      */
-    @Override
     protected void saveFile(final String filename, final StringBuilder sb) {
         try {
             PrintWriter writer = new PrintWriter(filename + EXTENSION, "UTF-8");
             writer.write(sb.toString());
             writer.close();
 
-            log.info("Object has been serialized");
+            log.info("The report has been saved");
 
         } catch (IOException ex) {
 
-            log.error("IOException when serializing the project", ex);
+            log.error("IOException when saving the report", ex);
         }
     }
 }

@@ -14,10 +14,4 @@ public abstract class ReportSaver {
     public abstract void save(Report report,
                               List<String> subtitlesList,
                               String filename);
-    /**
-     * to save a file.
-     * @param filename .
-     * @param sb string builder
-     */
-    protected abstract void saveFile(String filename, StringBuilder sb);
 }
