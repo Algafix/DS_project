@@ -3,15 +3,15 @@ Informe Breu
 Període
 
                                  Data                             
-Desde                            14-nov-2018 03:22:46             
-Fins a                           14-nov-2018 03:22:56             
-Data de generació de l'informe   14-nov-2018 14:29:05             
+Desde                            14-de nov.-2018 03:22:46         
+Fins a                           14-de nov.-2018 03:22:56         
+Data de generació de l'informe   14-de nov.-2018 14:50:36         
 
 -----------------------------------------------------------------------------------------------------------------------------
 Projectes Arrel
 
-Projecte               Temps d'Inici          Temps Final            Temps Total            
-P1                     14-nov-2018 03:22:46   14-nov-2018 03:22:56   00:00:12               
-P2                     14-nov-2018 03:22:52   14-nov-2018 03:22:56   00:00:04               
+Projecte                   Temps d'Inici              Temps Final                Temps Total                
+P1                         14-de nov.-2018 03:22:46   14-de nov.-2018 03:22:56   00:00:12                   
+P2                         14-de nov.-2018 03:22:52   14-de nov.-2018 03:22:56   00:00:04                   
 
 -----------------------------------------------------------------------------------------------------------------------------
