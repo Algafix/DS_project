@@ -163,7 +163,7 @@ public final class Client {
 
         //test.testDeserialize();
 
-        test.testAppendA2();
+        // test.testAppendA2();
 
         //test.testLimitTimeDecorator();
 
@@ -175,6 +175,8 @@ public final class Client {
 
         //test.testReportTreeGenerate();
 
-        test.testBasicReportASCII(deserializeProject("allFather2.ser"));
+        //test.testBasicReportASCII(deserializeProject("allFather2.ser"));
+
+        test.testBasicReportHTML(deserializeProject("allFather2.ser"));
     }
 }
