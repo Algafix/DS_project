@@ -2,13 +2,12 @@ package core.ds.ds_project;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
-
 import paginaweb.PaginaWeb;
+
 /**
  * ReportSaver with the implementation to save the report as a HTML file.
  */
