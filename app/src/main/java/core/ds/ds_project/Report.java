@@ -8,8 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Superclass that will handle de different
- * kinds of report (ascii, html...) in its subclasses.
+ * Class that saves the metadata of a report. It is composed of
+ * a title and a section collection.
  */
 public class Report {
 
@@ -37,7 +37,8 @@ public class Report {
     }
 
     /**
-     * Constructor of the Report class.
+     * Constructor of the Report class. It initializes each section with
+     * their titles, their descriptions and the first row (header).
      * @param titleParam Name of the report.
      * @param sectionsTitles List with the titles for the report.
      * @param sectionsDescriptions List with the description of the sections.

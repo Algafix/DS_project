@@ -164,8 +164,8 @@ public class Taula {
     }
 
     /**
-     * Returns the maximum length by checking all the rows.
-     * @return Length of the longest row.
+     * Returns the maximum length by checking all the columns.
+     * @return Length of the longest column.
      */
     private int getMaxLength() {
         int maxLength = 0;

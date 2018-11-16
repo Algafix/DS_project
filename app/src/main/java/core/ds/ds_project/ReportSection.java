@@ -53,7 +53,7 @@ public class ReportSection {
      * @param isFirstRowColumnHeaderParam An optional
      *        array that contains the boolean values
      *        indicating whether the first row is a header and
-     *        if the first column is a header. If only one is passed,
+     *        whether the first column is a header. If only one is passed,
      *        it is supposed to be the row one. If none is passed, both
      *        will have the default values.
      */

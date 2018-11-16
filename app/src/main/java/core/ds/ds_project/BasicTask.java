@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Not necessary understandable.
+ * Core implementation of a Task.
  */
 public class BasicTask extends Task {
 

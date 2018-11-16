@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Not necessary understandable.
+ * Clock of the project.
  */
 
 public final class AppClock extends Observable {

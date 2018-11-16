@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.List;
 
 import paginaweb.PaginaWeb;
@@ -18,18 +17,19 @@ public class ReportSaverAsHTML extends ReportSaver {
      * Initialize the extension.
      */
     private static final String EXTENSION = ".html";
-    
+
     /**
      * Logger of the class ReportSaverAsASCII.
      */
     private final Logger log =
             LoggerFactory.getLogger(ReportSaverAsHTML.class);
     /**
-     * Initialize the main header.
+     * Initialize the main header. It indicates the size of the h tag.
+     * (e.g: h1)
      */
     private static final int MAIN_HEADER = 1;
     /**
-     * Initialize the sub header.
+     * Initialize the sub header. It indicates the size of the h tag.
      */
     private static final int SUBHEADER = 2;
     /**
@@ -41,7 +41,7 @@ public class ReportSaverAsHTML extends ReportSaver {
      */
     private static final boolean IS_MAIN_HEADER_CENTERED = true;
     /**
-     * To save all the table.
+     * To save the Report.
      */
     @Override
     public void save(final Report report,
@@ -68,7 +68,7 @@ public class ReportSaverAsHTML extends ReportSaver {
     }
 
     /**
-     * To save a file.
+     * To save as a html file.
      * @param filename String with the name of the file
      * @param pw A web page object to be saved.
      */

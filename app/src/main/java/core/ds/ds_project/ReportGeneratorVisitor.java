@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Not necessary understandable if necessary explain the class.
+ * Abstract structure of all visitors to generate a report.
  */
 public abstract class ReportGeneratorVisitor extends Visitor {
     /**
-     *The report saver.
+     *The report saver, with the implementation to save as a file.
      */
     private ReportSaver saver;
     /**
@@ -24,10 +24,11 @@ public abstract class ReportGeneratorVisitor extends Visitor {
      */
     private LocalDateTime startReportDate;
     /**
-     * The rport generator visitor.
-     * @param startReportDateParam .
-     * @param endReportDateParam .
-     * @param saverParam .
+     * The report generator visitor.
+     * @param startReportDateParam Starting date of the report.
+     * @param endReportDateParam Ending date of the report.
+     * @param saverParam Saver object that will define how
+     *                  the report is stored.
      */
     public ReportGeneratorVisitor(final LocalDateTime startReportDateParam,
                                   final  LocalDateTime endReportDateParam,
@@ -38,12 +39,13 @@ public abstract class ReportGeneratorVisitor extends Visitor {
         initializeReport();
     }
     /**
-     * The save.
+     * To save a report.
      */
     public abstract void save();
     /**
-     * The save .
-     * @param subtitles .
+     * To save from a subclass.
+     * @param subtitles The titles that represent each section,
+     *                  in the order to be saved.
      */
     protected void save(final List<String> subtitles) {
         saver.save(report, subtitles, getFileName());
@@ -54,7 +56,7 @@ public abstract class ReportGeneratorVisitor extends Visitor {
      */
     private static int counter = 0;
     /**
-     * To get the file name.
+     * To get the file name without extension.
      * @return the number of reports.
      */
     private String getFileName() {
@@ -63,7 +65,7 @@ public abstract class ReportGeneratorVisitor extends Visitor {
     }
 
     /**
-     * Method that will generate and add the info for the report from a .
+     * Method that will generate and add the info for the report from a project.
      * @param project Project where the method is called.
      */
     @Override
@@ -104,62 +106,64 @@ public abstract class ReportGeneratorVisitor extends Visitor {
     protected void initializeReport() { }
 
     /**
-     * For pruning the structure tree of projects, tasks,...
-     * @param project .
-     * @return false .
+     * Check if a project is visitable.
+     * @param project Project to be checked.
+     * @return false: default value of the method if not overriden.
      */
     protected boolean isVisitableProject(final Project project) {
         return false;
     }
     /**
      * To get info of a project.
-     * @param project .
+     * @param project Project to be read.
      */
     protected void getInfoProject(final Project project) { }
 
     /**
      * To handle infoProject.
-     * @param project .
+     * @param project Project to be handled.
      */
     protected void handleInfoProject(final Project project) { }
 
     /**
-     * To know if a task is visited.
-     * @param task .
-     * @return false.
+     /**
+     * Check if a task is visitable.
+     * @param task Task to be checked.
+     * @return false: default value of the method if not overriden.
      */
     protected boolean isVisitableTask(final Task task) {
         return false;
     }
     /**
      * To get info of a a task.
-     * @param task .
+     * @param task Task to be read.
      */
     protected void getInfoTask(final Task task) { }
 
     /**
      * To handle info of a task.
-     * @param task .
+     * @param task Task to be handled.
      */
     protected void handleInfoTask(final Task task) { }
 
     /**
-     * To know if a interval is visited.
-     * @param interval .
-     * @return false .
+     /**
+     * Check if a interval is visitable.
+     * @param interval Interval to be checked.
+     * @return false: default value of the method if not overriden.
      */
     protected boolean isVisitableInterval(final Interval interval) {
         return false;
     }
     /**
      * To get info of an interval.
-     * @param interval .
+     * @param interval Interval to be read.
      */
     protected void getInfoInterval(final Interval interval) { }
 
     /**
      * To handle an interval.
-     * @param interval .
+     * @param interval Interval to be handled.
      */
     protected void handleInfoInterval(final Interval interval) { }
 
@@ -186,7 +190,7 @@ public abstract class ReportGeneratorVisitor extends Visitor {
     }
     /**
      * To set the report.
-     * @param reportParam .
+     * @param reportParam Set the report from a external source.
      */
     public void setReport(final Report reportParam) {
         this.report = reportParam;

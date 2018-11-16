@@ -1,23 +1,23 @@
 package core.ds.ds_project;
 
 /**
- * Not necessary all ready understandable.
+ * Visitor abstract class.
  */
 abstract class Visitor {
     /**
-     * Not necessary all ready understandable.
-     * @param project .
+     * Visit a project.
+     * @param project Project to be visited.
      */
     public abstract void visitProject(Project project);
 
     /**
-     * Not necessary all ready understandable.
-     * @param task .
+     * Visit a task.
+     * @param task Task to be visited.
      */
     public abstract void visitTask(Task task);
     /**
-     * Not necessary all ready understandable.
-     * @param interval .
+     * Visit a interval.
+     * @param interval Interval to be visited.
      */
     public abstract void visitInterval(Interval interval);
 }

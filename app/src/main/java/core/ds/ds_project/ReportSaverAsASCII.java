@@ -25,7 +25,7 @@ public class ReportSaverAsASCII extends ReportSaver {
             LoggerFactory.getLogger(ReportSaverAsASCII.class);
 
     /**
-     * Separation length between rows.
+     * Length of the dashed line used as a separator.
      */
     private static final int DASH_LENGTH = 125;
 
