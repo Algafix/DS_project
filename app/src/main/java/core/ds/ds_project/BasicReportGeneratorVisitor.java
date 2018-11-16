@@ -150,7 +150,7 @@ public class BasicReportGeneratorVisitor
 
     /**
      * Obtain the necessary information of a given project
-     * and store-it in the array structure.
+     * and store-it.
      * @param project Project to be read.
      */
     @Override

@@ -8,21 +8,22 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Not necessary understandable if necessary explain the class.
+ * Visitor that creates a detailed Report. It contains the structure
+ * and all the metadata that builds a detailed Report.
  */
 public class DetailedReportGeneratorVisitor
         extends ReportGeneratorVisitor {
 
     /**
-     * The duration calculated.
+     * The duration calculated in the visit.
      */
     private Duration calculatedDuration;
     /**
-     * The start time determined.
+     * The start time determined in the visit.
      */
     private LocalDateTime determinedStartTime;
     /**
-     * The Endtime determined.
+     * The Endtime determined in the visit.
      */
     private LocalDateTime determinedEndTime;
     /**
@@ -52,12 +53,12 @@ public class DetailedReportGeneratorVisitor
                     + "dates especificades, afegint també la tasca i projecte"
                     + "al qual pertanyen. "));
     /**
-     * The sections of the columns numbers.
+     * The number of columns each section has.
      */
     public static final List<Integer> SECTIONS_COLUMNS_NUMBERS =
             Collections.unmodifiableList(Arrays.asList(2, 4, 5, 5, 6));
     /**
-     * The section headersof the inform.
+     * The headers of the table each section has.
      */
     public static final List<List<String>> SECTIONS_HEADERS =
             Collections.unmodifiableList(
@@ -81,30 +82,31 @@ public class DetailedReportGeneratorVisitor
                                                                 "Data Total")));
             }});
     /**
-     * The index period.
+     * The index to period section.
      */
     public static final int PERIOD_INDEX = 0;
     /**
-     * The proot index.
+     * The index to root project section.
      */
     public static final int PROOT_INDEX = 1;
     /**
-     * The sproj index.
+     * The index to subproject section.
      */
     public static final int SPROJ_INDEX = 2;
     /**
-     * The task index of the inform.
+     * The index of the task section.
      */
     public static final int TASK_INDEX = 3;
     /**
-     * The interval index.
+     * The index of the interval section.
      */
     public static final int INTVL_INDEX = 4;
     /**
      * TheDetailed Generator Visitor.
-     * @param startReportDateParam .
-     * @param endReportDateParam .
-     * @param saverParam .
+     * @param startReportDateParam Start date boundary of the range to visit.
+     * @param endReportDateParam End date boundary of the range to visit.
+     * @param saverParam An object with the implementation to save the
+     *                   report as a file.
      */
     public DetailedReportGeneratorVisitor(
                         final LocalDateTime startReportDateParam,
@@ -120,7 +122,7 @@ public class DetailedReportGeneratorVisitor
         super.save(SECTIONS_TITLES);
     }
     /**
-     * Initialize reports.
+     * Initialize reports with all the metadata and builds the period table.
      */
     @Override
     protected void initializeReport() {
@@ -153,7 +155,8 @@ public class DetailedReportGeneratorVisitor
 
     }
     /**
-     * For pruning the structure tree of projects, tasks,...
+     * Check if a project should be visited. As long as is not the dummie
+     * if it is between the 2 dates, is a visitable project.
      */
     @Override
     protected boolean isVisitableProject(final Project project) {
@@ -188,7 +191,7 @@ public class DetailedReportGeneratorVisitor
         getInfoJob(project);
     }
     /**
-     * To handle infoProject.
+     * Adds a new row in the correspondent section with the info of a Project.
      */
     @Override
     protected void handleInfoProject(final Project project) {
@@ -207,7 +210,7 @@ public class DetailedReportGeneratorVisitor
         }
     }
     /**
-     * To know if a task is visited.
+     * Checks if a task should be visited.
      */
     @Override
     protected boolean isVisitableTask(final Task task) {
@@ -227,7 +230,7 @@ public class DetailedReportGeneratorVisitor
     @Override
     protected void handleInfoTask(final Task task) {
         List<String> newRow = new ArrayList<String>() {{
-            add(task.getName());
+            add(task.getParentName());
             add(task.getName());
             add(Client.formatDateTime(determinedStartTime));
             add(Client.formatDateTime(determinedEndTime));
@@ -237,7 +240,7 @@ public class DetailedReportGeneratorVisitor
         addRowIntoTASK(newRow);
     }
     /**
-     * To know if a interval is visited.
+     * Check if a interval should be visited.
      */
     @Override
     protected boolean isVisitableInterval(final Interval interval) {

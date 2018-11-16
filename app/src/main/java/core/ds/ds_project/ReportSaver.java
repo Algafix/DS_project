@@ -7,8 +7,9 @@ import java.util.List;
 public abstract class ReportSaver {
     /**
      * To save a report.
-     * @param report The report to be saved
-     * @param subtitlesList List of string keys (subtitles) in the order we want the sections
+     * @param report The report to be saved.
+     * @param subtitlesList List of string keys (subtitles) in the order
+     *                      we want the sections.
      * @param filename The filename without extension.
      */
     public abstract void save(Report report,
