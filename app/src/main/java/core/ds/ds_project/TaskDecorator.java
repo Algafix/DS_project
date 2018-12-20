@@ -150,5 +150,15 @@ public abstract class TaskDecorator extends Task {
         task.setParent(jobParent);
     }
 
+    @Override
+    public Boolean isRunningInterval() {
+        return task.isRunningInterval();
+    }
+
+    @Override
+    public Boolean addInterval(Interval interval){
+        return task.addInterval(interval);
+    }
+
 
 }

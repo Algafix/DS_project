@@ -249,4 +249,13 @@ public class BasicTask extends Task {
         invariant();
     }
 
+    @Override
+    public Boolean isRunningInterval() {
+        return runningInterval != null;
+    }
+
+    @Override
+    public Boolean addInterval(Interval interval){
+        return intervals.add(interval);
+    }
 }

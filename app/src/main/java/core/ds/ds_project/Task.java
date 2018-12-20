@@ -71,6 +71,20 @@ public abstract class Task extends Job {
     public abstract Interval addInterval(String name);
 
     /**
+     * Adds an existing interval to the interval array.
+     *
+     * @param interval Interval to be added.
+     * @return Whether the interval is successfully added or not.
+     */
+    public abstract Boolean addInterval(Interval interval);
+
+    /**
+     * Check if the timer is running for the task
+     * @return Whether is running (True) or not (False)
+     */
+    public abstract Boolean isRunningInterval();
+
+    /**
      * Stops the last interval, which is presumed to be the only one running,
      * considering there's an
      * interval running at all.
